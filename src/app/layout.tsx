@@ -1,8 +1,17 @@
-import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
+import { Aclonica, Montserrat } from 'next/font/google';
+import NavBar from './components/navBar/Navbar';
+import './globals.css';
+const aclonica = Aclonica({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-aclonica',
+});
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: '600',
+  variable: '--font-montserrat',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +25,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={` ${aclonica.className} bg-gradient-to-b from-navbar via-navbar to-transparent`}
+      >
+        <NavBar />
+        {children}
+      </body>
     </html>
   );
 }

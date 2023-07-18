@@ -7,10 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        aclonica: ['var[--font-aclonica]'],
+        montserrat: ['var[--font-montserrat]'],
+      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        hearthstone_bg: "url('/background_plain/background_plain.webp')",
+      },
+      colors: {
+        navbar: '#2c3858',
+        accents: '#fcd52d',
       },
     },
   },

@@ -6,7 +6,7 @@ export interface ISearchBar {
 
 export default function SearchBar({ sampleTextProp }: ISearchBar) {
   return (
-    <div className=" bg-navbar w-2/5 max-sm:w-5/6  h-16 flex rounded-full z-10">
+    <div className=" bg-navbar w-2/5 max-sm:w-5/6  h-16 flex rounded-full z-0">
       <div className=" w-full flex gap-2">
         <button className=" w-10 align-middle relative left-4">
           <Image src={Search} alt=""></Image>

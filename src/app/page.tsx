@@ -39,94 +39,111 @@ export default function Home() {
         </div>
 
         <div className=" max-sm:w-3/5">
-          <Image
-            className=" hover:drop-shadow-blue"
-            src={druid_emblem}
-            height={164}
-            width={164}
-            alt=""
-          ></Image>
+          <button>
+            <Image
+              className=" hover:drop-shadow-blue"
+              src={druid_emblem}
+              height={164}
+              width={164}
+              alt=""
+            ></Image>
+          </button>
           <p className="text-accents text-center sm:text-2xl ">Druid</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <Image
-            className=" hover:drop-shadow-blue"
-            src={hunter_emblem}
-            height={164}
-            width={164}
-            alt=""
-          ></Image>
+          <button>
+            <Image
+              className=" hover:drop-shadow-blue"
+              src={hunter_emblem}
+              height={164}
+              width={164}
+              alt=""
+            ></Image>
+          </button>
           <p className="text-accents text-center sm:text-2xl ">Hunter</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <Image
-            className=" hover:drop-shadow-blue"
-            src={priest_emblem}
-            height={164}
-            width={164}
-            alt=""
-          ></Image>
+          <button>
+            <Image
+              className=" hover:drop-shadow-blue"
+              src={priest_emblem}
+              height={164}
+              width={164}
+              alt=""
+            ></Image>
+          </button>
           <p className="text-accents text-center sm:text-2xl ">Priest</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <Image
-            className=" hover:drop-shadow-blue"
-            src={rouge_emblem}
-            height={164}
-            width={164}
-            alt=""
-          ></Image>
+          <button>
+            <Image
+              className=" hover:drop-shadow-blue"
+              src={rouge_emblem}
+              height={164}
+              width={164}
+              alt=""
+            ></Image>
+          </button>
           <p className="text-accents text-center sm:text-2xl ">Rouge</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <Image
-            className=" hover:drop-shadow-blue"
-            src={paladin_emblem}
-            height={164}
-            width={164}
-            alt=""
-          ></Image>
+          <button>
+            <Image
+              className=" hover:drop-shadow-blue"
+              src={paladin_emblem}
+              height={164}
+              width={164}
+              alt=""
+            ></Image>
+          </button>
           <p className="text-accents text-center sm:text-2xl ">Paladin</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <Image
-            className=" hover:drop-shadow-blue"
-            src={shaman_emblem}
-            height={164}
-            width={164}
-            alt=""
-          ></Image>
+          <button>
+            <Image
+              className=" hover:drop-shadow-blue"
+              src={shaman_emblem}
+              height={164}
+              width={164}
+              alt=""
+            ></Image>
+          </button>
           <p className="text-accents text-center sm:text-2xl ">Shaman</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <Image
-            className=" hover:drop-shadow-blue"
-            src={demonhunter_emblem}
-            height={164}
-            width={164}
-            alt=""
-          ></Image>
+          <button>
+            <Image
+              className=" hover:drop-shadow-blue"
+              src={demonhunter_emblem}
+              height={164}
+              width={164}
+              alt=""
+            ></Image>
+          </button>
           <p className="text-accents text-center sm:text-2xl ">Demon Hunter</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <Image
-            className=" hover:drop-shadow-blue"
-            src={warlock_emblem}
-            height={164}
-            width={164}
-            alt=""
-          ></Image>
+          <button>
+            <Image
+              className=" hover:drop-shadow-blue"
+              src={warlock_emblem}
+              height={164}
+              width={164}
+              alt=""
+            ></Image>
+          </button>
           <p className="text-accents text-center sm:text-2xl ">Warlock</p>
         </div>
         <div className=" max-sm:w-3/5 ">
-          <Image
-            className=" hover:drop-shadow-blue"
-            src={warrior_emblem}
-            height={164}
-            width={164}
-            alt=""
-          ></Image>
-
+          <button>
+            <Image
+              className=" hover:drop-shadow-blue"
+              src={warrior_emblem}
+              height={164}
+              width={164}
+              alt=""
+            ></Image>
+          </button>
           <p className="text-accents text-center sm:text-2xl ">Warrior</p>
         </div>
       </div>

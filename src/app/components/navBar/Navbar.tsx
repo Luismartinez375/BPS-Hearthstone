@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import homepage_logo2 from 'public/homepage_logo 2/homepage_logo 2.webp';
 import { useState } from 'react';
 export interface INavbar {
@@ -7,10 +8,11 @@ export interface INavbar {
 }
 
 export default function NavBar() {
+  const router = useRouter();
   const [toggle, setToggle] = useState(false);
 
   return (
-    <nav className=" bg-transparent flex flex-row w-full h-20 max-sm:justify-between items-center justify-center shadow-2xl bg-opacity-5">
+    <nav className=" bg-transparent flex flex-row w-full h-20 max-sm:justify-between items-center justify-center shadow-2xl">
       <div className="p-4 relative max-sm:left-8 right-1/4">
         <Image
           src={homepage_logo2}
@@ -19,9 +21,19 @@ export default function NavBar() {
           height={70}
         ></Image>
       </div>
-      <div className=" flex flex_row w-1/4 justify-between max-sm:hidden gap-20 text-white">
-        <button className=" font-montserrat hover:text-accents">Home</button>
-        <button className=" font-aclonica hover:text-accents">Favorites</button>
+      <div className=" flex flex_row w-1/4 justify-between gap-20 text-white max-sm:hidden">
+        <button
+          className=" font-montserrat hover:text-accents"
+          onClick={() => router.push('/')}
+        >
+          Home
+        </button>
+        <button
+          className=" font-aclonica hover:text-accents"
+          onClick={() => router.push('/favorites')}
+        >
+          Favorites
+        </button>
         <button className=" font-aclonica hover:text-accents">Shops</button>
       </div>
       <button

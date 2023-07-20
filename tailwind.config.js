@@ -8,6 +8,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      width: {
+        '19/20': '98%',
+      },
+      height: {
+        '19/20': '95%',
+      },
+      left: {
+        '1/5': '20%',
+      },
       fontFamily: {
         aclonica: ['var[--font-aclonica]'],
         montserrat: ['var[--font-montserrat]'],
@@ -25,6 +34,7 @@ module.exports = {
         gold_2: '#7a5b35',
         gold_3: '#a38132',
         brown: '#3b2203',
+        button_bg: '#405384',
       },
       textShadow: {
         sm: '0 1px 2px var(--tw-shadow-color)',

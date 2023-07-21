@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import useDraggableScroll from "use-draggable-scroll";
 import down from '../../../public/Keyboard arrow down.svg';
 import filter from '../../../public/filter.svg';
 import HearthButton from '../components/button/hearthbutton';
@@ -70,6 +71,10 @@ const keywords = [
 ];
 
 export default function Page() {
+  // Handles the scroll
+  const ref = useRef(null);
+  const {onMouseDown } = useDraggableScroll(ref);
+  
   // Toggles for buttons
   const [filterToggle, userFilterToggle] = useState(false);
   const [manaToggle, userManaToggle] = useState(false);
@@ -81,7 +86,6 @@ export default function Page() {
   const [keywordsToggle, userKeywordsToggle] = useState(false);
   // Switch filters
   const [manafilter, userManafilter] = useState(mana[0]);
-  const [attackfilter, userAttackfilter] = useState(atk[0]);
 
   //Toggle functions
   function toggleFilter() {
@@ -175,7 +179,7 @@ export default function Page() {
           {/*Sortby Row */}
           <div className="flex flex-row gap-5 items-start">
             <p className=" font-serif font-thin text-white text-xl">sort by:</p>
-            <div className=" flex flex-col items-center gap-4">
+            <div className=" flex flex-col items-center gap-4 ">
               <HearthButton
                 text={manafilter}
                 width={'64'}
@@ -202,7 +206,7 @@ export default function Page() {
         {/* Filters row */}
         {filterToggle && (
           <div className="grid gap-10  lg:grid-cols-6 grid-cols-3 max-sm:hidden">
-            <div>
+            <div className='flex flex-col gap-2' onMouseDown={onMouseDown}>
               <HearthButton
                 text={'Attack'}
                 width={'52'}
@@ -213,7 +217,7 @@ export default function Page() {
               ></HearthButton>
               {attackToggle && <HearthScroll list={atk}></HearthScroll>}
             </div>
-            <div>
+            <div className='flex flex-col gap-2'>
               <HearthButton
                 text={'Health'}
                 width={'52'}
@@ -224,7 +228,7 @@ export default function Page() {
               ></HearthButton>
               {healthToggle && <HearthScroll list={health}></HearthScroll>}
             </div>
-            <div>
+            <div className='flex flex-col gap-2'>
               <HearthButton
                 text={'Card Type'}
                 width={'52'}
@@ -235,7 +239,7 @@ export default function Page() {
               ></HearthButton>
               {cardTypeToggle && <HearthScroll list={cardType}></HearthScroll>}
             </div>
-            <div>
+            <div className='flex flex-col gap-2'>
               <HearthButton
                 text={'Minion Type'}
                 width={'52'}
@@ -248,7 +252,7 @@ export default function Page() {
                 <HearthScroll list={minionType}></HearthScroll>
               )}
             </div>
-            <div>
+            <div className='flex flex-col gap-2'>
               <HearthButton
                 text={'Rarity'}
                 width={'52'}
@@ -259,7 +263,7 @@ export default function Page() {
               ></HearthButton>
               {rarityToggle && <HearthScroll list={rarity}></HearthScroll>}
             </div>
-            <div>
+            <div className='flex flex-col gap-2'>
               <HearthButton
                 text={'Keywords'}
                 width={'52'}

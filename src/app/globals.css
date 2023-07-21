@@ -6,6 +6,15 @@
   .drop-shadow-blue {
     filter: drop-shadow(0 0 2rem rgb(104, 225, 255));
   }
+  @variants responsive {
+    .noscrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+  }
+  }
   .custom-left-5 {
     left: 22%;
   }

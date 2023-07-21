@@ -35,6 +35,8 @@ module.exports = {
         gold_3: '#a38132',
         brown: '#3b2203',
         button_bg: '#405384',
+        card: '#bea27f',
+        card_bg: '#7a5b35',
       },
       textShadow: {
         sm: '0 1px 2px var(--tw-shadow-color)',

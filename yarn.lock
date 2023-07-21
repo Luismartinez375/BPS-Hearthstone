@@ -10059,6 +10059,11 @@ url@^0.11.0:
     punycode "^1.4.1"
     qs "^6.11.0"
 
+use-draggable-scroll@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/use-draggable-scroll/-/use-draggable-scroll-0.1.0.tgz#ca7967eeec9d6a53f965b84f9c295c214aa43ed7"
+  integrity sha512-mX6nT3cUqOTtA+8QUH9HfdKtzI6Oquj9QIB0wALWZYmWogNQ746MaUcmqKOKCIlt2UH6egxhSKNPiSlfEqmKhA==
+
 use-resize-observer@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/use-resize-observer/-/use-resize-observer-9.1.0.tgz#14735235cf3268569c1ea468f8a90c5789fc5c6c"

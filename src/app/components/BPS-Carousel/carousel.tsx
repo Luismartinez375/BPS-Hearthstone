@@ -2,8 +2,6 @@
 // import { CardClass } from "../../../../types";
 // import CarouselGrid from "./carouselGrid";
 
-
-
 // type CarouselProps = {
 //     cards: CardClass[];
 // }
@@ -24,9 +22,9 @@
 //     <>
 //      <div
 //         className=" w-screen flex flex-row overflow-auto transition-transform duration-300 ease-in-out"
-//         style={{
-//           transform: `translateX(-${currentSlide * (100 / itemsPerRow)}%)`,
-//         }}
+// style={{
+//   transform: `translateX(-${currentSlide * (100 / itemsPerRow)}%)`,
+// }}
 //       >
 //         <CarouselGrid cards={cards}/>
 //       </div>

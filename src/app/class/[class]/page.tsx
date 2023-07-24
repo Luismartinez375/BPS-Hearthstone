@@ -131,8 +131,8 @@ export default function Page({ CardData }: any) {
   // const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
   // const last = smallerLists.getTail();
   const containerRef = useRef<HTMLDivElement>(null);
-  let e = document.getElementById(currentSlide.toString());
-  e?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+  // let e = document.getElementById(currentSlide.toString());
+  // e?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
 
   function handleNextIndex() {
     startIndex = startIndex + 5;

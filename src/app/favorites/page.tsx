@@ -335,7 +335,7 @@ const card20: CardClass = {
   img: book,
 };
 
-export const cards = [
+const cards = [
   card,
   card2,
   card3,

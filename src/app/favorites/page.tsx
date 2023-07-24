@@ -10,6 +10,7 @@ import GridContainer from '../components/BPS-Carousel/gridContainer';
 import HearthButton from '../components/button/hearthbutton';
 import HearthScroll from '../components/hearthScroll/hearthScroll';
 
+
 const mana = ['Mana: low to high', 'Mana: high to low'];
 const atk = [
   'Any Attack',
@@ -333,6 +334,7 @@ const card20: CardClass = {
   img: arcane,
 };
 
+
 const cards = [
   card,
   card2,
@@ -357,6 +359,7 @@ const cards = [
 ];
 
 export default function Page() {
+
   // Handles the scroll
   const ref = useRef(null);
   const { onMouseDown } = useDraggableScroll(ref);

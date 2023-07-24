@@ -2,14 +2,14 @@ import { CardClass } from '../../../../types';
 import Card from '../card/card';
 
 type CarouselProps = {
-  cards: CardClass[];
+  cardList: CardClass[];
 };
 
-export default function CarouselGrid({ cards }: CarouselProps) {
+export default function CarouselGrid({ cardList }: CarouselProps) {
   return (
-    <div className="grid grid-cols-5 w-screen gap-20">
-      {cards.map((card) => (
-        <div key={card.cardId} className="flex items-center justify-center">
+    <div className="grid grid-cols-5 w-screen">
+      {cardList.map((card, index) => (
+        <div key={index}>
           <Card
             pic={card.img}
             name={card.cardName}

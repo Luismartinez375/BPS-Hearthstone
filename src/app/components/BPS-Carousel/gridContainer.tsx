@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import left from '../../../../public/Arrow left.svg';
 import right from '../../../../public/Arrow right.svg';
 import { CardClass, SplitIntoSmallerLists } from '../../../../types';
@@ -16,8 +16,11 @@ export default function GridContainer({ cards }: CarouselProps) {
   const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
   const last = smallerLists.getTail();
   const containerRef = useRef<HTMLDivElement>(null);
-  let e = document.getElementById(currentSlide.toString());
-  e?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+
+  useEffect(() => {
+    let e = document.getElementById(currentSlide.toString());
+    e?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+  }, [currentSlide]);
 
   function handleNextIndex() {
     startIndex = startIndex + 5;

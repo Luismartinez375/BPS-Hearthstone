@@ -1103,15 +1103,17 @@ export default function Page() {
   //Filter functions
   function userManaFilter() {
     if (manafilter === mana[0]) {
+      toggleMana();
       userManafilter(mana[1]);
     } else if (manafilter === mana[1]) {
+      toggleMana();
       userManafilter(mana[0]);
     }
   }
   function userAttackFilter() {}
   return (
     <>
-      <div className="flex flex-col items-center gap-10 min-h-screen bg-hearthstone_bg bg-repeat w-full relative sm:top-10">
+      <div className="flex flex-col items-center gap-10 min-h-screen bg-hearthstone_bg bg-repeat  w-full relative sm:top-10">
         <h1 className=" text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1">
           Favorites
         </h1>
@@ -1176,7 +1178,12 @@ export default function Page() {
                 funct={toggleMana}
               ></HearthButton>
               {manaToggle && (
-                <HearthScroll list={mana} funct={userManaFilter}></HearthScroll>
+                <HearthScroll
+                  list={mana}
+                  funct={userManaFilter}
+                  percent="27"
+                  percent2="25"
+                ></HearthScroll>
               )}
             </div>
             <HearthButton
@@ -1202,7 +1209,14 @@ export default function Page() {
                 image2={down}
                 funct={toggleAttack}
               ></HearthButton>
-              {attackToggle && <HearthScroll list={atk}></HearthScroll>}
+              {attackToggle && (
+                <HearthScroll
+                  list={atk}
+                  percent="27"
+                  funct={toggleAttack}
+                  percent2="25"
+                ></HearthScroll>
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <HearthButton
@@ -1213,7 +1227,14 @@ export default function Page() {
                 image2={down}
                 funct={toggleHealth}
               ></HearthButton>
-              {healthToggle && <HearthScroll list={health}></HearthScroll>}
+              {healthToggle && (
+                <HearthScroll
+                  list={health}
+                  funct={toggleHealth}
+                  percent="27"
+                  percent2="25"
+                ></HearthScroll>
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <HearthButton
@@ -1224,7 +1245,14 @@ export default function Page() {
                 image2={down}
                 funct={toggleCardType}
               ></HearthButton>
-              {cardTypeToggle && <HearthScroll list={cardType}></HearthScroll>}
+              {cardTypeToggle && (
+                <HearthScroll
+                  list={cardType}
+                  funct={toggleCardType}
+                  percent="27"
+                  percent2="25"
+                ></HearthScroll>
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <HearthButton
@@ -1236,7 +1264,12 @@ export default function Page() {
                 funct={toggleMinionType}
               ></HearthButton>
               {minionTypeToggle && (
-                <HearthScroll list={minionType}></HearthScroll>
+                <HearthScroll
+                  list={minionType}
+                  funct={toggleMinionType}
+                  percent=""
+                  percent2=""
+                ></HearthScroll>
               )}
             </div>
             <div className="flex flex-col gap-2">
@@ -1248,7 +1281,14 @@ export default function Page() {
                 image2={down}
                 funct={toggleRarity}
               ></HearthButton>
-              {rarityToggle && <HearthScroll list={rarity}></HearthScroll>}
+              {rarityToggle && (
+                <HearthScroll
+                  list={rarity}
+                  funct={toggleRarity}
+                  percent="27"
+                  percent2="25"
+                ></HearthScroll>
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <HearthButton
@@ -1259,7 +1299,14 @@ export default function Page() {
                 image2={down}
                 funct={toggleKeywords}
               ></HearthButton>
-              {keywordsToggle && <HearthScroll list={keywords}></HearthScroll>}
+              {keywordsToggle && (
+                <HearthScroll
+                  list={keywords}
+                  funct={toggleKeywords}
+                  percent="27"
+                  percent2="25"
+                ></HearthScroll>
+              )}
             </div>
           </div>
         )}

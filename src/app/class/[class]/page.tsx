@@ -1,11 +1,11 @@
 'use client';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
-import useDraggableScroll from 'use-draggable-scroll';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { getCards } from '../../../../lib/getClassCards';
 import downBro from '../../../../public/Keyboard arrow down brown.svg';
 import down from '../../../../public/Keyboard arrow down.svg';
 import filter from '../../../../public/filter.svg';
-import mage_emblem from '../../../../public/mage_emblem/mage emblem@3x.webp';
 import HearthButton from '../../components/button/hearthbutton';
 import HearthScroll from '../../components/hearthScroll/hearthScroll';
 
@@ -71,11 +71,69 @@ const keywords = [
   'Counter',
   'Deathrattle',
 ];
+function getBackgroundClass(classId: string): string {
+  switch (classId) {
+    case 'Mage':
+      return ' bg-mage_bg';
+    case 'Hunter':
+      return 'bg-hunter_bg_sm sm:bg-hunter_bg';
+    case 'Druid':
+      return 'bg-druid_bg_sm sm:bg-druid_bg';
+    case 'Priest':
+      return 'bg-priest_bg_sm sm:bg-priest_bg';
+    case 'Rouge':
+      return 'bg-rouge_bg_sm sm:rouge_bg';
+    case 'Paladin':
+      return 'bg-paladin_bg_sm sm:bg-paladin_bg';
+    case 'Shaman':
+      return 'bg-shaman_bg_sm sm:bg-shaman_bg';
+    case 'DemonHunter':
+      return 'bg-demonhunter_bg_sm sm:bg-demonhunter_bg';
+    case 'Warlock':
+      return 'bg-warlock_bg_sm sm:bg-warlock_bg';
+    case 'Warrior':
+      return 'bg-warrior_bg_sm sm:bg-warrior_bg';
+    default:
+      return '';
+  }
+}
 
-export default function Page({ CardData }: any) {
+export async function generateStaticParams(): Promise<any[]> {
+  const response = await fetch(
+    'https://omgvamp-hearthstone-v1.p.rapidapi.com/info',
+    {
+      headers: {
+        'X-RapidAPI-Key': '8039f3c44bmsh6f79d6ce1753b85p17a019jsn4772e6c06597',
+        'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com',
+      },
+    }
+  );
+  const data = await response.json();
+  const classes = data.classes;
+
+  // Generate dynamic paths for each card class
+  const paths = classes.map((cardClass: string) => ({
+    params: { class: cardClass },
+  }));
+  console.log(paths);
+
+  return paths;
+}
+
+export default function Page({ params }: { params: { class: string } }) {
+  const searchParams = useSearchParams();
+  const search = searchParams.get('text');
+  const search2 = searchParams.get('text2');
+  const { class: cardClass } = params;
+
+  const cards = getCards(cardClass);
+  console.log(cards);
+  console.log(cardClass);
+  const lower = cardClass.toLowerCase();
+
+  const [emblemSrc, setEmblemSrc] = useState(null);
+
   // Handles the scroll
-  const ref = useRef(null);
-  const { onMouseDown } = useDraggableScroll(ref);
 
   // Toggles for buttons
   const [filterToggle, userFilterToggle] = useState(false);
@@ -118,7 +176,9 @@ export default function Page({ CardData }: any) {
   //Filter functions
   function userManaFilter() {
     if (manafilter === mana[0]) {
+      toggleMana();
       userManafilter(mana[1]);
+      toggleMana();
     } else if (manafilter === mana[1]) {
       userManafilter(mana[0]);
     }
@@ -130,9 +190,10 @@ export default function Page({ CardData }: any) {
   // const smallerLists = SplitIntoSmallerLists(cards, 10);
   // const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
   // const last = smallerLists.getTail();
-  const containerRef = useRef<HTMLDivElement>(null);
-  // let e = document.getElementById(currentSlide.toString());
-  // e?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+  useEffect(() => {
+    let e = document.getElementById(currentSlide.toString());
+    e?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+  }, [currentSlide]);
 
   function handleNextIndex() {
     startIndex = startIndex + 5;
@@ -178,20 +239,38 @@ export default function Page({ CardData }: any) {
   function handleFifth() {
     setCurrentSlide(5);
   }
+
+  useEffect(() => {
+    import(`public/${lower}_emblem/${lower} emblem@3x.webp`)
+      .then((image) => {
+        setEmblemSrc(image.default);
+      })
+      .catch((error) => console.error('Error loading image:', error));
+  }, [cardClass]);
+
+  if (!emblemSrc) {
+    return <div>Loading...</div>; // Return a loading indicator if the image hasn't loaded yet
+  }
+
   return (
     <>
-      <div className=" sm:bg-mage_bg bg-mage_bg_sm bg-center  h-screen flex flex-col justify-around ">
+      <div
+        className={` ${getBackgroundClass(
+          cardClass
+        )} sm:bg-cover bg-center-custom bg-zoomed-in  h-screen flex flex-col justify-around `}
+      >
         <div className="flex flex-row items-center justify-around max-sm:flex-col max-sm:gap-10">
           <div className="flex flex-row items-center">
             <Image
               className="max-sm:w-2/3"
-              src={mage_emblem}
+              src={emblemSrc}
               width={266}
               height={266}
               alt="mage"
             ></Image>
             <p className=" text-8xl text-white font-outline-4 text-shadow-lg shadow-black max-sm:text-5xl max-sm:font-outline-2">
-              Mage
+              {/* HERE */}
+              {cardClass}
             </p>
           </div>
 
@@ -203,18 +282,19 @@ export default function Page({ CardData }: any) {
         </div>
         <div className="flex flex-col gap-10 ">
           <h1 className=" text-accents font-outline-2 text-6xl text-center text-shadow self-center shadow-black max-sm:text-3xl max-sm:font-outline-1 max-sm:w-3/4 ">
-            My magic will tear you apart!
+            {search}
           </h1>
           <p className=" font-sans text-2xl text-shadow self-center shadow-black text-white w-2/3 text-center max-sm:w-3/4 max-sm:text-lg">
-            No other hero wields the arcane with as much skill and raw power as
-            a Mage. Using their unrivaled array of spells, Mages can wipe entire
-            boards of minions, deal devastating amounts of damage directly to
-            their enemy, or summon creatures of pure energy to do their bidding.
+            {search2}
           </p>
         </div>
       </div>
       <>
-        <div className="flex flex-col items-center gap-10 min-h-screen bg-mage_bg bg-center  bg-repeat w-full relative sm:top-10">
+        <div
+          className={` ${getBackgroundClass(
+            cardClass
+          )} sm:bg-cover bg-center-custom bg-zoomed-in  h-screen flex flex-col`}
+        >
           <h1 className=" text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1"></h1>
           <button className=" bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 bordergold rounded-full h-16 w-64 flex flex-col justify-center items-center justify-self-end sm:hidden">
             <p className="bg-navbar w-[250px] h-[58px] text-white text-md text-center p-3 rounded-full flex flex-row justify-center items-center">
@@ -282,6 +362,8 @@ export default function Page({ CardData }: any) {
                   <HearthScroll
                     list={mana}
                     funct={userManaFilter}
+                    percent="110"
+                    percent2="122"
                   ></HearthScroll>
                 )}
               </div>
@@ -298,8 +380,8 @@ export default function Page({ CardData }: any) {
 
           {/* Filters row */}
           {filterToggle && (
-            <div className="grid gap-10  lg:grid-cols-6 grid-cols-3 max-sm:hidden">
-              <div className="flex flex-col gap-2" onMouseDown={onMouseDown}>
+            <div className="grid gap-10 py-5  lg:grid-cols-6 grid-cols-3 max-sm:hidden">
+              <div className="flex flex-col gap-2">
                 <HearthButton
                   text={'Attack'}
                   width={'52'}
@@ -308,7 +390,14 @@ export default function Page({ CardData }: any) {
                   image2={down}
                   funct={toggleAttack}
                 ></HearthButton>
-                {attackToggle && <HearthScroll list={atk}></HearthScroll>}
+                {attackToggle && (
+                  <HearthScroll
+                    list={atk}
+                    funct={toggleAttack}
+                    percent="110"
+                    percent2="122"
+                  ></HearthScroll>
+                )}
               </div>
               <div className="flex flex-col gap-2">
                 <HearthButton
@@ -319,7 +408,14 @@ export default function Page({ CardData }: any) {
                   image2={down}
                   funct={toggleHealth}
                 ></HearthButton>
-                {healthToggle && <HearthScroll list={health}></HearthScroll>}
+                {healthToggle && (
+                  <HearthScroll
+                    list={health}
+                    funct={toggleHealth}
+                    percent="110"
+                    percent2="122"
+                  ></HearthScroll>
+                )}
               </div>
               <div className="flex flex-col gap-2">
                 <HearthButton
@@ -331,7 +427,12 @@ export default function Page({ CardData }: any) {
                   funct={toggleCardType}
                 ></HearthButton>
                 {cardTypeToggle && (
-                  <HearthScroll list={cardType}></HearthScroll>
+                  <HearthScroll
+                    list={cardType}
+                    funct={toggleCardType}
+                    percent="110"
+                    percent2="122"
+                  ></HearthScroll>
                 )}
               </div>
               <div className="flex flex-col gap-2">
@@ -344,7 +445,12 @@ export default function Page({ CardData }: any) {
                   funct={toggleMinionType}
                 ></HearthButton>
                 {minionTypeToggle && (
-                  <HearthScroll list={minionType}></HearthScroll>
+                  <HearthScroll
+                    list={minionType}
+                    funct={toggleMinionType}
+                    percent="110"
+                    percent2="122"
+                  ></HearthScroll>
                 )}
               </div>
               <div className="flex flex-col gap-2">
@@ -356,7 +462,14 @@ export default function Page({ CardData }: any) {
                   image2={down}
                   funct={toggleRarity}
                 ></HearthButton>
-                {rarityToggle && <HearthScroll list={rarity}></HearthScroll>}
+                {rarityToggle && (
+                  <HearthScroll
+                    list={rarity}
+                    funct={toggleRarity}
+                    percent="110"
+                    percent2="122"
+                  ></HearthScroll>
+                )}
               </div>
               <div className="flex flex-col gap-2">
                 <HearthButton
@@ -368,7 +481,12 @@ export default function Page({ CardData }: any) {
                   funct={toggleKeywords}
                 ></HearthButton>
                 {keywordsToggle && (
-                  <HearthScroll list={keywords}></HearthScroll>
+                  <HearthScroll
+                    list={keywords}
+                    funct={toggleKeywords}
+                    percent="110"
+                    percent2="122"
+                  ></HearthScroll>
                 )}
               </div>
             </div>
@@ -379,3 +497,23 @@ export default function Page({ CardData }: any) {
     </>
   );
 }
+
+// export async function generateStaticParams({
+//   params,
+// }: {
+//   params: { class: string };
+// }) {
+//   // Fetch the cards for the specified class from the API
+//   const response = await fetch(
+//     `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/${params.class}`,
+//     {
+//       headers: {
+//         'x-rapidapi-host': 'omgvamp-hearthstone-v1.p.rapidapi.com',
+//         'x-rapidapi-key': 'YOUR_RAPIDAPI_KEY',
+//       },
+//     }
+//   );
+//   const cards = await response.json();
+
+//   return { props: { cards } };
+// }

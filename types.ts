@@ -1,15 +1,30 @@
+import { JsonProperty, Serializable } from 'ts-jackson';
+
+@Serializable()
 export class CardClass {
+  @JsonProperty('cardId')
   cardId: any;
+  @JsonProperty('name')
   cardName: any;
+  @JsonProperty('cardSet')
   cardSet: any;
+  @JsonProperty('type')
   type: any;
+  @JsonProperty('rarity')
   rarity: any;
+  @JsonProperty('attack')
   attack: any;
+  @JsonProperty('health')
   health: any;
+  @JsonProperty('text')
   text: any;
+  @JsonProperty('race')
   race: any;
+  @JsonProperty('playerClass')
   playerClass: any;
-  img: any;
+  @JsonProperty('img')
+  img?: any;
+  @JsonProperty('mechanics')
   mechanics?: string[];
 }
 
@@ -26,9 +41,9 @@ export class LinkedListNode<T> {
 }
 
 class LinkedList<T> {
-   head: LinkedListNode<T> | null;
-   tail: LinkedListNode<T> | null;
-   currentIndex: number;
+  head: LinkedListNode<T> | null;
+  tail: LinkedListNode<T> | null;
+  currentIndex: number;
 
   constructor() {
     this.head = null;
@@ -77,7 +92,7 @@ class LinkedList<T> {
   }
 
   // Get the first 8 elements of the list as a regular array
-    getItemsBetweenIndexes(startIndex: number, endIndex: number): [CardClass[]] {
+  getItemsBetweenIndexes(startIndex: number, endIndex: number): [CardClass[]] {
     const elements: [any[]] = [[]];
     if (this.head !== null) {
       let current = this.head;
@@ -96,7 +111,10 @@ class LinkedList<T> {
   }
 }
 
-export const SplitIntoSmallerLists = (list: CardClass[], chunkSize: number): LinkedList<CardClass> => {
+export const SplitIntoSmallerLists = (
+  list: CardClass[],
+  chunkSize: number
+): LinkedList<CardClass> => {
   const linkedList = new LinkedList<CardClass>();
 
   for (let i = 0; i < list.length; i += chunkSize) {
@@ -106,4 +124,19 @@ export const SplitIntoSmallerLists = (list: CardClass[], chunkSize: number): Lin
   return linkedList;
 };
 
+export class ClassType {
+  name: string;
+  icon: string;
 
+  constructor(name: string, icon: string) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+
+export const classes: ClassType[] = [
+  new ClassType('Mage', 'public/mage_emblem/mage emblem@3x.webp'),
+  new ClassType('Druid', 'public/druid_emblem/druid emblem@3x.webp'),
+  new ClassType('Hunter', 'public/hunter_emblem/hunter emblem@3x.webp'),
+  new ClassType('Priest', 'public/priest_emblem/preist emblem@3x.webp'),
+];

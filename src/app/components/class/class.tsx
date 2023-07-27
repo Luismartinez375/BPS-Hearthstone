@@ -210,7 +210,7 @@ export default function Class({ cardClass }: props) {
                     onClick={() =>
                       router.push(
                         `/class/${className.replace(
-                          'DemonHunger',
+                          'DemonHunter',
                           'Demon Hunter'
                         )}`
                       )

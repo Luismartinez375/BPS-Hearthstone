@@ -87,8 +87,8 @@ class LinkedList<T> {
     } while (current !== this.head);
   }
 
-  getTail(): T[] | null {
-    return this.tail?.value || null;
+  getTail(): LinkedListNode<T> | null {
+    return this.tail || null;
   }
 
   // Get the first 8 elements of the list as a regular array

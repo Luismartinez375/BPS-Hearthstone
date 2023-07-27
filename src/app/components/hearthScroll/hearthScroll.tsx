@@ -3,16 +3,9 @@ import useDraggableScroll from 'use-draggable-scroll';
 type HearthScrollProps = {
   list: Array<string>;
   funct?: () => void;
-  percent: string;
-  percent2: string;
 };
 
-export default function HearthScroll({
-  list,
-  funct,
-  percent,
-  percent2,
-}: HearthScrollProps) {
+export default function HearthScroll({ list, funct }: HearthScrollProps) {
   const ref = useRef(null);
 
   const { onMouseDown } = useDraggableScroll(ref);
@@ -31,6 +24,7 @@ export default function HearthScroll({
             key={item}
             className=" hover:text-accents text-white text-left px-2 py-1"
             onClick={funct}
+            onBlur={funct}
           >
             {item}
           </button>

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import left from '../../../../public/Arrow left.svg';
 import right from '../../../../public/Arrow right.svg';
 import { CardClass, SplitIntoSmallerLists } from '../../../../types';
@@ -14,9 +14,7 @@ export default function GridContainer({ cards }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(1);
   const smallerLists = SplitIntoSmallerLists(cards, 10);
   const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
-  const last = smallerLists.getTail();
-  const containerRef = useRef<HTMLDivElement>(null);
-
+  const tail = smallerLists.getTail();
   useEffect(() => {
     let e = document.getElementById(currentSlide.toString());
     e?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
@@ -97,31 +95,31 @@ export default function GridContainer({ cards }: CarouselProps) {
             className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
             onClick={() => handleFirst()}
           >
-            1
+            {startIndex + 1}
           </button>
           <button
             className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
             onClick={() => handleSecond()}
           >
-            2
+            {startIndex + 2}
           </button>
           <button
             className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
             onClick={() => handleThird()}
           >
-            3
+            {startIndex + 3}
           </button>
           <button
             className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
             onClick={() => handleFourth()}
           >
-            4
+            {startIndex + 4}
           </button>
           <button
             className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
             onClick={() => handleFifth()}
           >
-            5
+            {startIndex + 5}
           </button>
           <button
             className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
@@ -130,7 +128,7 @@ export default function GridContainer({ cards }: CarouselProps) {
             ...
           </button>
           <button className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg">
-            100
+            {tail?.index}
           </button>
         </div>
       </div>

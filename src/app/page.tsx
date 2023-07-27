@@ -1,5 +1,8 @@
+'use client';
 import Image from 'next/image';
-import demonhunter_emblem from '../../public/demon_hunter_emblem/demon hunter emblem@3x.webp';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import demonhunter_emblem from '../../public/demonhunter_emblem/demonhunter emblem@3x.webp';
 import druid_emblem from '../../public/druid_emblem/druid emblem@3x.webp';
 import homepage_logo from '../../public/homepage_logo/homepage_logo3x.webp';
 import hunter_emblem from '../../public/hunter_emblem/hunter emblem@3x.webp';
@@ -10,9 +13,10 @@ import rouge_emblem from '../../public/rouge_emblem/rouge emblem@3x.webp';
 import shaman_emblem from '../../public/shaman_emblem/shaman emblem@3x.webp';
 import warlock_emblem from '../../public/warlock_emblem/warlock emblem@3x.webp';
 import warrior_emblem from '../../public/warrior_emblem/warrior emblem@3x.webp';
-
 import SearchBar from './components/searchbar/SearchBar';
 export default function Home() {
+  const router = useRouter();
+
   return (
     <main className="flex min-h-screen flex-col items-center bg-hearthstone_bg gap-10">
       <div className="">
@@ -26,7 +30,11 @@ export default function Home() {
       <SearchBar sampleTextProp="sampleTextProp"></SearchBar>
       <div className="grid sm:grid-cols-5 grid-cols-3 sm:gap-20 gap-4 align-middle justify-items-center items-center">
         <div className=" max-sm:w-3/5">
-          <button className="">
+          <Link
+            href={{
+              pathname: '/class/Mage',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={mage_emblem}
@@ -34,12 +42,16 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Mage</p>
         </div>
 
         <div className=" max-sm:w-3/5">
-          <button>
+          <Link
+            href={{
+              pathname: '/class/Druid',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={druid_emblem}
@@ -47,11 +59,15 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Druid</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <button>
+          <Link
+            href={{
+              pathname: '/class/Hunter',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={hunter_emblem}
@@ -59,11 +75,15 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Hunter</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <button>
+          <Link
+            href={{
+              pathname: '/class/Priest',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={priest_emblem}
@@ -71,11 +91,15 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Priest</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <button>
+          <Link
+            href={{
+              pathname: '/class/Rouge',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={rouge_emblem}
@@ -83,11 +107,15 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Rouge</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <button>
+          <Link
+            href={{
+              pathname: '/class/Paladin',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={paladin_emblem}
@@ -95,11 +123,15 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Paladin</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <button>
+          <Link
+            href={{
+              pathname: '/class/Shaman',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={shaman_emblem}
@@ -107,11 +139,15 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Shaman</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <button>
+          <Link
+            href={{
+              pathname: '/class/Demon Hunter',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={demonhunter_emblem}
@@ -119,11 +155,15 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Demon Hunter</p>
         </div>
         <div className=" max-sm:w-3/5">
-          <button>
+          <Link
+            href={{
+              pathname: '/class/Warlock',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={warlock_emblem}
@@ -131,11 +171,15 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Warlock</p>
         </div>
         <div className=" max-sm:w-3/5 ">
-          <button>
+          <Link
+            href={{
+              pathname: '/class/Warrior',
+            }}
+          >
             <Image
               className=" hover:drop-shadow-blue"
               src={warrior_emblem}
@@ -143,7 +187,7 @@ export default function Home() {
               width={164}
               alt=""
             ></Image>
-          </button>
+          </Link>
           <p className="text-accents text-center sm:text-2xl ">Warrior</p>
         </div>
       </div>

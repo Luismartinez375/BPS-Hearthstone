@@ -25,9 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={` ${aclonica.className} bg-gradient-to-b from-navbar via-navbar to-transparent`}
-      >
+      <body className={` ${aclonica.className} bg-navbar`}>
         <NavBar />
         {children}
       </body>

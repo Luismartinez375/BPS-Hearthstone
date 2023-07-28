@@ -38,7 +38,7 @@ export default function GoogleMaps() {
     // Fetch nearby card shops using Google Maps Places API when userPosition changes
     if (userPosition) {
       const key = process.env.MAPS_KEY;
-      const placesAPIKey = 'AIzaSyAlPThq93vQn6dasXoUctWM7OkhWxyhs3c';
+      const placesAPIKey = '';
       const radius = 1000; // Define the search radius (in meters) around the user's location
 
       const request = {
@@ -66,13 +66,13 @@ export default function GoogleMaps() {
   const key = process.env.MAPS_KEY
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyAlPThq93vQn6dasXoUctWM7OkhWxyhs3c',
+    googleMapsApiKey: '',
   });
 
   return isLoaded ? (
     <>
       <div className="overflow-y-none">
-        <LoadScript googleMapsApiKey={'AIzaSyAlPThq93vQn6dasXoUctWM7OkhWxyhs3c'} libraries={['places']}>
+        <LoadScript googleMapsApiKey={''} libraries={['places']}>
         <GoogleMap mapContainerStyle={containerStyle} center={userPosition ? userPosition : undefined} zoom={10}>
         {userPosition && <Marker position={{ lat: userPosition.lat, lng: userPosition.lng }} />}
         {nearbyCardShops.map((shop, index) => (

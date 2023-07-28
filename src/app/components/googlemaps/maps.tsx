@@ -1,87 +1,66 @@
 'use client';
-import { GoogleMap, LoadScript, Marker, useJsApiLoader } from '@react-google-maps/api';
-import { useEffect, useState } from 'react';
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { useEffect, useMemo, useState } from 'react';
 
 const containerStyle = {
-  width: '80%',
-  height: '900px',
+  width: '100%',
+  height: '995px',
 };
 
 const center = {
-  lat: 37.7749,
-  lng: -122.4194,
+  lat: 0,
+  lng: 0,
 };
 
-export default function GoogleMaps() {
-  const [userPosition, setUserPosition] = useState<{ lat: number; lng: number } | null>(null);
-  const [nearbyCardShops, setNearbyCardShops] = useState<{ lat: number; lng: number }[]>([]);
-  const center = userPosition || { lat: 0, lng: 0 }; // Center the map on the user's location if available
+const openSlide = () => {
+  console.log('open slide');
+};
+async function GetPlaces() {
+  const response = await fetch(
+    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${center.lat},${center.lng}&radius=1500&type=restaurant&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
+  );
+  const data = await response.json();
+  console.log(data);
+}
 
-  useEffect(() => {
-    // Fetch the user's current location using the browser's geolocation API
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserPosition({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (error) => {
-          console.error('Error getting user location:', error);
-        }
-      );
-    }
-  }, []);
-
-  useEffect(() => {
-    // Fetch nearby card shops using Google Maps Places API when userPosition changes
-    if (userPosition) {
-      const key = process.env.MAPS_KEY;
-      const placesAPIKey = '';
-      const radius = 1000; // Define the search radius (in meters) around the user's location
-
-      const request = {
-        location: new window.google.maps.LatLng(userPosition.lat, userPosition.lng),
-        radius: radius,
-        type: 'store', // Adjust the type according to the card shops category in the Places API
-        keyword: 'cards', // You can use other keywords specific to card shops
-        key: placesAPIKey,
-      };
-
-      const service = new window.google.maps.places.PlacesService(document.createElement('div'));
-
-      service.nearbySearch(request, (results, status) => {
-        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-          const cardShops = results?.map((result) => ({
-            lat: result.geometry?.location?.lat() || 0,
-            lng: result.geometry?.location?.lng() || 0,
-          })) || [];
-      
-          setNearbyCardShops(cardShops);
-        }
-      });
-  }}
-  , [userPosition]);
-  const key = process.env.MAPS_KEY
+export default function Maps() {
+  const libraries = useMemo(() => ['places'], []);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: '',
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
+    libraries: libraries as any,
   });
 
+  const handleZoomChanged = () => {
+    console.log('Zoom');
+  };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
+  }, []);
+
   return isLoaded ? (
-    <>
-      <div className="overflow-y-none">
-        <LoadScript googleMapsApiKey={''} libraries={['places']}>
-        <GoogleMap mapContainerStyle={containerStyle} center={userPosition ? userPosition : undefined} zoom={10}>
-        {userPosition && <Marker position={{ lat: userPosition.lat, lng: userPosition.lng }} />}
-        {nearbyCardShops.map((shop, index) => (
-          <Marker key={index} position={{ lat: shop.lat, lng: shop.lng }} />
-        ))}
-        </GoogleMap>
-        </LoadScript>
-      </div>
-    </>
+    <div className=" w-full h-full absolute">
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={{ lat: latitude, lng: longitude }}
+        zoom={10}
+        onZoomChanged={handleZoomChanged}
+        mapContainerClassName="w-full h-full"
+      >
+        {/* Puedes agregar marcadores u otros elementos aquí */}
+        <Marker
+          position={{ lat: latitude, lng: longitude }}
+          onClick={openSlide}
+          icon={{ url: '/logo icon_2023-07-28/logo icon.webp' }}
+        />
+      </GoogleMap>
+    </div>
   ) : (
     <>
       <div className="flex gap-10 min-h-screen overflow-y-none items-center justify-center">

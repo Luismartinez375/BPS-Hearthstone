@@ -19,6 +19,7 @@ export default function NavBar() {
           alt={'reddit'}
           width={140}
           height={70}
+          onClick={() => router.push('/')}
         ></Image>
       </div>
       <div className=" flex flex_row w-1/4 justify-between gap-20 text-white max-sm:hidden">
@@ -34,7 +35,12 @@ export default function NavBar() {
         >
           Favorites
         </button>
-        <button className=" font-aclonica hover:text-accents">Shops</button>
+        <button
+          className=" font-aclonica hover:text-accents"
+          onClick={() => router.push('/shop')}
+        >
+          Shops
+        </button>
       </div>
       <button
         className="relative right-8 sm:hidden w-10 h-10"
@@ -44,13 +50,22 @@ export default function NavBar() {
       </button>
       {toggle && (
         <div className="animate-open-menu absolute top-20 bg-navbar w-full h-full text-4xl flex flex-col items-center justify-center gap-24 origin-top left-0 z-10">
-          <button className=" font-montserrat active:text-accents text-white underline underline-offset-8 ">
+          <button
+            className=" font-montserrat active:text-accents text-white underline underline-offset-8 "
+            onClick={() => router.push('/')}
+          >
             Home
           </button>
-          <button className=" font-montserrat active:text-accents text-white underline underline-offset-8">
+          <button
+            className=" font-montserrat active:text-accents text-white underline underline-offset-8"
+            onClick={() => router.push('/favorites')}
+          >
             Favorites
           </button>
-          <button className=" font-montserrat active:text-accents text-white underline underline-offset-8">
+          <button
+            onClick={() => router.push('/shop')}
+            className=" font-montserrat active:text-accents text-white underline underline-offset-8"
+          >
             Shop
           </button>
         </div>

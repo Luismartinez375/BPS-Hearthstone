@@ -3061,7 +3061,7 @@
     "@types/minimatch" "^5.1.2"
     "@types/node" "*"
 
-"@types/google.maps@3.53.5":
+"@types/google.maps@3.53.5", "@types/google.maps@^3.53.5":
   version "3.53.5"
   resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.53.5.tgz#0f3010ab4eabe46721f3604462196975b640aab9"
   integrity sha512-HoRq4Te8J6krH7hj+TfdYepqegoKZCj3kkaK5gf+ySFSHLvyqYkDvkrtbcVJXQ6QBphQ0h1TF7p4J6sOh4r/zg==

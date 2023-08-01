@@ -1,6 +1,7 @@
 'use client';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { useEffect, useMemo, useState } from 'react';
+import { PlaceClass } from '../../../../types';
 
 const containerStyle = {
   width: '100%',
@@ -10,8 +11,11 @@ const containerStyle = {
 const openSlide = () => {
   console.log('open slide');
 };
+type GoogleMapProps = {
+  places: PlaceClass[];
+};
 
-export default function Maps() {
+export default function Maps({ places }: GoogleMapProps) {
   const libraries = useMemo(() => ['places'], []);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
@@ -21,56 +25,12 @@ export default function Maps() {
     libraries: libraries as any,
   });
 
-  // const [map, setMap] = useState<google.maps.Map | null>(null);
-
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
     });
   }, []);
-
-  // const onLoad = useCallback<NonNullable<GoogleMapProps['onLoad']>>((map) => {
-  //   // This is just an example of getting and using the map instance!!! don't just blindly copy!
-  //   // const bounds = new window.google.maps.LatLngBounds({
-  //   //   lat: latitude,
-  //   //   lng: longitude,
-  //   // });
-  //   // map.fitBounds(bounds);
-  //   var center = new google.maps.LatLng(latitude, longitude);
-  //   function createMarker(place: google.maps.places.PlaceResult) {
-  //     if (!place.geometry || !place.geometry.location) return;
-
-  //     const marker = new google.maps.Marker({
-  //       map,
-  //       position: place.geometry.location,
-  //     });
-  //   }
-  //   var request = {
-  //     query: 'Restaurant',
-  //     fields: ['name', 'geometry'],
-  //   };
-  //   var service = new google.maps.places.PlacesService(map);
-
-  //   service.findPlaceFromQuery(
-  //     request,
-  //     (
-  //       results: google.maps.places.PlaceResult[] | null,
-  //       status: google.maps.places.PlacesServiceStatus
-  //     ) => {
-  //       if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //         console.log(results);
-  //         for (var i = 0; i < results!.length; i++) {
-  //           createMarker(results![i]);
-  //         }
-
-  //         // map.setCenter(results![0].geometry!.location!);
-  //       }
-  //     }
-  //   );
-
-  //   setMap(map);
-  // }, []);
 
   return isLoaded ? (
     <div className=" w-full h-full absolute">
@@ -82,6 +42,14 @@ export default function Maps() {
         mapContainerClassName="w-full h-full"
       >
         {/* Puedes agregar marcadores u otros elementos aquí */}
+        {places.map((place, index) => (
+          <div key={index} className=" hover:drop-shadow-blue">
+            <Marker
+              position={place.geometry.location}
+              icon={{ url: 'logo icon_2023-07-28/logo icon.webp' }}
+            ></Marker>
+          </div>
+        ))}
       </GoogleMap>
     </div>
   ) : (

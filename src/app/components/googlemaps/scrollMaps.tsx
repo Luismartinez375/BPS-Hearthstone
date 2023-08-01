@@ -31,7 +31,7 @@ export default function ScrollMaps() {
   const { onMouseDown } = useDraggableScroll(ref);
   return (
     <div
-      className="w-full h-full absolute top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-hearthstone_bg shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen"
+      className="w-full absolute top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-hearthstone_bg shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen"
       ref={ref}
       onMouseDown={onMouseDown}
     >

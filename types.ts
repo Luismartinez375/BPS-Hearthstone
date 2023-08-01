@@ -1,6 +1,12 @@
 import { JsonProperty, Serializable } from 'ts-jackson';
 
 @Serializable()
+export class IdClass {
+  @JsonProperty('place_id')
+  id: any;
+}
+
+@Serializable()
 export class PlaceClass {
   @JsonProperty('business_status')
   business_status: any;
@@ -10,6 +16,16 @@ export class PlaceClass {
   name: any;
   @JsonProperty('opening_hours')
   opening_hours: any;
+  @JsonProperty('formatted_phone_number')
+  phone: any;
+  @JsonProperty('place_id')
+  place_id: any;
+  @JsonProperty('rating')
+  rating: any;
+  @JsonProperty('vicinity')
+  vicinity: any;
+  @JsonProperty('website')
+  website: any;
 }
 
 @Serializable()

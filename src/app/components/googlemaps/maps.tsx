@@ -1,5 +1,10 @@
 'use client';
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  InfoWindow,
+  Marker,
+  useJsApiLoader,
+} from '@react-google-maps/api';
 import { useEffect, useMemo, useState } from 'react';
 import { PlaceClass } from '../../../../types';
 
@@ -8,14 +13,21 @@ const containerStyle = {
   height: '995px',
 };
 
-const openSlide = () => {
-  console.log('open slide');
+const openSlide = (name: string, vicinity: string, rating: string) => {
+  return (
+    <InfoWindow>
+      <div>{name}</div>
+      <div>{vicinity}</div>
+      <div>{rating}</div>
+    </InfoWindow>
+  );
 };
 type GoogleMapProps = {
   places: PlaceClass[];
+  center: any;
 };
 
-export default function Maps({ places }: GoogleMapProps) {
+export default function Maps({ places, center }: GoogleMapProps) {
   const libraries = useMemo(() => ['places'], []);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
@@ -36,7 +48,7 @@ export default function Maps({ places }: GoogleMapProps) {
     <div className=" w-full h-full absolute">
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={{ lat: latitude, lng: longitude }}
+        center={center}
         zoom={10}
         // onLoad={onLoad}
         mapContainerClassName="w-full h-full"
@@ -45,6 +57,9 @@ export default function Maps({ places }: GoogleMapProps) {
         {places.map((place, index) => (
           <div key={index} className=" hover:drop-shadow-blue">
             <Marker
+              onMouseDown={() =>
+                openSlide(place.name, place.vicinity, place.rating)
+              }
               position={place.geometry.location}
               icon={{ url: 'logo icon_2023-07-28/logo icon.webp' }}
             ></Marker>

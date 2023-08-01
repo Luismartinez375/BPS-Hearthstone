@@ -9,7 +9,7 @@ import hunter_emblem from '../../../../public/hunter_emblem/hunter emblem@3x.web
 import mage_emblem from '../../../../public/mage_emblem/mage emblem@3x.webp';
 import paladin_emblem from '../../../../public/paladin_emblem/paladin emblem@3x.webp';
 import priest_emblem from '../../../../public/priest_emblem/priest emblem@3x.webp';
-import rouge_emblem from '../../../../public/rouge_emblem/rouge emblem@3x.webp';
+import rogue_emblem from '../../../../public/rogue_emblem/rogue emblem@3x.webp';
 import shaman_emblem from '../../../../public/shaman_emblem/shaman emblem@3x.webp';
 import warlock_emblem from '../../../../public/warlock_emblem/warlock emblem@3x.webp';
 import warrior_emblem from '../../../../public/warrior_emblem/warrior emblem@3x.webp';
@@ -19,7 +19,7 @@ const classEmblems = {
   Druid: druid_emblem,
   Hunter: hunter_emblem,
   Priest: priest_emblem,
-  Rouge: rouge_emblem,
+  Rogue: rogue_emblem,
   Paladin: paladin_emblem,
   Shaman: shaman_emblem,
   DemonHunter: demonhunter_emblem,
@@ -31,7 +31,7 @@ const classNames = [
   'Druid',
   'Hunter',
   'Priest',
-  'Rouge',
+  'Rogue',
   'Paladin',
   'Shaman',
   'Demon Hunter',
@@ -49,7 +49,7 @@ function getBackgroundClass(classId: string): string {
       return 'bg-druid_bg_sm sm:bg-druid_bg';
     case 'Priest':
       return 'bg-priest_bg_sm sm:bg-priest_bg';
-    case 'Rouge':
+    case 'Rogue':
       return 'bg-rouge_bg_sm sm:rouge_bg';
     case 'Paladin':
       return 'bg-paladin_bg_sm sm:bg-paladin_bg';
@@ -98,7 +98,7 @@ const classData: ClassData = {
     description:
       'The Light calls, but shadows whisper. Heroes of righteousness, Priests have unmatched healing potential and can bestow powerful holy enchantments on their minions. However, there is no light without dark. Priests can also tap into the shadows to manipulate the minds of their enemies and deal mortifying psychic damage.',
   },
-  rouge: {
+  rogue: {
     background: 'bg-rouge_bg_sm sm:rouge_bg',
     title: 'Watch your back!',
     description:

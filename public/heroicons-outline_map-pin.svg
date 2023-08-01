@@ -1,0 +1,33 @@
+<svg width="26" height="31" viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#dorlrdb67a)" filter="url(#tk57wl7q0b)">
+        <g filter="url(#iho82jfclc)" stroke="#FCD52D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges">
+            <path d="M16 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path d="M20.5 10.5c0 7.142-7.5 11.25-7.5 11.25S5.5 17.642 5.5 10.5a7.5 7.5 0 1 1 15 0z"/>
+        </g>
+    </g>
+    <defs>
+        <filter id="tk57wl7q0b" x="-3" y="0" width="32" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_226_507"/>
+            <feBlend in="SourceGraphic" in2="effect1_dropShadow_226_507" result="shape"/>
+        </filter>
+        <filter id="iho82jfclc" x=".75" y="2.25" width="24.5" height="28.25" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_226_507"/>
+            <feBlend in="SourceGraphic" in2="effect1_dropShadow_226_507" result="shape"/>
+        </filter>
+        <clipPath id="dorlrdb67a">
+            <path fill="#fff" transform="translate(1)" d="M0 0h24v24H0z"/>
+        </clipPath>
+    </defs>
+</svg>

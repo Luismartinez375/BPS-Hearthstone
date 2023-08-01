@@ -9,7 +9,7 @@ import hunter_emblem from '../../public/hunter_emblem/hunter emblem@3x.webp';
 import mage_emblem from '../../public/mage_emblem/mage emblem@3x.webp';
 import paladin_emblem from '../../public/paladin_emblem/paladin emblem@3x.webp';
 import priest_emblem from '../../public/priest_emblem/priest emblem@3x.webp';
-import rouge_emblem from '../../public/rouge_emblem/rouge emblem@3x.webp';
+import rouge_emblem from '../../public/rogue_emblem/rogue emblem@3x.webp';
 import shaman_emblem from '../../public/shaman_emblem/shaman emblem@3x.webp';
 import warlock_emblem from '../../public/warlock_emblem/warlock emblem@3x.webp';
 import warrior_emblem from '../../public/warrior_emblem/warrior emblem@3x.webp';
@@ -97,7 +97,7 @@ export default function Home() {
         <div className=" max-sm:w-3/5">
           <Link
             href={{
-              pathname: '/class/Rouge',
+              pathname: '/class/Rogue',
             }}
           >
             <Image
@@ -108,7 +108,7 @@ export default function Home() {
               alt=""
             ></Image>
           </Link>
-          <p className="text-accents text-center sm:text-2xl ">Rouge</p>
+          <p className="text-accents text-center sm:text-2xl ">Rogue</p>
         </div>
         <div className=" max-sm:w-3/5">
           <Link

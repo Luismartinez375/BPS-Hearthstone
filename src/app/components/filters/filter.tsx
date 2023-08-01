@@ -79,7 +79,7 @@ function getBackgroundClass(classId: string): string {
       return 'bg-druid_bg_sm sm:bg-druid_bg';
     case 'Priest':
       return 'bg-priest_bg_sm sm:bg-priest_bg';
-    case 'Rouge':
+    case 'Rogue':
       return 'bg-rouge_bg_sm sm:rouge_bg';
     case 'Paladin':
       return 'bg-paladin_bg_sm sm:bg-paladin_bg';

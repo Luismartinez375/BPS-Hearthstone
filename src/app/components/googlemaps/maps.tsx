@@ -1,29 +1,33 @@
 'use client';
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  InfoWindow,
+  Marker,
+  useJsApiLoader,
+} from '@react-google-maps/api';
 import { useEffect, useMemo, useState } from 'react';
+import { PlaceClass } from '../../../../types';
 
 const containerStyle = {
   width: '100%',
   height: '995px',
 };
 
-const center = {
-  lat: 0,
-  lng: 0,
-};
-
-const openSlide = () => {
-  console.log('open slide');
-};
-async function GetPlaces() {
-  const response = await fetch(
-    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${center.lat},${center.lng}&radius=1500&type=restaurant&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
+const openSlide = (name: string, vicinity: string, rating: string) => {
+  return (
+    <InfoWindow>
+      <div>{name}</div>
+      <div>{vicinity}</div>
+      <div>{rating}</div>
+    </InfoWindow>
   );
-  const data = await response.json();
-  console.log(data);
-}
+};
+type GoogleMapProps = {
+  places: PlaceClass[];
+  center: any;
+};
 
-export default function Maps() {
+export default function Maps({ places, center }: GoogleMapProps) {
   const libraries = useMemo(() => ['places'], []);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
@@ -32,10 +36,6 @@ export default function Maps() {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries: libraries as any,
   });
-
-  const handleZoomChanged = () => {
-    console.log('Zoom');
-  };
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -48,17 +48,23 @@ export default function Maps() {
     <div className=" w-full h-full absolute">
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={{ lat: latitude, lng: longitude }}
+        center={center}
         zoom={10}
-        onZoomChanged={handleZoomChanged}
+        // onLoad={onLoad}
         mapContainerClassName="w-full h-full"
       >
         {/* Puedes agregar marcadores u otros elementos aquí */}
-        <Marker
-          position={{ lat: latitude, lng: longitude }}
-          onClick={openSlide}
-          icon={{ url: '/logo icon_2023-07-28/logo icon.webp' }}
-        />
+        {places.map((place, index) => (
+          <div key={index} className=" hover:drop-shadow-blue">
+            <Marker
+              onMouseDown={() =>
+                openSlide(place.name, place.vicinity, place.rating)
+              }
+              position={place.geometry.location}
+              icon={{ url: 'logo icon_2023-07-28/logo icon.webp' }}
+            ></Marker>
+          </div>
+        ))}
       </GoogleMap>
     </div>
   ) : (

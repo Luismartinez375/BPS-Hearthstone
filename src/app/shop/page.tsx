@@ -1,8 +1,21 @@
+// import { useEffect, useState } from 'react';
 import { getPlaceDetail } from '../../../lib/getPlaces';
 import ScrollMaps from '../components/googlemaps/scrollMaps';
 
-export default async function Page() {
-  let places = await getPlaceDetail({ lat: '26.3389184', lng: '-98.2122496' });
+interface HomeProps {
+  params: {};
+  searchParams: {
+    lat: string;
+    lng: string;
+  };
+}
+
+export default async function Page(props: HomeProps) {
+  console.log('props', props.searchParams.lat, props.searchParams.lng);
+  let places = await getPlaceDetail({
+    lat: props.searchParams.lat,
+    lng: props.searchParams.lng,
+  });
 
   return (
     <>

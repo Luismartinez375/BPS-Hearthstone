@@ -4,25 +4,56 @@ import favorite_border from '../../../../public/Favorite border.svg';
 import favorite from '../../../../public/Favorite.svg';
 import book from '../../../../public/book/Mask group@3x.webp';
 type CardProps = {
+  id: any;
   pic: any;
   name: string;
   type: string;
   rarity: string;
   text: string;
-  effect?: string;
+  race: string;
+  playerClass: string;
+  attack: string;
+  health: string;
+  mechcanics: any;
+  cardSet: string;
 };
 
 export default function Card({
+  id,
   pic,
   name,
   type,
   rarity,
   text,
-  effect,
+  race,
+  playerClass,
+  attack,
+  health,
+  mechcanics,
+  cardSet,
 }: CardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
   const handleFavorite = () => {
-    isFavorite ? setIsFavorite(false) : setIsFavorite(true);
+    if (!isFavorite) {
+      // createCard({
+      //   cardId: id,
+      //   cardName: name,
+      //   type: type,
+      //   attack: attack,
+      //   text: text,
+      //   playerClass: playerClass,
+      //   cardSet: cardSet,
+      //   rarity: rarity,
+      //   health: health,
+      //   race: race,
+      //   img: pic,
+      //   mechanics: mechcanics,
+      // });
+      setIsFavorite(true);
+    } else if (isFavorite) {
+      // deleteCardById(id);
+      setIsFavorite(false);
+    }
   };
   text = text?.replace(/<b>/g, '');
   text = text?.replace(/<\/b>/g, '');
@@ -74,7 +105,6 @@ export default function Card({
             <p>{type}</p>
             <p>{rarity}</p>
             <p>{text}</p>
-            <p>{effect}</p>
           </div>
         </div>
       </div>

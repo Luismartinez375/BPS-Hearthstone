@@ -1,7 +1,7 @@
 // import arcane from '../../../public/Mask group_2023-07-21/Mask group@2x.webp';
 // import book from '../../../public/book/Mask group@2x.webp';
 // import crow from '../../../public/crow/Mask group@2x.webp';
-import { getAllCards } from '../../../lib/db';
+
 import { CardClass } from '../../../types';
 import Filter from '../components/filters/filter';
 
@@ -989,7 +989,9 @@ import Filter from '../components/filters/filter';
 // ];
 
 export default async function Page() {
-  const cards: CardClass[] = await getAllCards();
+  const cards: CardClass[] = await fetch('/api/cards').then((res) =>
+    res.json()
+  );
   return (
     <div className="flex flex-col items-center p-10 min-h-screen bg-hearthstone_bg">
       <h1 className=" text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1">

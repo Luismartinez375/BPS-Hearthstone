@@ -31,11 +31,11 @@ export class PlaceClass {
 @Serializable()
 export class CardClass {
   @JsonProperty('cardId')
-  cardId: any;
+  cardid: any;
   @JsonProperty('name')
-  cardName: any;
+  cardname: any;
   @JsonProperty('cardSet')
-  cardSet: any;
+  cardset: any;
   @JsonProperty('type')
   type: any;
   @JsonProperty('rarity')
@@ -49,7 +49,7 @@ export class CardClass {
   @JsonProperty('race')
   race: any;
   @JsonProperty('playerClass')
-  playerClass: any;
+  playerclass: any;
   @JsonProperty('img')
   img?: any;
   @JsonProperty('mechanics')

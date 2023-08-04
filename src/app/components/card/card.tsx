@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import { useState } from 'react';
 import favorite_border from '../../../../public/Favorite border.svg';
@@ -33,25 +34,65 @@ export default function Card({
   cardSet,
 }: CardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const checkFavorite = async () => {
+    const crd = await fetch('http://localhost:3000/api/getcard', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        cardid: id,
+      }),
+    }).then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        return [{ cardid: '' }];
+      }
+    });
+    if (crd[0].cardid !== '' || undefined) {
+      setIsFavorite(true);
+    }
+  };
+
+  checkFavorite();
+
   const handleFavorite = () => {
     if (!isFavorite) {
-      // createCard({
-      //   cardId: id,
-      //   cardName: name,
-      //   type: type,
-      //   attack: attack,
-      //   text: text,
-      //   playerClass: playerClass,
-      //   cardSet: cardSet,
-      //   rarity: rarity,
-      //   health: health,
-      //   race: race,
-      //   img: pic,
-      //   mechanics: mechcanics,
-      // });
+      fetch('http://localhost:3000/api/postdata', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cardid: id,
+          cardname: name,
+          cardset: cardSet!,
+          type: type,
+          rarity: rarity!,
+          attack: attack!,
+          health: health!,
+          text: text!,
+          race: race!,
+          playerclass: playerClass!,
+          img: pic!,
+          mechanics: [mechcanics?.toString()],
+        }),
+      });
       setIsFavorite(true);
-    } else if (isFavorite) {
-      // deleteCardById(id);
+    }
+    if (isFavorite) {
+      fetch('http://localhost:3000/api/deletedata', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cardid: id,
+        }),
+      });
+      console.log('deleted');
       setIsFavorite(false);
     }
   };

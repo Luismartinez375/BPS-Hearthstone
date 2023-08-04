@@ -32,7 +32,7 @@ export const readRecords = async (
 };
 export const deleteRecord = async (
   text: string,
-  params?: any[]
+  params: any
 ): Promise<QueryResult<any>> => {
   return await executeQuery(text, params);
 };

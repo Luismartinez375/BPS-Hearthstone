@@ -11,11 +11,18 @@ export default function CarouselGrid({ cardList }: CarouselProps) {
       {cardList.map((card, index) => (
         <div key={index}>
           <Card
+            id={card.cardid}
             pic={card.img}
-            name={card.cardName}
+            name={card.cardname}
             type={card.type}
             rarity={card.rarity}
             text={card.text}
+            race={card.race}
+            playerClass={card.playerclass}
+            attack={card.attack}
+            health={card.health}
+            mechcanics={card.mechanics}
+            cardSet={card.cardset}
           ></Card>
         </div>
       ))}

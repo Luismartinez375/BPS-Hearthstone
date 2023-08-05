@@ -22,17 +22,22 @@
     "@react-google-maps/api": "^2.19.2",
     "@types/google.maps": "^3.53.5",
     "@types/node": "20.4.2",
+    "@types/pg": "^8.10.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
-    "next": "13.4.9",
+    "fs": "^0.0.1-security",
+    "net": "^1.0.2",
+    "next": "^13.4.12",
+    "pg": "^8.11.2",
     "postcss": "8.4.26",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sharp": "^0.32.3",
     "tailwindcss": "3.3.3",
+    "tls": "^0.0.1",
     "ts-jackson": "^1.5.0",
     "typescript": "5.1.6",
     "use-draggable-scroll": "^0.1.0"
@@ -55,5 +60,10 @@
   },
   "resolutions": {
     "webpack": "^5"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   }
 }

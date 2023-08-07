@@ -17,6 +17,7 @@ type CardProps = {
   health: string;
   mechcanics: any;
   cardSet: string;
+  mana: string;
 };
 
 export default function Card({
@@ -32,6 +33,7 @@ export default function Card({
   health,
   mechcanics,
   cardSet,
+  mana,
 }: CardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -78,6 +80,7 @@ export default function Card({
           playerclass: playerClass!,
           img: pic!,
           mechanics: [mechcanics?.toString()],
+          mana: mana!,
         }),
       });
       setIsFavorite(true);

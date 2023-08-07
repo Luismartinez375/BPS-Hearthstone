@@ -40,7 +40,6 @@ const health = [
 const cardType = ['Any Type', 'Hero', 'Minion', 'Spell', 'Weapon', 'Location'];
 
 const minionType = [
-  'Any Type',
   'All',
   'Beast',
   'Demon',
@@ -101,7 +100,7 @@ type FilterProps = {
 };
 
 export default function Filter({ cardClass, cards }: FilterProps) {
-  console.log(cardClass);
+  const [filteredCards, userFilteredCards] = useState(cards);
   const [filterToggle, userFilterToggle] = useState(false);
   const [manaToggle, userManaToggle] = useState(false);
   const [attackToggle, userAttackToggle] = useState(false);
@@ -111,11 +110,13 @@ export default function Filter({ cardClass, cards }: FilterProps) {
   const [rarityToggle, userRarityToggle] = useState(false);
   const [keywordsToggle, userKeywordsToggle] = useState(false);
 
+
   const [manafilter, userManafilter] = useState(mana[0]);
 
   //Toggle functions
   function toggleFilter() {
     filterToggle ? userFilterToggle(false) : userFilterToggle(true);
+
   }
   function toggleMana() {
     userManaToggle(manaToggle ? false : true);
@@ -149,6 +150,191 @@ export default function Filter({ cardClass, cards }: FilterProps) {
       userManafilter(mana[0]);
     }
   }
+  function userAttackFilter(atk: string) {
+    if (atk === 'Any Attack') {
+      userFilteredCards(cards);
+    } else if (atk === 'Attack: 0'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 0));
+    } else if (atk === 'Attack: 1'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 1));
+    } else if (atk === 'Attack: 2'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 2));
+    } else if (atk === 'Attack: 3'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 3));
+    } else if (atk === 'Attack: 4'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 4));
+    } else if (atk === 'Attack: 5'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 5));
+    } else if (atk === 'Attack: 6'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 6));
+    } else if (atk === 'Attack: 7'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 7));
+    } else if (atk === 'Attack: 8'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 8));
+    } else if (atk === 'Attack: 9'){
+      userFilteredCards(filteredCards.filter((card) => card.attack === 9));
+    } else if (atk === 'Attack: 10+'){
+      userFilteredCards(filteredCards.filter((card) => card.attack >= 10));
+    }
+    toggleAttack();
+
+   
+     
+
+
+
+  }
+  function userHealthFilter(hlth: string) {
+    if (hlth === 'Any Health') {
+      userFilteredCards(cards);
+    } else if (hlth === 'Health: 0'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 0));
+    } else if (hlth === 'Health: 1'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 1));
+    } else if (hlth === 'Health: 2'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 2));
+    } else if (hlth === 'Health: 3'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 3));
+    } else if (hlth === 'Health: 4'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 4));
+    } else if (hlth === 'Health: 5'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 5));
+    } else if (hlth === 'Health: 6'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 6));
+    } else if (hlth === 'Health: 7'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 7));
+    } else if (hlth === 'Health: 8'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 8));
+    } else if (hlth === 'Health: 9'){
+      userFilteredCards(filteredCards.filter((card) => card.health === 9));
+    } else if (hlth === 'Health: 10+'){
+      userFilteredCards(filteredCards.filter((card) => card.health >= 10));
+    }
+    toggleHealth();
+  }
+  function userTypeFilter(type: string) {
+    if (type === 'Any Type') {
+      userFilteredCards(cards);
+    } else if (type === 'Hero'){
+      userFilteredCards(filteredCards.filter((card) => card.type === "Hero"));
+    } else if (type === 'Minion'){
+      userFilteredCards(filteredCards.filter((card) => card.type === "Minion"));
+    } else if (type === 'Spell'){
+      userFilteredCards(filteredCards.filter((card) => card.type === "Spell"));
+    } else if (type === 'Weapon'){
+      userFilteredCards(filteredCards.filter((card) => card.type === "Weapon"));
+    } else if (type === 'Location'){
+      userFilteredCards(filteredCards.filter((card) => card.type === "Location"));
+    }
+    toggleCardType();
+  }
+
+  function userMinionFilter(race: string) {
+    if (race === 'All') {
+      userFilteredCards(cards);
+    } else if (race === 'Beast'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Beast"));
+    } else if (race === 'Demon'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Demon"));
+    } else if (race === 'Dragon'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Dragon"));
+    } else if (race === 'Elemental'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Elemental"));
+    } else if (race === 'Mech'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Mech"));
+    } else if (race === 'Murloc'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Murloc"));
+    } else if (race === 'Naga'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Naga"));
+    } else if (race === 'Pirate'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Pirate"));
+    } else if (race === 'Quilboar'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Quilboar"));
+    } else if (race === 'Totem'){
+      userFilteredCards(filteredCards.filter((card) => card.race === "Totem"));
+    } else if (race === 'Undead'){
+      userFilteredCards(filteredCards.filter((card) => card.race >= "Undead"));
+     
+  }
+  toggleMinionType();
+  }
+  function useRarityFilter(rarity: string) {
+    if (rarity === 'Any Rarity') {
+      userFilteredCards(cards);
+    } else if (rarity === 'Common'){
+      userFilteredCards(filteredCards.filter((card) => card.rarity === "Common"));
+    } else if (rarity === 'Free'){
+      userFilteredCards(filteredCards.filter((card) => card.rarity === "Free"));
+    } else if (rarity === 'Rare'){
+      userFilteredCards(filteredCards.filter((card) => card.rarity === "Rare"));
+    } else if (rarity === 'Epic'){
+      userFilteredCards(filteredCards.filter((card) => card.rarity === "Epic"));
+    } else if (rarity === 'Legendary'){
+      userFilteredCards(filteredCards.filter((card) => card.rarity === "Legendary"));
+    }
+  toggleRarity();
+  }
+  function useKewordFilter(mechanics: string) {
+    if (mechanics === 'Any Keyword') {
+      userFilteredCards(cards);
+    } else if (mechanics === 'Adapt'){
+      userFilteredCards(filteredCards.filter((card) =>{
+        if (card.mechanics){
+          card.mechanics[0].name === "Adapt"
+        }
+      }));
+    } else if (mechanics === 'Battlecry'){
+      userFilteredCards(filteredCards.filter((card) => {
+        if (card.mechanics){
+          card.mechanics[0].name === "Battlecry"
+        }
+      }));
+    } else if (mechanics === 'Charge'){
+      userFilteredCards(filteredCards.filter((card) => {
+        if (card.mechanics){
+          card.mechanics[0].name === "Charge"
+        }
+      }));
+    } else if (mechanics === 'Colosal +X'){
+      userFilteredCards(filteredCards.filter((card) => {
+        if (card.mechanics){
+          card.mechanics[0].name === "Colosal +X"
+        }
+      }));
+    } else if (mechanics === 'Combo'){
+      userFilteredCards(filteredCards.filter((card) => {
+        if (card.mechanics){
+          card.mechanics[0].name === "Combo"
+        }
+      }));
+    } else if (mechanics === 'Corpse'){
+      userFilteredCards(filteredCards.filter((card) => {
+        if (card.mechanics){
+          card.mechanics[0].name === "Corpse"
+        }
+      }));
+    } else if (mechanics === 'Corrupt'){
+      userFilteredCards(filteredCards.filter((card) => {
+        if (card.mechanics){
+          card.mechanics[0].name === "Corrupt"
+        }
+      }));
+    } else if (mechanics === 'Counter'){
+      userFilteredCards(filteredCards.filter((card) => {
+        if (card.mechanics){
+          card.mechanics[0].name === "Counter"
+        }
+      }));
+    } else if (mechanics === 'Deathrattle'){
+      userFilteredCards(filteredCards.filter((card) => {
+        if (card.mechanics){
+          card.mechanics[0].name === "Deathrattle"
+        }
+      }));
+    }
+  toggleKeywords();
+  }
+
 
   return (
     <div
@@ -169,37 +355,59 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           <p className="text-cyan-400 text-2xl font-outline-1">Mana</p>
           <div className="flex flex-row justify-center items-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 rounded-full px-1 text-white h-16">
             <div className=" flex flex-row justify-between bg-button_bg rounded-full h-[58px] ">
-              <button className=" font-outline-1 mr-1 w-12 text-xl drop-shadow-lg ">
+              <button className=" font-outline-1 mr-1 w-12 text-xl drop-shadow-lg " onClick={() => {
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 0))
+              }}>
                 0
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg" onClick={() => {
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 1))
+              }}>
                 1
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg" onClick={()=>{
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 2))
+              }}>
                 2
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg" onClick={()=>{
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 3))
+              }}>
                 3
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg" onClick={()=>{
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 4))
+              }}>
                 4
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg" onClick={()=>{
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 5))
+              }}>
                 5
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"onClick={()=>{
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 6))
+              }}>
                 6
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"onClick={()=>{
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 7))
+              }}>
                 7
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"onClick={()=>{
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 8))
+              }}>
                 8
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"onClick={()=>{
+               userFilteredCards(filteredCards.filter((card) => card.mana! === 9))
+              }}>
                 9
               </button>
-              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg">
+              <button className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"onClick={()=>{
+               userFilteredCards(filteredCards.filter((card) => card.mana! >= 10))
+              }}>
                 10+
               </button>
             </div>
@@ -245,7 +453,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               funct={toggleAttack}
             ></HearthButton>
             {attackToggle && (
-              <HearthScroll list={atk} funct={toggleAttack}></HearthScroll>
+              <HearthScroll list={atk} funct={userAttackFilter} ></HearthScroll>
             )}
           </div>
           <div className="flex flex-col gap-2">
@@ -258,7 +466,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               funct={toggleHealth}
             ></HearthButton>
             {healthToggle && (
-              <HearthScroll list={health} funct={toggleHealth}></HearthScroll>
+              <HearthScroll list={health} funct={userHealthFilter}></HearthScroll>
             )}
           </div>
           <div className="flex flex-col gap-2">
@@ -273,7 +481,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
             {cardTypeToggle && (
               <HearthScroll
                 list={cardType}
-                funct={toggleCardType}
+                funct={userTypeFilter}
               ></HearthScroll>
             )}
           </div>
@@ -289,7 +497,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
             {minionTypeToggle && (
               <HearthScroll
                 list={minionType}
-                funct={toggleMinionType}
+                funct={userMinionFilter}
               ></HearthScroll>
             )}
           </div>
@@ -303,7 +511,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               funct={toggleRarity}
             ></HearthButton>
             {rarityToggle && (
-              <HearthScroll list={rarity} funct={toggleRarity}></HearthScroll>
+              <HearthScroll list={rarity} funct={useRarityFilter}></HearthScroll>
             )}
           </div>
           <div className="flex flex-col gap-2">
@@ -318,13 +526,13 @@ export default function Filter({ cardClass, cards }: FilterProps) {
             {keywordsToggle && (
               <HearthScroll
                 list={keywords}
-                funct={toggleKeywords}
+                funct={useKewordFilter}
               ></HearthScroll>
             )}
           </div>
         </div>
       )}
-      <GridContainer cards={cards}></GridContainer>
+      <GridContainer cards={filteredCards}></GridContainer>
     </div>
   );
 }

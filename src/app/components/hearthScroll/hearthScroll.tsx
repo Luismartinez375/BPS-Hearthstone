@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import useDraggableScroll from 'use-draggable-scroll';
 type HearthScrollProps = {
   list: Array<string>;
-  funct?: () => void;
+  funct(atk : string): void;
 };
 
 export default function HearthScroll({ list, funct }: HearthScrollProps) {
@@ -23,8 +23,7 @@ export default function HearthScroll({ list, funct }: HearthScrollProps) {
           <button
             key={item}
             className=" hover:text-accents text-white text-left px-2 py-1"
-            onClick={funct}
-            onBlur={funct}
+            onClick={() => funct(item)}
           >
             {item}
           </button>

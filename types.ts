@@ -53,7 +53,9 @@ export class CardClass {
   @JsonProperty('img')
   img?: any;
   @JsonProperty('mechanics')
-  mechanics?: string[];
+  mechanics?: any;
+  @JsonProperty('cost')
+  mana?: any;
 }
 
 export class LinkedListNode<T> {

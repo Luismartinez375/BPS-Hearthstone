@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import useDraggableScroll from 'use-draggable-scroll';
 type HearthScrollProps = {
   list: Array<string>;
-  funct(atk : string): void;
+  funct(atk: string): void;
 };
 
 export default function HearthScroll({ list, funct }: HearthScrollProps) {
@@ -12,7 +12,7 @@ export default function HearthScroll({ list, funct }: HearthScrollProps) {
 
   return (
     <div
-      className={` bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 h-auto p-0.5 z-10 w-56 max-sm:hidden lg:absolute rounded-xl flex flex-col items-center`}
+      className={` bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 h-auto mt-20 p-0.5 z-10 w-56 max-sm:mt-12 max-sm:h-32 absolute rounded-xl flex flex-col items-center`}
     >
       <div
         className="flex flex-col overflow-y-scroll  bg-brown w-19/20 max-h-72 rounded-xl text-shadow-lg shadow-black no-scrollbar"

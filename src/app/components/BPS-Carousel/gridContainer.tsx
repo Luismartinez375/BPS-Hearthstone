@@ -13,7 +13,10 @@ export default function GridContainer({ cards }: CarouselProps) {
   let [endIndex, setEndIndex] = useState(4);
   const [currentSlide, setCurrentSlide] = useState(1);
   const smallerLists = SplitIntoSmallerLists(cards, 10);
+  const smallerListsMobile = SplitIntoSmallerLists(cards, 1);
+  const eightMobile = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
   const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
+  const tailMobile = smallerListsMobile.getTail();
   const tail = smallerLists.getTail();
   useEffect(() => {
     let e = document.getElementById(currentSlide.toString());
@@ -71,26 +74,44 @@ export default function GridContainer({ cards }: CarouselProps) {
           <div
             key={index}
             id={index.toString()}
-            className="relative bottom-14 md:-left-[900px] xl:-left-[1600px] lg:-left-[1200px] 2xl:-left-[2000px] "
+            className="max-sm:hidden relative bottom-14 md:-left-[900px] xl:-left-[1600px] lg:-left-[1200px] 2xl:-left-[2000px] "
           >
             <CarouselGrid cardList={list}></CarouselGrid>
           </div>
         ))}
+        {eightMobile.map((list, index) => (
+          <div
+            key={index}
+            id={index.toString()}
+            className="sm:hidden bottom-14 md:-left-[900px] xl:-left-[1600px] lg:-left-[1200px] 2xl:-left-[2000px] "
+          >
+            <CarouselGrid cardList={list}></CarouselGrid>
+          </div>
+        ))}
+
         <div className="relative bottom-14" id="6">
           {/* <CarouselGrid cardList={last ? last : []}></CarouselGrid> */}
         </div>
         <button className="absolute left-0" onClick={() => handleSlideLeft()}>
-          <Image src={left} alt="left"></Image>
+          <Image
+            src={left}
+            alt="left"
+            className="max-sm:w-20 max-sm:h h-20"
+          ></Image>
         </button>
         <button
           className="absolute right-0 "
           onClick={() => handleSlideRight()}
         >
-          <Image src={right} alt="right"></Image>
+          <Image
+            src={right}
+            alt="right"
+            className="max-sm:w-20 max-sm:h h-20"
+          ></Image>
         </button>
       </div>
-      <div className="flex flex-row  justify-center items-centerrounded-full px-1 text-white h-16">
-        <div className=" flex flex-row justify-between gap-10 rounded-full h-[58px] ">
+      <div className="flex flex-row  justify-center items-center rounded-full px-1 text-white h-16">
+        <div className=" flex flex-row justify-between gap-10 max-sm:gap-0 rounded-full h-[58px] ">
           <button
             className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
             onClick={() => handleFirst()}

@@ -18,22 +18,23 @@ export default function ShopCard({
   return (
     <>
       <div
-        className="text-white font-AclonicaR hover:text-gold mb-8"
+        className="text-white font-AclonicaR hover:text-gold mb-8 hover:cursor-pointer sm:hover:text-gold"
         onClick={clickCard}
       >
         <div>
           <p className="text-2xl">{name}</p>
         </div>
         <div className="my-4">{address}</div>
-        <div className="flex">
+        <div className="flex ">
           <p
             className={`${
-              open == 'Open' ? 'text-colorText-Sadows' : 'text-gold'
+              open == 'Open' ? 'text-cyan-500' : 'text-colorText-Shadows'
             }`}
           >
             {open}
           </p>
-          &nbsp; | &nbsp;<p>{schedule}</p> &nbsp;|&nbsp; {phone}
+          &nbsp; | &nbsp;<p className="text-center">{schedule}</p> &nbsp;|&nbsp;
+          <p className="text-center">{phone}</p>
         </div>
       </div>
       <hr className="border-black border opacity-40 mb-8" />

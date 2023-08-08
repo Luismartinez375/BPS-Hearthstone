@@ -39,9 +39,7 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
           <Image src={clock} alt={'Lef Arrow Icon'} />
           <p
             className={`${
-              place.opening_hours.open_now == true
-                ? 'text-colorText-Sadows'
-                : 'text-gold'
+              place.opening_hours.open_now ? 'text-cyan-500' : 'text-red-700'
             } mx-3`}
           >
             {place.opening_hours.open_now == true ? 'Open' : 'Closed'}

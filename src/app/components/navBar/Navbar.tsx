@@ -49,7 +49,7 @@ export default function NavBar() {
         <div className=" h-0.5 w-6 rounded-none bg-white before:absolute before:h-0.5 before:w-6 before:-translate-x-3 before:-translate-y-2 before:rounded before:bg-white before:content-[''] after:absolute after:h-0.5 after:w-6 after:-translate-x-3 after:translate-y-2 after:rounded after:bg-white after:content-['']"></div>
       </button>
       {toggle && (
-        <div className="animate-open-menu absolute top-20 bg-navbar w-full h-full text-4xl flex flex-col items-center justify-center gap-24 origin-top left-0 z-10">
+        <div className="sm:hidden animate-open-menu absolute top-20 bg-navbar w-full h-full text-4xl flex flex-col items-center justify-center gap-24 origin-top left-0 z-10">
           <button
             className=" font-montserrat active:text-accents text-white underline underline-offset-8 "
             onClick={() => router.push('/')}

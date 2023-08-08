@@ -5,7 +5,7 @@ import { CardClass } from '../../../../types';
 export async function PUT(request: Request) {
   const card: CardClass = await request.json();
   const queryText =
-    'INSERT INTO cards (cardid, cardname, cardset, type, rarity, attack, health, text, race, playerclass, img, mechanics) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *';
+    'INSERT INTO cards (cardid, cardname, cardset, type, rarity, attack, health, text, race, playerclass, img, mechanics, mana) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *';
   //   const values = [
   //     card.cardId,
   //     card.cardName,
@@ -34,6 +34,7 @@ export async function PUT(request: Request) {
     card.playerclass,
     card.img,
     card.mechanics,
+    card.mana,
   ]);
   const crd: CardClass = await result.rows[0];
   return NextResponse.json(crd, { status: 201 });

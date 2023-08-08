@@ -200,21 +200,22 @@ export default function Class({ cardClass }: props) {
           </button>
           {toggle && (
             <div
-              className={` bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 h-auto p-0.5 z-10 w-56 max-sm:hidden rounded-xl lg:absolute left flex flex-col items-center`}
+              className={` bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 h-auto mt-20 p-0.5 z-10 w-56 max-sm:absolute rounded-xl lg:absolute left flex flex-col items-center`}
             >
               <div className="flex flex-col overflow-y-scroll  bg-brown w-19/20 max-h-72 rounded-xl text-shadow-lg shadow-black no-scrollbar">
                 {Object.entries(classEmblems).map(([className, emblem]) => (
                   <button
                     key={className}
                     className=" hover:text-accents text-white text-left px-2 py-1 flex flex-row justify-between"
-                    onClick={() =>
-                      router.push(
-                        `/class/${className.replace(
-                          'DemonHunter',
-                          'Demon Hunter'
-                        )}`
-                      )
-                    }
+                    onClick={() => {
+                      handleToggle(),
+                        router.push(
+                          `/class/${className.replace(
+                            'DemonHunter',
+                            'Demon Hunter'
+                          )}`
+                        );
+                    }}
                   >
                     {className}
                     <Image src={emblem} alt="" width={30} height={30}></Image>

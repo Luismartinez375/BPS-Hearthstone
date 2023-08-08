@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import down from '../../../../public/Keyboard arrow down.svg';
 import filter from '../../../../public/filter.svg';
 import { CardClass } from '../../../../types';
@@ -111,8 +111,27 @@ export default function Filter({ cardClass, cards }: FilterProps) {
   const [rarityToggle, userRarityToggle] = useState(false);
   const [keywordsToggle, userKeywordsToggle] = useState(false);
   const [toggle, setToggle] = useState(false);
-
   const [manafilter, userManafilter] = useState(mana[0]);
+
+  const [windowSize, setWindowSize] = useState<{
+    width?: number;
+    height?: number;
+  }>({});
+
+  useEffect(() => {
+    // only execute all the code below in client side
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   //Toggle functions
   function handleToggle() {
@@ -823,12 +842,17 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           </div>
         </div>
       )}
-      <div className="sm:hidden">
-        <MobileCarousel cards={filteredCards}></MobileCarousel>
-      </div>
-      <div className="max-sm:hidden">
+      {screen.width > 640 ? (
         <GridContainer cards={filteredCards}></GridContainer>
+      ) : (
+        <MobileCarousel cards={filteredCards}></MobileCarousel>
+      )}
+      {/* <div className="max-sm:hidden">
+      
       </div>
+      <div className="sm:hidden">
+      
+      </div> */}
     </div>
   );
 }

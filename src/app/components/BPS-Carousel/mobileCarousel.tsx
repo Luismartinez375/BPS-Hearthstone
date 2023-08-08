@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import left from '../../../../public/Arrow left.svg';
 import right from '../../../../public/Arrow right.svg';
 import { CardClass, SplitIntoSmallerLists } from '../../../../types';
@@ -17,12 +17,24 @@ export default function MobileCarousel({ cards }: CarouselProps) {
     startMobileIndex,
     endMobileIndex
   );
+  const mobileRef = useRef<HTMLDivElement>(null);
   const tailMobile = smallerListsMobile.getTail();
   useEffect(() => {
     let f = document.getElementById(mobileSlide.toString());
     console.log(mobileSlide);
     f?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
   }, [mobileSlide]);
+
+  const scrollToItem = (index: number) => {
+    const item = document.getElementById(index.toString());
+    console.log(item);
+    if (item && mobileRef.current) {
+      mobileRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  };
+
   // Mobile
   function handleMobileNextIndex() {
     startMobileIndex = startMobileIndex + 5;
@@ -43,6 +55,7 @@ export default function MobileCarousel({ cards }: CarouselProps) {
       setMobileSlide(1);
     } else {
       setMobileSlide(mobileSlide + 1);
+      scrollToItem(mobileSlide);
     }
   }
   function handleMobileSlideLeft() {
@@ -71,14 +84,16 @@ export default function MobileCarousel({ cards }: CarouselProps) {
 
   return (
     <>
-      <div className="sm:hidden grid grid-cols-8 gap-x-[900px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-scroll overflow-y-hidden w-screen items-center">
+      <div
+        ref={mobileRef}
+        className="sm:hidden grid grid-cols-8 no-scrollbar overflow-x-scroll gap-[400px] w-screen items-center"
+      >
         {eightMobile.map((list, index) => (
           <div key={index} id={index.toString()} className=" bottom-14">
             <CarouselGrid cardList={list}></CarouselGrid>
           </div>
         ))}
 
-        <div className=" relative bottom-14" id="6"></div>
         <button
           className="absolute left-0"
           onClick={() => {

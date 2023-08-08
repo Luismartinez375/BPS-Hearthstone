@@ -128,7 +128,7 @@ export default function Card({
           alt="card"
         ></Image>
       </div>
-      <div className=" bg-card_bg relative left-1/2 2xl:left-[140px] top-4 rounded-full p-1">
+      <div className=" bg-card_bg relative max-sm:left-28  left-1/2 2xl:left-[140px] top-4 rounded-full p-1">
         <div className="flex flex-col bg-card rounded-full">
           <button className="p-1" onClick={handleFavorite}>
             <Image

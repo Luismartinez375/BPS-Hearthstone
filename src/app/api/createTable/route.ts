@@ -22,12 +22,6 @@ export async function GET(request: Request) {
       mana VARCHAR(255)
     )
   `;
-
-  const queryText = `
- 
-  SELECT * FROM cards;
-`;
-  const d = await readRecords(createTableQuery);
-  const data = await readRecords(queryText);
+  const data = await readRecords(createTableQuery);
   return NextResponse.json({ data });
 }

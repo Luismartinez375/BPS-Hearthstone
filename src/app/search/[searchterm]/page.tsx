@@ -23,7 +23,7 @@ export default async function Page({
           alt=""
           width={500}
           height={500}
-          className="max-sm:w-3/5 max-sm:w-3/5"
+          className="max-sm:w-3/5 max-sm:h-3/5"
         ></Image>
         <p className=" sm:text-2xl text-xl">Blasphemy! No cards found.</p>
         <Link href="/" className=" text-gold hover:underline max-sm:underline">

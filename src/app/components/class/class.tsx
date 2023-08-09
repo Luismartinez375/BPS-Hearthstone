@@ -172,12 +172,12 @@ export default function Class({ cardClass }: props) {
     <div
       className={` ${getBackgroundClass(
         cardClass.replace('%20', ' ')
-      )} sm:bg-cover bg-center-custom bg-zoomed-in  h-screen flex flex-col justify-around `}
+      )} sm:bg-cover bg-center-custom bg-zoomed-in h-screen flex flex-col justify-around `}
     >
       <div className="flex flex-row items-center justify-around max-sm:flex-col max-sm:gap-10">
         <div className="flex flex-row items-center">
           <Image
-            className="max-sm:w-2/3"
+            className="max-sm:w-1/4"
             src={emblemSrc}
             width={266}
             height={266}

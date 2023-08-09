@@ -11,7 +11,7 @@ interface HomeProps {
 }
 
 export default async function Page(props: HomeProps) {
-  console.log('props', props.searchParams.lat, props.searchParams.lng);
+  // console.log('props', props.searchParams.lat, props.searchParams.lng);
   let places = await getPlaceDetail({
     lat: props.searchParams.lat,
     lng: props.searchParams.lng,

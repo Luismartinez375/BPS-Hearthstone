@@ -9,12 +9,20 @@ import ShopDetail from './shopDetail';
 type props = {
   places: PlaceClass[];
 };
+
 export default function ScrollMaps({ places }: props) {
   const [showDetail, setShowDetail] = useState(false);
   const [showList, setShowList] = useState(true);
   const [place, setPlace] = useState<PlaceClass>();
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
-
+  // const [placesList, setPlacesList] = useState<PlaceClass[]>([]);
+  // const data = async ({ lat, lng }: any) => {
+  //   let places = await getPlaceDetail({
+  //     lat: lat,
+  //     lng: lng,
+  //   });
+  //   setPlacesList(places);
+  // };
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setCenter({
@@ -23,6 +31,8 @@ export default function ScrollMaps({ places }: props) {
       });
     });
   }, []);
+  console.log('center', center);
+
   const goToDetail = (card: PlaceClass) => {
     setCenter({
       lat: card.geometry.location.lat,
@@ -42,7 +52,11 @@ export default function ScrollMaps({ places }: props) {
   const handleShowList = () => {
     setShowList(true);
   };
-
+  // useEffect(() => {
+  //   console.log('center', center);
+  //   data(center);
+  // }, [placesList]);
+  // console.log('places', placesList);
   return (
     <>
       {showList && (

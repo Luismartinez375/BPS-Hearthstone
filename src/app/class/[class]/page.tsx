@@ -29,13 +29,9 @@ export default async function Page({ params }: { params: { class: string } }) {
   const cards = await getCards(cardClass);
 
   return (
-    <>
+    <div className="">
       <Class cardClass={cardClass}></Class>
-      <>
-        <div>
-          <Filter cardClass={cardClass} cards={cards ? cards : []}></Filter>
-        </div>
-      </>
-    </>
+      <Filter cardClass={cardClass} cards={cards ? cards : []}></Filter>
+    </div>
   );
 }

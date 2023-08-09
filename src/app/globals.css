@@ -7,9 +7,12 @@
     filter: drop-shadow(0 0 2rem rgb(104, 225, 255));
   }
   @variants responsive {
-    .noscrollbar::-webkit-scrollbar {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
     .no-scrollbar {
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */

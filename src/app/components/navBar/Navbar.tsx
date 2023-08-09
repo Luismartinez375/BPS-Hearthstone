@@ -15,6 +15,7 @@ export default function NavBar() {
     <nav className=" bg-transparent flex flex-row w-full h-20 max-sm:justify-between items-center justify-center shadow-2xl">
       <div className="p-4 relative max-sm:left-8 right-1/4">
         <Image
+          className="cursor-pointer"
           src={homepage_logo2}
           alt={'reddit'}
           width={140}

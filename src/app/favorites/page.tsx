@@ -14,8 +14,8 @@ export default async function Page() {
   });
 
   return (
-    <div className="flex flex-col items-center p-10 min-h-screen bg-hearthstone_bg">
-      <h1 className=" text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1">
+    <div className="flex flex-col h-fit bg-hearthstone_bg">
+      <h1 className=" text-center text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1">
         Favorites
       </h1>
       <Filter cardClass=" " cards={res.data}></Filter>

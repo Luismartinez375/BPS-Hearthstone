@@ -3,7 +3,7 @@ import { PlaceClass } from '../../../../types';
 
 const containerStyle = {
   width: '100%',
-  height: '995px',
+  height: '100%',
 };
 type GoogleMapProps = {
   places: PlaceClass[];

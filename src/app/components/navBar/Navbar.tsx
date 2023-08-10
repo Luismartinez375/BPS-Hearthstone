@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import homepage_logo2 from 'public/homepage_logo 2/homepage_logo 2.webp';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 export interface INavbar {
   sampleTextProp: string;
 }
@@ -10,7 +11,20 @@ export interface INavbar {
 export default function NavBar() {
   const router = useRouter();
   const [toggle, setToggle] = useState(false);
+  const [center, setCenter] = useState({ lat: 0, lng: 0});
 
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCenter({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+       
+      });
+      console.log('center', center);
+    });
+   
+  }, []);
   return (
     <nav className=" bg-transparent flex flex-row w-full h-20 max-sm:justify-between items-center justify-center shadow-2xl">
       <div className="p-4 relative max-sm:left-8 right-1/4">
@@ -36,12 +50,15 @@ export default function NavBar() {
         >
           Favorites
         </button>
-        <button
+        <Link 
+        href={{
+          pathname:`/shop/`,
+          query: {lat: center.lat, lng: center.lng}
+        }}
           className=" font-aclonica hover:text-accents"
-          onClick={() => router.push('/shop')}
         >
           Shops
-        </button>
+        </Link >
       </div>
       <button
         className="relative right-8 sm:hidden w-10 h-10"
@@ -63,12 +80,12 @@ export default function NavBar() {
           >
             Favorites
           </button>
-          <button
-            onClick={() => router.push('/shop')}
+          <Link
+            href={`/shop/?q=${center.lat}?a=${center.lng}`}
             className=" font-montserrat active:text-accents text-white underline underline-offset-8"
           >
             Shop
-          </button>
+          </Link>
         </div>
       )}
     </nav>

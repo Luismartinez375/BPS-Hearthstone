@@ -37,16 +37,28 @@ export default function MobileCarousel({ cards }: CarouselProps) {
 
   // Mobile
   function handleMobileNextIndex() {
+    if(endMobileIndex >= tailMobile!.index) {
+      setMobileStartIndex(0);
+      setMobileEndIndex(4);
+      setMobileSlide(1);
+    } else {
     startMobileIndex = startMobileIndex + 5;
     endMobileIndex = endMobileIndex + 5;
     setMobileStartIndex(startMobileIndex);
     setMobileEndIndex(endMobileIndex);
+    }
   }
   function handleMobilePreviousIndex() {
+    if (startMobileIndex <= 0) {
+      setMobileStartIndex(tailMobile!.index - 4);
+      setMobileEndIndex(tailMobile!.index);
+      setMobileSlide(5);
+    } else {
     startMobileIndex = startMobileIndex - 5;
     endMobileIndex = endMobileIndex - 5;
     setMobileStartIndex(startMobileIndex);
     setMobileEndIndex(endMobileIndex);
+  }
   }
 
   function handleMobileSlideRight() {
@@ -86,10 +98,10 @@ export default function MobileCarousel({ cards }: CarouselProps) {
     <>
       <div
         ref={mobileRef}
-        className="sm:hidden grid grid-cols-8 no-scrollbar overflow-x-scroll gap-[400px] w-screen items-center"
+        className="sm:hidden snap-x grid grid-cols-8 no-scrollbar overflow-x-scroll gap-[400px] w-screen items-center"
       >
         {eightMobile.map((list, index) => (
-          <div key={index} id={index.toString()} className=" bottom-14">
+          <div key={index}  id={index.toString()} className=" bottom-14 snap-start">
             <CarouselGrid cardList={list}></CarouselGrid>
           </div>
         ))}
@@ -119,46 +131,46 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           ></Image>
         </button>
       </div>
-      <div className="sm:hidden flex flex-row  justify-center items-center rounded-full px-1 text-white h-16">
+      <div className="sm:hidden flex flex-row  justify-center items-center rounded-full px-1 text-white h-16 max-sm:text-sm">
         <div className=" flex flex-row justify-between gap-10 max-sm:gap-0 rounded-full h-[58px] ">
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg"
             onClick={() => handleMobileFirst()}
           >
             {startMobileIndex + 1}
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className={`${startMobileIndex + 2 > tailMobile!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
             onClick={() => handleMobileSecond()}
           >
             {startMobileIndex + 2}
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className={`${startMobileIndex + 3 > tailMobile!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
             onClick={() => handleMobileThird()}
           >
             {startMobileIndex + 3}
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className={`${startMobileIndex + 4 > tailMobile!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
             onClick={() => handleMobileFourth()}
           >
             {startMobileIndex + 4}
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className={`${startMobileIndex + 5 > tailMobile!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
             onClick={() => handleMobileFifth()}
           >
             {startMobileIndex + 5}
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg"
             onClick={() => handleMobileNextIndex()}
           >
             ...
           </button>
 
-          <button className="sm:hidden font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg">
+          <button className="sm:hidden font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg">
             {tailMobile?.index}
           </button>
         </div>

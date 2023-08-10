@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import demonhunter_emblem from '../../public/demonhunter_emblem/demonhunter emblem@3x.webp';
 import druid_emblem from '../../public/druid_emblem/druid emblem@3x.webp';
@@ -16,7 +15,6 @@ import warlock_emblem from '../../public/warlock_emblem/warlock emblem@3x.webp';
 import warrior_emblem from '../../public/warrior_emblem/warrior emblem@3x.webp';
 import SearchBar from './components/searchbar/SearchBar';
 export default function Home() {
-  const router = useRouter();
   useEffect(() => {
     fetch('http://localhost:3000/api/createTable', {
       next: { revalidate: 1 },
@@ -26,6 +24,7 @@ export default function Home() {
       }
     });
   }, []);
+ 
   return (
     <main className="flex min-h-screen flex-col items-center bg-hearthstone_bg gap-10">
       <div className="">
@@ -203,3 +202,5 @@ export default function Home() {
     </main>
   );
 }
+
+

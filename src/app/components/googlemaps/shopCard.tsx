@@ -18,7 +18,7 @@ export default function ShopCard({
   return (
     <>
       <div
-        className="text-white font-AclonicaR hover:text-gold mb-8 hover:cursor-pointer sm:hover:text-gold"
+        className="text-white font-AclonicaR hover:text-gold mb-8 hover:cursor-pointer sm:hover:text-gold lg:text-xs"
         onClick={clickCard}
       >
         <div>
@@ -28,8 +28,8 @@ export default function ShopCard({
         <div className="flex ">
           <p
             className={`${
-              open == 'Open' ? 'text-cyan-500' : 'text-colorText-Shadows'
-            }`}
+              open == 'Open' ? 'text-cyan-500' : 'text-red-500'
+            } `}
           >
             {open}
           </p>

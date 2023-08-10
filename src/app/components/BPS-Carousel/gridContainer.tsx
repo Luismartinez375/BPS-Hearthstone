@@ -21,16 +21,28 @@ export default function GridContainer({ cards }: CarouselProps) {
   }, [currentSlide]);
 
   function handleNextIndex() {
+    if(endIndex >= tail!.index) {
+      setStartIndex(0);
+      setEndIndex(4);
+      setCurrentSlide(1);
+    } else {
     startIndex = startIndex + 5;
     endIndex = endIndex + 5;
     setStartIndex(startIndex);
     setEndIndex(endIndex);
   }
+  }
   function handlePreviousIndex() {
+    if (startIndex <= 0) {
+      setStartIndex(tail!.index - 4);
+      setEndIndex(tail!.index);
+      setCurrentSlide(5);
+    } else {
     startIndex = startIndex - 5;
     endIndex = endIndex - 5;
     setStartIndex(startIndex);
     setEndIndex(endIndex);
+  }
   }
 
   function handleSlideRight() {
@@ -98,25 +110,25 @@ export default function GridContainer({ cards }: CarouselProps) {
             {startIndex + 1}
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className={`${startIndex + 2 > tail!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
             onClick={() => handleSecond()}
           >
             {startIndex + 2}
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className={`${startIndex + 3 > tail!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
             onClick={() => handleThird()}
           >
             {startIndex + 3}
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className={`${startIndex + 4 > tail!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
             onClick={() => handleFourth()}
           >
             {startIndex + 4}
           </button>
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className={`${startIndex + 5 > tail!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
             onClick={() => handleFifth()}
           >
             {startIndex + 5}

@@ -31,7 +31,7 @@ export default function ScrollMaps({ places }: props) {
       });
     });
   }, []);
-  console.log('center', center);
+  // console.log('center', center);
 
   const goToDetail = (card: PlaceClass) => {
     setCenter({
@@ -90,11 +90,11 @@ export default function ScrollMaps({ places }: props) {
                   <ShopCard
                     name={place.name}
                     address={place.vicinity}
-                    open={place.opening_hours.open_now ? 'Open' : 'Closed'}
-                    schedule={place.opening_hours.weekday_text[0].replace(
+                    open={place.opening_hours?.open_now ? 'Open' : 'Closed'}
+                    schedule={place.opening_hours?.weekday_text ? place.opening_hours?.weekday_text[0].replace(
                       'Monday:',
                       ''
-                    )}
+                    ): 'n/a'}
                     phone={place.phone}
                     clickCard={() => goToDetail(place)}
                   />

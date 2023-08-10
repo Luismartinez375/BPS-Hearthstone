@@ -32,13 +32,6 @@ export async function getIDS({ lat, lng }: IDprops) {
 
 export async function getPlaceDetail({ lat, lng }: props) {
   const ids = await getIDS({ lat, lng });
-
-  const url1 =
-    'https://maps.googleapis.com/maps/api/place/details/json?place_id=' +
-    'placeId' +
-    '&fields=name,geometry' +
-    '&key=' +
-    process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const placeDetailPromises = await ids.map(async (id) => {
     const res = await fetch(
       'https://maps.googleapis.com/maps/api/place/details/json?place_id=' +

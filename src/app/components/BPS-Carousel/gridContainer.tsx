@@ -21,16 +21,16 @@ export default function GridContainer({ cards }: CarouselProps) {
   }, [currentSlide]);
 
   function handleNextIndex() {
-    if(endIndex >= tail!.index) {
+    if (endIndex >= tail!.index) {
       setStartIndex(0);
       setEndIndex(4);
       setCurrentSlide(1);
     } else {
-    startIndex = startIndex + 5;
-    endIndex = endIndex + 5;
-    setStartIndex(startIndex);
-    setEndIndex(endIndex);
-  }
+      startIndex = startIndex + 5;
+      endIndex = endIndex + 5;
+      setStartIndex(startIndex);
+      setEndIndex(endIndex);
+    }
   }
   function handlePreviousIndex() {
     if (startIndex <= 0) {
@@ -38,11 +38,11 @@ export default function GridContainer({ cards }: CarouselProps) {
       setEndIndex(tail!.index);
       setCurrentSlide(5);
     } else {
-    startIndex = startIndex - 5;
-    endIndex = endIndex - 5;
-    setStartIndex(startIndex);
-    setEndIndex(endIndex);
-  }
+      startIndex = startIndex - 5;
+      endIndex = endIndex - 5;
+      setStartIndex(startIndex);
+      setEndIndex(endIndex);
+    }
   }
 
   function handleSlideRight() {
@@ -104,31 +104,41 @@ export default function GridContainer({ cards }: CarouselProps) {
       <div className="flex flex-row  justify-center items-centerrounded-full px-1 text-white h-16">
         <div className=" flex flex-row justify-between gap-10 rounded-full h-[58px] ">
           <button
-            className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg"
+            className={`${
+              startIndex < 0 ? 'invisible' : ''
+            } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
             onClick={() => handleFirst()}
           >
             {startIndex + 1}
           </button>
           <button
-            className={`${startIndex + 2 > tail!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
+            className={`${startIndex + 2 > tail!.index ? 'invisible' : ''} ${
+              startIndex < -1 ? 'hidden' : ''
+            } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
             onClick={() => handleSecond()}
           >
             {startIndex + 2}
           </button>
           <button
-            className={`${startIndex + 3 > tail!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
+            className={`${startIndex + 3 > tail!.index ? 'invisible' : ''} ${
+              startIndex < 0 ? 'hidden' : ''
+            } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
             onClick={() => handleThird()}
           >
             {startIndex + 3}
           </button>
           <button
-            className={`${startIndex + 4 > tail!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
+            className={`${startIndex + 4 > tail!.index ? 'invisible' : ''}  ${
+              startIndex < 0 ? 'hidden' : ''
+            } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
             onClick={() => handleFourth()}
           >
             {startIndex + 4}
           </button>
           <button
-            className={`${startIndex + 5 > tail!.index ? 'invisible': '' } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
+            className={`${
+              startIndex + 5 > tail!.index ? 'invisible' : ''
+            } font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg`}
             onClick={() => handleFifth()}
           >
             {startIndex + 5}
@@ -140,7 +150,7 @@ export default function GridContainer({ cards }: CarouselProps) {
             ...
           </button>
           <button className="font-outline-1 rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 text-xl drop-shadow-lg">
-            {tail?.index}
+            {tail!.index < 1 ? 1 : tail!.index}
           </button>
         </div>
       </div>

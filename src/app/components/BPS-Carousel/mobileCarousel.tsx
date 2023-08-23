@@ -9,7 +9,7 @@ type CarouselProps = {
 };
 
 export default function MobileCarousel({ cards }: CarouselProps) {
-  let [startMobileIndex, setMobileStartIndex] = useState(0);
+  let [startMobileIndex, setMobileStartIndex] = useState(-1);
   let [endMobileIndex, setMobileEndIndex] = useState(4);
   const [mobileSlide, setMobileSlide] = useState(1);
   const smallerListsMobile = SplitIntoSmallerLists(cards, 1);
@@ -22,7 +22,7 @@ export default function MobileCarousel({ cards }: CarouselProps) {
   useEffect(() => {
     let f = document.getElementById(mobileSlide.toString());
     console.log(mobileSlide);
-    f?.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+    f?.scrollIntoView({ behavior: 'smooth', inline: 'center' , block: 'nearest'});
   }, [mobileSlide]);
 
   const scrollToItem = (index: number) => {
@@ -139,7 +139,7 @@ export default function MobileCarousel({ cards }: CarouselProps) {
         <div className=" flex flex-row justify-between gap-10 max-sm:gap-0 rounded-full h-[58px] ">
           <button
             className={`${
-              startMobileIndex < 0 ? 'invisible' : ''
+              startMobileIndex < 0 ? 'hidden' : ''
             } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
             onClick={() => handleMobileFirst()}
           >
@@ -147,9 +147,9 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           </button>
           <button
             className={`${
-              startMobileIndex + 2 > tailMobile!.index ? 'invisible' : ''
+              startMobileIndex + 2 > tailMobile!.index ? 'hidden' : ''
             } ${
-              startMobileIndex < -1 ? 'invisible' : ''
+              startMobileIndex < -1 ? 'hidden' : ''
             } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
             onClick={() => handleMobileSecond()}
           >
@@ -157,9 +157,9 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           </button>
           <button
             className={`${
-              startMobileIndex + 3 > tailMobile!.index ? 'invisible' : ''
+              startMobileIndex + 3 > tailMobile!.index ? 'hidden' : ''
             } ${
-              startMobileIndex + 2 > tailMobile!.index ? 'invisible' : ''
+              startMobileIndex + 2 > tailMobile!.index ? 'hidden' : ''
             } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
             onClick={() => handleMobileThird()}
           >
@@ -167,9 +167,9 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           </button>
           <button
             className={`${
-              startMobileIndex + 4 > tailMobile!.index ? 'invisible' : ''
+              startMobileIndex + 4 > tailMobile!.index ? 'hidden' : ''
             } ${
-              startMobileIndex + 2 > tailMobile!.index ? 'invisible' : ''
+              startMobileIndex + 2 > tailMobile!.index ? 'hidden' : ''
             } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
             onClick={() => handleMobileFourth()}
           >
@@ -177,7 +177,7 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           </button>
           <button
             className={`${
-              startMobileIndex + 5 > tailMobile!.index ? 'invisible' : ''
+              startMobileIndex + 5 > tailMobile!.index ? 'hidden' : ''
             } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
             onClick={() => handleMobileFifth()}
           >

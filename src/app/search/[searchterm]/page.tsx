@@ -16,7 +16,7 @@ export default async function Page({
   const cards = await getAllCards(key);
   if (cards === undefined) {
     return (
-      <div className="flex flex-col items-center justify-center gap-10 bg-hearthstone_bg min-h-screen">
+      <div className="flex flex-col items-center justify-center gap-10 bg-hearthstone_bg ">
         <h1 className=" text-6xl max-sm:text-center">0 Results for {key}</h1>
         <Image
           src={notFound}
@@ -35,10 +35,10 @@ export default async function Page({
     return (
       <div className=" bg-hearthstone_bg">
         <div>
-          <p className=" text-center text-white sm:text-left">
-            Results for {key}
-            <Link className="rounded bg-gold" href="/">
-              x
+          <p className=" flex text-center items-center p-3 text-white sm:text-left">
+            <div className='pr-1'>Results for {key}</div>
+            <Link className="rounded-full  px-1 bg-gold text-xs" href="/">
+              X
             </Link>
           </p>
           <Filter cardClass={''} cards={cards}></Filter>

@@ -12,8 +12,7 @@ export default function SearchBar({ sampleTextProp }: ISearchBar) {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(search);
-    setSearch('');
-    router.push(`/search/${search}?q=${search}`);
+    router.push(`/search/${search == '' ? 'blank': search}?q=${search}`);
   };
   return (
     <form

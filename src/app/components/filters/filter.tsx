@@ -430,7 +430,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
     <div
       className={` ${getBackgroundClass(
         cardClass.replace('%20', '')
-      )} sm:bg-cover bg-center-custom bg-zoomed-in h-screen flex flex-col`}
+      )} sm:bg-cover bg-center-custom bg-zoomed-in h- flex flex-col`}
     >
       <h1 className=" text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1"></h1>
       <button

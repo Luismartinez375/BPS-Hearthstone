@@ -31,23 +31,23 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
           />
           <p className="text-2xl mx-3">{place.name}</p>
         </div>
-        <div className="flex my-14">
+        <div className={`flex  my-14 ${place.vicinity == undefined? 'hidden': ''}`}>
           <Image src={pin} alt={'Lef Arrow Icon'} />
           <p className="mx-3">{place.vicinity}</p>
         </div>
-        <div className="flex">
+        <div className={`flex ${place.opening_hours == undefined? 'hidden': ''}`}>
           <Image src={clock} alt={'Lef Arrow Icon'} />
           <p
             className={`${
-              place.opening_hours.open_now ? 'text-cyan-500' : 'text-red-700'
+             place.opening_hours === undefined ? '' :  place.opening_hours!.open_now! ? 'text-cyan-500' : 'text-red-700'
             } mx-3`}
           >
-            {place.opening_hours.open_now == true ? 'Open' : 'Closed'}
+            { place.opening_hours === undefined ? '' : place.opening_hours.open_now == true ? 'Open' : 'Closed'}
           </p>
         </div>
         <div className="flex flex-col gap-5">
           <table className="mx-8">
-            {place.opening_hours.weekday_text.map(
+            {place.opening_hours === undefined ? '' : place.opening_hours.weekday_text.map(
               (
                 day:
                   | string
@@ -65,13 +65,13 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
                   {day}
                 </div>
               )
-            )}
+            ) }
           </table>
-          <div className="flex">
+          <div className={`flex ${place.website == undefined? 'hidden': ''}`}>
             <Image src={globe} alt=""></Image>
             <p className="mx-3">{place.website}</p>
           </div>
-          <div className="flex">
+          <div className={`flex ${place.phone == undefined? 'hidden': ''}`}>
             <Image src={phone} alt=""></Image>
             <p className="mx-3">{place.phone}</p>
           </div>

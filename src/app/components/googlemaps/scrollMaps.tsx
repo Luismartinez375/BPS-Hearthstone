@@ -60,7 +60,7 @@ export default function ScrollMaps({ places }: props) {
   return (
     <>
       {showList && (
-        <div className="w-full absolute top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-hearthstone_bg shadow-black no-scrollbar py-3 text-white md:w-1/4 h-screen">
+        <div className="w-full absolute top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-hearthstone_bg shadow-black no-scrollbar py-3 text-white md:w-1/4 h-[89.5%]">
           <div className="flex items-center mt-12 md:justify-center">
             <Image
               className="md:hidden mx-9"
@@ -84,7 +84,7 @@ export default function ScrollMaps({ places }: props) {
             </div>
           ) : (
             <div className="mt-12 mx-9">
-              {/* INSERT A LOOP TO POPULATE THE SIDE MENU */}
+             
               {places.map((place, index) => (
                 <div key={index}>
                   <ShopCard

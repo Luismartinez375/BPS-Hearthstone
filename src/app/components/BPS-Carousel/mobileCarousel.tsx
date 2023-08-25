@@ -11,7 +11,7 @@ type CarouselProps = {
 export default function MobileCarousel({ cards }: CarouselProps) {
   let [startMobileIndex, setMobileStartIndex] = useState(0);
   let [endMobileIndex, setMobileEndIndex] = useState(4);
-  const [mobileSlide, setMobileSlide] = useState(2);
+  const [mobileSlide, setMobileSlide] = useState(1);
   const smallerListsMobile = SplitIntoSmallerLists(cards, 1);
   const eightMobile = smallerListsMobile.getItemsBetweenIndexes(
     startMobileIndex,
@@ -22,7 +22,11 @@ export default function MobileCarousel({ cards }: CarouselProps) {
   useEffect(() => {
     let f = document.getElementById(mobileSlide.toString());
     console.log(mobileSlide);
-    f?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    f?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'start',
+      block: 'nearest',
+    });
   }, [mobileSlide]);
 
   const scrollToItem = (index: number) => {
@@ -37,7 +41,7 @@ export default function MobileCarousel({ cards }: CarouselProps) {
 
   // Mobile
   function handleMobileNextIndex() {
-    if (endMobileIndex >= tailMobile!.index) {
+    if (endMobileIndex >= tailMobile!.index - 1) {
       setMobileStartIndex(0);
       setMobileEndIndex(4);
       setMobileSlide(1);
@@ -98,7 +102,9 @@ export default function MobileCarousel({ cards }: CarouselProps) {
     <>
       <div
         ref={mobileRef}
-        className="sm:hidden snap-x grid grid-cols-6 h-full no-scrollbar overflow-x-scroll gap-x-[350px] items-center"
+        className={`sm:hidden snap-x grid grid-cols-6 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center pt-20 ${
+          tailMobile ? '' : 'invisible p-44'
+        }`}
       >
         {eightMobile.map((list, index) => (
           <div
@@ -135,66 +141,85 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           ></Image>
         </button>
       </div>
-      <div className="sm:hidden pt-40 mb-20 flex flex-row  justify-center items-center rounded-full px-1 text-white h-16 max-sm:text-sm">
-        <div className=" flex flex-row justify-between gap-10 max-sm:gap-0 rounded-full h-[58px] ">
+      <div className="sm:hidden pt-10 flex flex-row  justify-center items-center rounded-full px-1 text-white max-sm:text-sm">
+        <div className=" flex flex-row justify-between gap-10 max-sm:gap-0 rounded-full ">
           <button
             className={`${
               startMobileIndex < 0 ? 'hidden' : ''
-            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
+            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 px-3 py-2 drop-shadow-lg`}
             onClick={() => handleMobileFirst()}
           >
             {startMobileIndex + 1}
           </button>
           <button
             className={`${
-              startMobileIndex + 2 > tailMobile!.index ? 'hidden' : ''
+              startMobileIndex + 2 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
             } ${
               startMobileIndex < -1 ? 'hidden' : ''
-            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
+            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 px-3 py-2 drop-shadow-lg`}
             onClick={() => handleMobileSecond()}
           >
             {startMobileIndex + 2}
           </button>
           <button
             className={`${
-              startMobileIndex + 3 > tailMobile!.index ? 'hidden' : ''
+              startMobileIndex + 3 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
             } ${
-              startMobileIndex + 2 > tailMobile!.index ? 'hidden' : ''
-            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
+              startMobileIndex + 2 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
+            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 px-3 py-2 drop-shadow-lg`}
             onClick={() => handleMobileThird()}
           >
             {startMobileIndex + 3}
           </button>
           <button
             className={`${
-              startMobileIndex + 4 > tailMobile!.index ? 'hidden' : ''
+              startMobileIndex + 4 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
             } ${
-              startMobileIndex + 2 > tailMobile!.index ? 'hidden' : ''
-            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
+              startMobileIndex + 2 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
+            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 px-3 py-2 drop-shadow-lg`}
             onClick={() => handleMobileFourth()}
           >
             {startMobileIndex + 4}
           </button>
           <button
             className={`${
-              startMobileIndex + 5 > tailMobile!.index ? 'hidden' : ''
-            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg`}
+              startMobileIndex + 5 > (tailMobile ? tailMobile!.index : 0)
+                ? 'hidden'
+                : ''
+            } rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 px-3 py-2 drop-shadow-lg`}
             onClick={() => handleMobileFifth()}
           >
             {startMobileIndex + 5}
           </button>
           <button
-            className="rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg"
+            className={`sm:hidden rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 px-3 py-2 drop-shadow-lg ${
+              (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
+            }`}
             onClick={() => handleMobileNextIndex()}
           >
             ...
           </button>
 
-          <button className="sm:hidden rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 w-12 drop-shadow-lg">
-            {tailMobile!.index < 1 ? 1 : tailMobile!.index}
+          <button
+            className={`sm:hidden rounded-lg bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 mr-1 px-3 py-2 drop-shadow-lg ${
+              (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
+            }`}
+          >
+            {(tailMobile ? tailMobile!.index : 0) < 1 ? 1 : tailMobile!.index}
           </button>
         </div>
       </div>
+      {tailMobile === null && <div className=" p-14"></div>}
     </>
   );
 }

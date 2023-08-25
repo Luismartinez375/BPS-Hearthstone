@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import favorite_border from '../../../../public/Favorite border.svg';
 import favorite from '../../../../public/Favorite.svg';
 import book from '../../../../public/book/Mask group@3x.webp';
@@ -55,10 +55,14 @@ export default function Card({
     });
     if (crd[0].cardid !== '' || undefined) {
       setIsFavorite(true);
+    } else {
+      setIsFavorite(false);
     }
   };
 
-  // checkFavorite();
+  useEffect(() => {
+    checkFavorite();
+  });
 
   const handleFavorite = () => {
     if (!isFavorite) {
@@ -116,39 +120,45 @@ export default function Card({
   text = text?.replace('(Complete!)', '');
   text = text?.replace(' |4(turn, turns).', '4 turns.');
   text = text?.replace('( left!)', '');
+  name = name?.replace('{0}', '');
+  name = name?.replace('-', '');
+  name = name?.replace(' - ', ' ');
+  name = name?.replace(',', '');
+  name = name?.replace(',', '');
+  text = text?.replace(/[^\w\s]/g, '');
+  name = name.replace(/[^\w\s]/g, ' ');
+  name = name.replace('DisplayCriticalDamage', 'Display Critical Damage');
 
   return (
-    <div className="flex flex-col items-center lg:p-8 md:p-5 z-0">
-      <div className=" z-0 relative top-10 ">
-        <Image
-          className=""
-          src={pic ? pic : book}
-          width={120}
-          height={150}
-          alt="card"
-        ></Image>
-      </div>
-      <div className=" bg-card_bg relative max-sm:left-28   left-1/2 top-4 rounded-full p-1">
-        <div className="flex flex-col bg-card rounded-full">
-          <button className="p-1" onClick={handleFavorite}>
-            <Image
-              src={isFavorite ? favorite : favorite_border}
-              width={25}
-              height={25}
-              alt=""
-            ></Image>
-          </button>
+    <div className="flex flex-col items-center">
+      <Image
+        className="relative right-2"
+        src={pic ? pic : book}
+        width={120}
+        height={150}
+        alt="card"
+      ></Image>
+      <div className="flex flex-row items-start w-fit">
+        <div className=" bg-card_bg p-1 rounded-lg">
+          <div className=" bg-card max-sm:w-60  2xl:w-60 lg:w-48 h-32 flex flex-col justify-center rounded-lg">
+            <h1 className="text-black text-center text-base">{name}</h1>
+            <div className="text-black font-serif text-xs  text-center">
+              <p>{type}</p>
+              <p>{rarity}</p>
+              <p>{text}</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className=" bg-card_bg flex flex-col justify-center items-center p-1 rounded-lg">
-        <div className=" bg-card lg:w-44 xl:w-56 h-fit flex flex-col justify-center items-center rounded-lg">
-          <h1 className="text-black text-center xl:text-lg md:text-xs lg:text-sm">
-            {name}
-          </h1>
-          <div className="text-black font-serif md:text-xs font-thin lg:text-xs 2xl:text-base text-center">
-            <p>{type}</p>
-            <p>{rarity}</p>
-            <p>{text}</p>
+        <div className=" bg-card_bg relative bottom-2 right-3 rounded-full p-0.5">
+          <div className="flex h-6 w-6 bg-card rounded-full">
+            <button className="p-0.5" onClick={handleFavorite}>
+              <Image
+                src={isFavorite ? favorite : favorite_border}
+                width={25}
+                height={25}
+                alt=""
+              ></Image>
+            </button>
           </div>
         </div>
       </div>

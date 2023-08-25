@@ -6,7 +6,7 @@ import { readRecords } from '../../../../lib/db';
 // Function to retrieve all Hearthstone cards
 export async function GET(request: Request) {
   const createTableQuery = `
-    CREATE TABLE IF NOT EXISTS cards (
+    CREATE TABLE cards (
       cardId VARCHAR(255) PRIMARY KEY,
       cardName VARCHAR(255) NOT NULL,
       cardSet VARCHAR(255),

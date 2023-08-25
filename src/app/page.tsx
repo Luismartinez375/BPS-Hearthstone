@@ -24,7 +24,7 @@ export default function Home() {
       }
     });
   }, []);
- 
+
   return (
     <main className="flex min-h-screen flex-col items-center bg-hearthstone_bg gap-10">
       <div className="">
@@ -202,5 +202,3 @@ export default function Home() {
     </main>
   );
 }
-
-

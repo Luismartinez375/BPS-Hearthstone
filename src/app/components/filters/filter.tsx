@@ -142,23 +142,65 @@ export default function Filter({ cardClass, cards }: FilterProps) {
   }
   function toggleMana() {
     userManaToggle(manaToggle ? false : true);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
   }
   function toggleAttack() {
+    userManaToggle(manaToggle ? false : false);
     userAttackToggle(attackToggle ? false : true);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
   }
   function toggleHealth() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
     userHealthToggle(healthToggle ? false : true);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
   }
   function toggleCardType() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
     userCardTypeToggle(cardTypeToggle ? false : true);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
   }
   function toggleMinionType() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
     userMinionTypeToggle(minionTypeToggle ? false : true);
+    userRarityToggle(rarityToggle ? false : false);
+    userKeywordsToggle(keywordsToggle ? false : false);
   }
   function toggleRarity() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
     userRarityToggle(rarityToggle ? false : true);
+    userKeywordsToggle(keywordsToggle ? false : false);
   }
   function toggleKeywords() {
+    userManaToggle(manaToggle ? false : false);
+    userAttackToggle(attackToggle ? false : false);
+    userHealthToggle(healthToggle ? false : false);
+    userCardTypeToggle(cardTypeToggle ? false : false);
+    userMinionTypeToggle(minionTypeToggle ? false : false);
+    userRarityToggle(rarityToggle ? false : false);
     userKeywordsToggle(keywordsToggle ? false : true);
   }
 
@@ -177,49 +219,47 @@ export default function Filter({ cardClass, cards }: FilterProps) {
       userFilteredCards(cards);
     } else if (atk === 'Attack: 0') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 0 || card.attack === '0')
+        cards.filter((card) => card.attack === 0 || card.attack === '0')
       );
     } else if (atk === 'Attack: 1') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 1 || card.attack === '1')
+        cards.filter((card) => card.attack === 1 || card.attack === '1')
       );
     } else if (atk === 'Attack: 2') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 2 || card.attack === '2')
+        cards.filter((card) => card.attack === 2 || card.attack === '2')
       );
     } else if (atk === 'Attack: 3') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 3 || card.attack === '3')
+        cards.filter((card) => card.attack === 3 || card.attack === '3')
       );
     } else if (atk === 'Attack: 4') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 4 || card.attack === '4')
+        cards.filter((card) => card.attack === 4 || card.attack === '4')
       );
     } else if (atk === 'Attack: 5') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 5 || card.attack === '5')
+        cards.filter((card) => card.attack === 5 || card.attack === '5')
       );
     } else if (atk === 'Attack: 6') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 6 || card.attack === '6')
+        cards.filter((card) => card.attack === 6 || card.attack === '6')
       );
     } else if (atk === 'Attack: 7') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 7 || card.attack === '7')
+        cards.filter((card) => card.attack === 7 || card.attack === '7')
       );
     } else if (atk === 'Attack: 8') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 8 || card.attack === '8')
+        cards.filter((card) => card.attack === 8 || card.attack === '8')
       );
     } else if (atk === 'Attack: 9') {
       userFilteredCards(
-        filteredCards.filter((card) => card.attack === 9 || card.attack === '9')
+        cards.filter((card) => card.attack === 9 || card.attack === '9')
       );
     } else if (atk === 'Attack: 10+') {
       userFilteredCards(
-        filteredCards.filter(
-          (card) => card.attack >= 10 || card.attack === '10'
-        )
+        cards.filter((card) => card.attack >= 10 || card.attack === '10')
       );
     }
     toggleAttack();
@@ -229,49 +269,47 @@ export default function Filter({ cardClass, cards }: FilterProps) {
       userFilteredCards(cards);
     } else if (hlth === 'Health: 0') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 0 || card.health === '0')
+        cards.filter((card) => card.health === 0 || card.health === '0')
       );
     } else if (hlth === 'Health: 1') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 1 || card.health === '1')
+        cards.filter((card) => card.health === 1 || card.health === '1')
       );
     } else if (hlth === 'Health: 2') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 2 || card.health === '2')
+        cards.filter((card) => card.health === 2 || card.health === '2')
       );
     } else if (hlth === 'Health: 3') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 3 || card.health === '3')
+        cards.filter((card) => card.health === 3 || card.health === '3')
       );
     } else if (hlth === 'Health: 4') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 4 || card.health === '4')
+        cards.filter((card) => card.health === 4 || card.health === '4')
       );
     } else if (hlth === 'Health: 5') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 5 || card.health === '5')
+        cards.filter((card) => card.health === 5 || card.health === '5')
       );
     } else if (hlth === 'Health: 6') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 6 || card.health === '6')
+        cards.filter((card) => card.health === 6 || card.health === '6')
       );
     } else if (hlth === 'Health: 7') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 7 || card.health === '7')
+        cards.filter((card) => card.health === 7 || card.health === '7')
       );
     } else if (hlth === 'Health: 8') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 8 || card.health === '8')
+        cards.filter((card) => card.health === 8 || card.health === '8')
       );
     } else if (hlth === 'Health: 9') {
       userFilteredCards(
-        filteredCards.filter((card) => card.health === 9 || card.health === '9')
+        cards.filter((card) => card.health === 9 || card.health === '9')
       );
     } else if (hlth === 'Health: 10+') {
       userFilteredCards(
-        filteredCards.filter(
-          (card) => card.health >= 10 || card.health === '10'
-        )
+        cards.filter((card) => card.health >= 10 || card.health === '10')
       );
     }
     toggleHealth();
@@ -430,14 +468,14 @@ export default function Filter({ cardClass, cards }: FilterProps) {
     <div
       className={` ${getBackgroundClass(
         cardClass.replace('%20', '')
-      )} sm:bg-cover bg-center-custom bg-zoomed-in flex flex-col`}
+      )} sm:bg-cover bg-center-custom bg-zoomed-in flex flex-col pt-5`}
     >
       <h1 className=" text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1"></h1>
       <button
         onClick={handleToggle}
         className="py-1 mt-5 self-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 bordergold rounded-full h-16 w-64 flex flex-col justify-center items-center justify-self-end sm:hidden"
       >
-        <p className="bg-navbar w-[250px] h-[58px] text-white text-md text-center p-3 rounded-full flex flex-row justify-center items-center">
+        <p className="bg-navbar w-[250px] h-[58px] text-white text-md text-center p-3 rounded-full flex flex-row justify-center items-center ">
           Manage Filters <Image src={down} alt="" className=""></Image>
         </p>
       </button>
@@ -578,7 +616,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
       {/* Filter Row */}
       <div className=" max-sm:hidden flex flex-row w-full justify-around items-start max-lg:flex-col max-lg:gap-5">
         {/* Mana bar */}
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-row items-center gap-2 pb-10">
           <p className="text-cyan-400 text-2xl font-outline-1">Mana</p>
           <div className="flex flex-row justify-center items-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 rounded-full px-1 text-white py-0.5">
             <div className=" flex flex-row justify-between bg-button_bg rounded-full  py-0.5">
@@ -853,6 +891,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
       <div className="sm:hidden">
       
       </div> */}
+      <div className=" max-sm:pb-64 "></div>
     </div>
   );
 }

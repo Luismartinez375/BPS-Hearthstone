@@ -9,9 +9,9 @@ type CarouselProps = {
 };
 
 export default function MobileCarousel({ cards }: CarouselProps) {
-  let [startMobileIndex, setMobileStartIndex] = useState(-1);
+  let [startMobileIndex, setMobileStartIndex] = useState(0);
   let [endMobileIndex, setMobileEndIndex] = useState(4);
-  const [mobileSlide, setMobileSlide] = useState(1);
+  const [mobileSlide, setMobileSlide] = useState(2);
   const smallerListsMobile = SplitIntoSmallerLists(cards, 1);
   const eightMobile = smallerListsMobile.getItemsBetweenIndexes(
     startMobileIndex,
@@ -22,7 +22,7 @@ export default function MobileCarousel({ cards }: CarouselProps) {
   useEffect(() => {
     let f = document.getElementById(mobileSlide.toString());
     console.log(mobileSlide);
-    f?.scrollIntoView({ behavior: 'smooth', inline: 'center' , block: 'nearest'});
+    f?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
   }, [mobileSlide]);
 
   const scrollToItem = (index: number) => {
@@ -98,7 +98,7 @@ export default function MobileCarousel({ cards }: CarouselProps) {
     <>
       <div
         ref={mobileRef}
-        className="sm:hidden snap-x grid grid-cols-8 no-scrollbar overflow-x-scroll gap-[400px] w-screen items-center"
+        className="sm:hidden snap-x grid grid-cols-6 h-full no-scrollbar overflow-x-scroll gap-x-[350px] items-center"
       >
         {eightMobile.map((list, index) => (
           <div
@@ -135,7 +135,7 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           ></Image>
         </button>
       </div>
-      <div className="sm:hidden flex flex-row  justify-center items-center rounded-full px-1 text-white h-16 max-sm:text-sm">
+      <div className="sm:hidden pt-40 mb-20 flex flex-row  justify-center items-center rounded-full px-1 text-white h-16 max-sm:text-sm">
         <div className=" flex flex-row justify-between gap-10 max-sm:gap-0 rounded-full h-[58px] ">
           <button
             className={`${

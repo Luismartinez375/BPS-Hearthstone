@@ -25,15 +25,15 @@ export default function HearthButton({
   return (
     <>
       <button
-        className={`bg-gradient-to-b max-sm:h-10  from-gold via-gold_2 via-80% to-gold_3 rounded-full h-16 w-${width} flex flex-col justify-center items-center`}
+        className={`bg-gradient-to-b p-0.5  from-gold via-gold_2 via-80% to-gold_3 rounded-full flex flex-col justify-center items-center`}
         onClick={funct}
       >
         <p
-          className={` bg-${color} w-[${innerwidth}px]  h-[58px] max-sm:h-[34px] text-white text-center p-3 rounded-full flex flex-row justify-center gap-1 items-center`}
+          className={` bg-${color}  text-white text-center max-xl:w-32 h-8 xl:w-40 xl:h-10 rounded-full flex flex-row justify-center gap-1 items-center`}
         >
-          {image && <Image src={image} alt="" width={28} height={28}></Image>}
+          {image && <Image src={image} alt="" width={20} height={20}></Image>}
           {text}
-          {image2 && <Image src={image2} alt="" className=""></Image>}
+          {image2 && <Image src={image2} alt="" width={20} height={20} className=""></Image>}
         </p>
       </button>
     </>

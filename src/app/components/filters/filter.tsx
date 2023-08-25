@@ -430,7 +430,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
     <div
       className={` ${getBackgroundClass(
         cardClass.replace('%20', '')
-      )} sm:bg-cover bg-center-custom bg-zoomed-in h- flex flex-col`}
+      )} sm:bg-cover bg-center-custom bg-zoomed-in flex flex-col`}
     >
       <h1 className=" text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1"></h1>
       <button
@@ -442,16 +442,16 @@ export default function Filter({ cardClass, cards }: FilterProps) {
         </p>
       </button>
       {toggle && (
-        <div className="sm:hidden animate-open-menu absolute bg-brown bg-opacity-80 w-full h-full text-4xl flex flex-col items-center origin-top left-0 z-10">
+        <div className="sm:hidden animate-open-menu fixed bg-brown bg-opacity-80 w-full h-full text-4xl flex flex-col top-0 left-0 z-40">
           <button
             className=" place-self-end p-4 text-white"
             onClick={handleToggle}
           >
             &#10005;
           </button>
-          <div className="flex flex-col items-start text-sm gap-2 absolute">
+          <div className="flex flex-col items-start pl-10 text-sm gap-y-4">
             <p className=" font-serif font-thin text-white text-xl">sort by:</p>
-            <div className=" flex flex-col items-center gap-4 text-sm">
+            <div className=" pb-5">
               <HearthButton
                 text={manafilter}
                 width={'64'}
@@ -473,8 +473,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               funct={toggleFilter}
             ></HearthButton>
             {filterToggle && (
-              <div className="grid max-sm:flex max-sm:flex-col gap-10 max-sm:gap-1 max-sm:p-0 py-5  lg:grid-cols-6 grid-cols-3">
-                <div className="flex flex-col gap-2">
+              <div className="grid max-sm:flex max-sm:flex-col gap-10 max-sm:gap-3 max-sm:p-0 py-5  lg:grid-cols-6 grid-cols-3">
+                <div className="">
                   <HearthButton
                     text={'Attack'}
                     width={'52'}
@@ -490,7 +490,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     ></HearthScroll>
                   )}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="">
                   <HearthButton
                     text={'Health'}
                     width={'52'}
@@ -506,7 +506,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     ></HearthScroll>
                   )}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="">
                   <HearthButton
                     text={'Card Type'}
                     width={'52'}
@@ -522,7 +522,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     ></HearthScroll>
                   )}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="">
                   <HearthButton
                     text={'Minion Type'}
                     width={'52'}
@@ -538,7 +538,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     ></HearthScroll>
                   )}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="">
                   <HearthButton
                     text={'Rarity'}
                     width={'52'}
@@ -554,7 +554,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     ></HearthScroll>
                   )}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="">
                   <HearthButton
                     text={'Keywords'}
                     width={'52'}
@@ -580,10 +580,10 @@ export default function Filter({ cardClass, cards }: FilterProps) {
         {/* Mana bar */}
         <div className="flex flex-row items-center gap-2">
           <p className="text-cyan-400 text-2xl font-outline-1">Mana</p>
-          <div className="flex flex-row justify-center items-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 rounded-full px-1 text-white h-16">
-            <div className=" flex flex-row justify-between bg-button_bg rounded-full h-[58px] ">
+          <div className="flex flex-row justify-center items-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 rounded-full px-1 text-white py-0.5">
+            <div className=" flex flex-row justify-between bg-button_bg rounded-full  py-0.5">
               <button
-                className=" font-outline-1 mr-1 w-12 text-xl drop-shadow-lg "
+                className=" font-outline-1 mr-1 px-3 text-xl drop-shadow-lg "
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -595,7 +595,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 0
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -607,7 +607,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 1
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -619,7 +619,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 2
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -631,7 +631,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 3
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -643,7 +643,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 4
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -655,7 +655,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 5
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -667,7 +667,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 6
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -679,7 +679,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 7
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -691,7 +691,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 8
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -703,7 +703,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 9
               </button>
               <button
-                className="font-outline-1 mr-1 w-12 text-xl drop-shadow-lg"
+                className="font-outline-1 mr-1 px-3 text-xl drop-shadow-lg"
                 onClick={() => {
                   userFilteredCards(
                     filteredCards.filter(
@@ -720,7 +720,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
         {/*Sortby Row */}
         <div className="flex flex-row gap-5 items-start">
           <p className=" font-serif font-thin text-white text-xl">sort by:</p>
-          <div className=" flex flex-col items-center gap-4 ">
+          <div className=" flex flex-col items-center gap-4 max-xl:text-xs">
             <HearthButton
               text={manafilter}
               width={'64'}
@@ -746,8 +746,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
 
       {/* Filters row */}
       {filterToggle && (
-        <div className="grid gap-10 py-5  lg:grid-cols-6 grid-cols-3 max-sm:hidden">
-          <div className="flex flex-col gap-2">
+        <div className="lg:flex justify-around gap-10 py-5 max-lg:grid grid-cols-3  max-sm:hidden">
+          <div className="">
             <HearthButton
               text={'Attack'}
               width={'52'}
@@ -760,7 +760,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               <HearthScroll list={atk} funct={userAttackFilter}></HearthScroll>
             )}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="">
             <HearthButton
               text={'Health'}
               width={'52'}
@@ -776,7 +776,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               ></HearthScroll>
             )}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="">
             <HearthButton
               text={'Card Type'}
               width={'52'}
@@ -792,7 +792,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               ></HearthScroll>
             )}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="">
             <HearthButton
               text={'Minion Type'}
               width={'52'}
@@ -808,7 +808,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               ></HearthScroll>
             )}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="">
             <HearthButton
               text={'Rarity'}
               width={'52'}
@@ -824,7 +824,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               ></HearthScroll>
             )}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="">
             <HearthButton
               text={'Keywords'}
               width={'52'}

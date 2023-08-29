@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import left from '../../../../public/Arrow left.svg';
@@ -15,13 +16,31 @@ export default function GridContainer({ cards }: CarouselProps) {
   const smallerLists = SplitIntoSmallerLists(cards, 10);
   const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
   let tail = smallerLists.getTail();
-  useEffect(() => {
+  const scrollIntoViewDebounced = debounce(() => {
     let e = document.getElementById(currentSlide.toString());
     e?.scrollIntoView({
       behavior: 'smooth',
       inline: 'start',
       block: 'nearest',
     });
+  }, 100); // Adjust the debounce delay as needed
+
+  // Attach event listener to detect user scrolling
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollIntoViewDebounced();
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Trigger scrollIntoView directly when the currentSlide changes
+  useEffect(() => {
+    scrollIntoViewDebounced();
   }, [currentSlide]);
 
   const handleConditionChange = () => {
@@ -31,7 +50,14 @@ export default function GridContainer({ cards }: CarouselProps) {
       return false;
     }
   };
-
+  // useEffect(() => {
+  //   let e = document.getElementById(currentSlide.toString());
+  //   e?.scrollIntoView({
+  //     behavior: 'smooth',
+  //     inline: 'start',
+  //     block: 'nearest',
+  //   });
+  // }, [currentSlide]);
   function handleNextIndex() {
     if (endIndex >= tail!.index) {
       setStartIndex(0);
@@ -133,7 +159,7 @@ export default function GridContainer({ cards }: CarouselProps) {
   return (
     <>
       <div
-        className={`grid snap-x snap-mandatory grid-cols-6 h-[635px] gap-x-[900px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-hidden items-center ${
+        className={`grid grid-cols-6 h-[635px] gap-x-[900px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-hidden items-center ${
           tail === null ? 'invisible' : ''
         }`}
       >

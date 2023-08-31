@@ -121,7 +121,6 @@ class LinkedList<T> {
     return this.tail || null;
   }
 
-  // Get the first 8 elements of the list as a regular array
   getItemsBetweenIndexes(startIndex: number, endIndex: number): [CardClass[]] {
     const elements: [any[]] = [[]];
     if (this.head !== null) {

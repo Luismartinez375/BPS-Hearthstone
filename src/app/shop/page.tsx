@@ -22,9 +22,8 @@ export default async function Page({
   return (
     <>
       <div className="">
-       
-          <ScrollMaps places={places} />
-        </div>
+        <ScrollMaps places={places} />
+      </div>
     </>
   );
 }

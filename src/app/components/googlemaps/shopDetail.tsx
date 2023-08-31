@@ -19,64 +19,91 @@ type DetailShopProps = {
 };
 
 export default function ShopDetail({ place, clickBack }: DetailShopProps) {
+  let website = '';
+  if (place.website === undefined) {
+    website = '';
+  } else {
+    website = place.website as string;
+  }
+
   return (
-    <>
+    <div className="flex flex-col justify-center">
       <div className="text-white font-AclonicaR">
-        <div className="flex">
-          <Image
-            className="hidden md:block"
-            src={back}
-            alt={'Lef Arrow Icon'}
-            onClick={clickBack}
-          />
+        <button className="flex" onClick={clickBack}>
+          <Image className=" md:block" src={back} alt={'Lef Arrow Icon'} />
           <p className="text-2xl mx-3">{place.name}</p>
-        </div>
-        <div className={`flex  my-14 ${place.vicinity == undefined? 'hidden': ''}`}>
+        </button>
+        <div
+          className={`flex  my-14 ${
+            place.vicinity == undefined ? 'hidden' : ''
+          }`}
+        >
           <Image src={pin} alt={'Lef Arrow Icon'} />
           <p className="mx-3">{place.vicinity}</p>
         </div>
-        <div className={`flex ${place.opening_hours == undefined? 'hidden': ''}`}>
+        <div
+          className={`flex ${place.opening_hours == undefined ? 'hidden' : ''}`}
+        >
           <Image src={clock} alt={'Lef Arrow Icon'} />
           <p
             className={`${
-             place.opening_hours === undefined ? '' :  place.opening_hours!.open_now! ? 'text-cyan-500' : 'text-red-700'
+              place.opening_hours === undefined
+                ? ''
+                : place.opening_hours!.open_now!
+                ? 'text-cyan-500'
+                : 'text-red-700'
             } mx-3`}
           >
-            { place.opening_hours === undefined ? '' : place.opening_hours.open_now == true ? 'Open' : 'Closed'}
+            {place.opening_hours === undefined
+              ? ''
+              : place.opening_hours.open_now == true
+              ? 'Open'
+              : 'Closed'}
           </p>
         </div>
         <div className="flex flex-col gap-5">
           <table className="mx-8">
-            {place.opening_hours === undefined ? '' : place.opening_hours.weekday_text.map(
-              (
-                day:
-                  | string
-                  | number
-                  | boolean
-                  | ReactElement<any, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | PromiseLikeOfReactNode
-                  | null
-                  | undefined,
-                index: Key | null | undefined
-              ) => (
-                <div className="py-5" key={index}>
-                  {day}
-                </div>
-              )
-            ) }
+            {place.opening_hours === undefined
+              ? ''
+              : place.opening_hours.weekday_text.map(
+                  (
+                    day:
+                      | string
+                      | number
+                      | boolean
+                      | ReactElement<any, string | JSXElementConstructor<any>>
+                      | Iterable<ReactNode>
+                      | ReactPortal
+                      | PromiseLikeOfReactNode
+                      | null
+                      | undefined,
+                    index: Key | null | undefined
+                  ) => (
+                    <div className="pb-2" key={index}>
+                      {day}
+                    </div>
+                  )
+                )}
           </table>
-          <div className={`flex ${place.website == undefined? 'hidden': ''}`}>
+          <div
+            className={`flex  ${place.website == undefined ? 'hidden' : ''}`}
+          >
             <Image src={globe} alt=""></Image>
-            <p className="mx-3">{place.website}</p>
+            <p className="ml-3">
+              {website.length > 30
+                ? website.slice(0, website.length / 2) +
+                  '\n' +
+                  website.slice(website.length / 2, website.length)
+                : website}
+            </p>
+            <p className="mx -3">{}</p>
           </div>
-          <div className={`flex ${place.phone == undefined? 'hidden': ''}`}>
+          <div className={`flex ${place.phone == undefined ? 'hidden' : ''}`}>
             <Image src={phone} alt=""></Image>
             <p className="mx-3">{place.phone}</p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

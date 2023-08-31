@@ -11,19 +11,16 @@ export interface INavbar {
 export default function NavBar() {
   const router = useRouter();
   const [toggle, setToggle] = useState(false);
-  const [center, setCenter] = useState({ lat: 0, lng: 0});
-
+  const [center, setCenter] = useState({ lat: 0, lng: 0 });
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setCenter({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
-       
       });
       console.log('center', center);
     });
-   
   }, []);
   return (
     <nav className=" bg-transparent flex flex-row w-full h-20 max-sm:justify-between items-center justify-center shadow-2xl">
@@ -50,15 +47,15 @@ export default function NavBar() {
         >
           Favorites
         </button>
-        <Link 
-        href={{
-          pathname:`/shop/`,
-          query: {lat: center.lat, lng: center.lng}
-        }}
+        <Link
+          href={{
+            pathname: `/shop/`,
+            query: { lat: center.lat, lng: center.lng },
+          }}
           className=" font-aclonica hover:text-accents"
         >
           Shops
-        </Link >
+        </Link>
       </div>
       <button
         className="relative right-8 sm:hidden w-10 h-10"
@@ -81,7 +78,10 @@ export default function NavBar() {
             Favorites
           </button>
           <Link
-            href={`/shop/?q=${center.lat}?a=${center.lng}`}
+            href={{
+              pathname: `/shop/`,
+              query: { lat: center.lat, lng: center.lng },
+            }}
             className=" font-montserrat active:text-accents text-white underline underline-offset-8"
           >
             Shop

@@ -1,4 +1,3 @@
-import { debounce } from 'lodash';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import left from '../../../../public/Arrow left.svg';
@@ -12,37 +11,16 @@ type CarouselProps = {
 export default function GridContainer({ cards }: CarouselProps) {
   let [startIndex, setStartIndex] = useState(0);
   let [endIndex, setEndIndex] = useState(4);
-  const [currentSlide, setCurrentSlide] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(-1);
   const smallerLists = SplitIntoSmallerLists(cards, 10);
-  const eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
+  let eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
   let tail = smallerLists.getTail();
-  const scrollIntoViewDebounced = debounce(() => {
-    let e = document.getElementById(currentSlide.toString());
-    e?.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'start',
-      block: 'nearest',
-    });
-  }, 100); // Adjust the debounce delay as needed
+  let filteredArray = eight.filter((subArray) => subArray.length > 0);
 
-  // Attach event listener to detect user scrolling
-  useEffect(() => {
-    const handleScroll = () => {
-      scrollIntoViewDebounced();
-    };
+  console.log(filteredArray[0]);
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  // Trigger scrollIntoView directly when the currentSlide changes
-  useEffect(() => {
-    scrollIntoViewDebounced();
-  }, [currentSlide]);
-
+  if (eight[0].length === 0) {
+  }
   const handleConditionChange = () => {
     if (tail === null || tail.index === 0) {
       return true;
@@ -50,121 +28,125 @@ export default function GridContainer({ cards }: CarouselProps) {
       return false;
     }
   };
-  // useEffect(() => {
-  //   let e = document.getElementById(currentSlide.toString());
-  //   e?.scrollIntoView({
-  //     behavior: 'smooth',
-  //     inline: 'start',
-  //     block: 'nearest',
-  //   });
-  // }, [currentSlide]);
+  useEffect(() => {
+    let e = document.getElementById(currentSlide.toString());
+    e?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'start',
+      block: 'nearest',
+    });
+  }, [currentSlide]);
   function handleNextIndex() {
     if (endIndex >= tail!.index) {
       setStartIndex(0);
       setEndIndex(4);
-      setCurrentSlide(1);
+      setCurrentSlide(0);
     } else {
       startIndex = startIndex + 5;
       endIndex = endIndex + 5;
       setStartIndex(startIndex);
       setEndIndex(endIndex);
-      setCurrentSlide(1);
+      setCurrentSlide(0);
     }
   }
   function handlePreviousIndex() {
-    if (tail!.index < 6) {
+    if (tail!.index < 5) {
       return null;
     } else {
       if (startIndex < 1) {
         setStartIndex(tail!.index - 4);
         setEndIndex(tail!.index);
-        setCurrentSlide(5);
+        setCurrentSlide(4);
       } else {
         startIndex = startIndex - 5;
         endIndex = endIndex - 5;
         setStartIndex(startIndex);
         setEndIndex(endIndex);
-        setCurrentSlide(5);
+        setCurrentSlide(4);
       }
     }
   }
 
   function handleSlideRight() {
-    if (currentSlide === 1 && startIndex + 1 > tail!.index) {
-      if (tail!.index < 6) {
-        setCurrentSlide(1);
+    if (currentSlide === 0 && startIndex + 1 > tail!.index) {
+      if (tail!.index < 5) {
+        setCurrentSlide(0);
       } else {
         handleNextIndex();
       }
-    } else if (currentSlide === 2 && startIndex + 2 > tail!.index) {
-      if (tail!.index < 6) {
-        setCurrentSlide(1);
+    } else if (currentSlide === 1 && startIndex + 2 > tail!.index) {
+      if (tail!.index < 5) {
+        setCurrentSlide(0);
       } else {
         handleNextIndex();
       }
-    } else if (currentSlide === 3 && startIndex + 3 > tail!.index) {
+    } else if (currentSlide === 2 && startIndex + 3 > tail!.index) {
       console.log('HERE');
-      if (tail!.index < 6) {
-        setCurrentSlide(1);
+      if (tail!.index < 5) {
+        setCurrentSlide(0);
       } else {
         handleNextIndex();
       }
-    } else if (currentSlide === 4 && startIndex + 4 > tail!.index) {
-      if (tail!.index < 6) {
-        setCurrentSlide(1);
+    } else if (currentSlide === 3 && startIndex + 4 > tail!.index) {
+      if (tail!.index < 5) {
+        setCurrentSlide(0);
       } else {
         handleNextIndex();
       }
-    } else if (currentSlide === 5 && startIndex + 5 > tail!.index) {
-      if (tail!.index < 6) {
-        setCurrentSlide(1);
+    } else if (currentSlide === 4 && startIndex + 5 > tail!.index) {
+      if (tail!.index < 5) {
+        setCurrentSlide(0);
       } else {
         handleNextIndex();
       }
     } else {
-      if (currentSlide === 5) {
+      if (currentSlide === 4) {
         handleNextIndex();
       } else if (currentSlide === -1) {
-        setCurrentSlide(currentSlide + 3);
+        setCurrentSlide(currentSlide + 2);
       } else {
         setCurrentSlide(currentSlide + 1);
       }
     }
   }
   function handleSlideLeft() {
-    if (currentSlide === -1) {
-      setCurrentSlide(5);
-      handlePreviousIndex();
-    } else if (currentSlide === 1) {
-      handlePreviousIndex();
+    if (startIndex <= 0 && currentSlide === 0) {
+      return null;
     } else {
-      setCurrentSlide(currentSlide - 1);
+      if (currentSlide === -1) {
+        setCurrentSlide(4);
+        handlePreviousIndex();
+      } else if (currentSlide === 0) {
+        handlePreviousIndex();
+      } else {
+        setCurrentSlide(currentSlide - 1);
+      }
     }
   }
   function handleFirst() {
-    setCurrentSlide(1);
+    setCurrentSlide(0);
   }
   function handleSecond() {
-    setCurrentSlide(2);
+    setCurrentSlide(1);
   }
   function handleThird() {
-    setCurrentSlide(3);
+    setCurrentSlide(2);
   }
   function handleFourth() {
-    setCurrentSlide(4);
+    setCurrentSlide(3);
   }
   function handleFifth() {
-    setCurrentSlide(5);
+    setCurrentSlide(4);
   }
   return (
     <>
       <div
-        className={`grid grid-cols-6 h-[635px] gap-x-[900px] xl:gap-x-[1600px] lg:gap-x-[1200px] 2xl:gap-x-[2000px] no-scrollbar overflow-x-hidden items-center ${
+        className={`grid grid-cols-5 h-[635px] gap-x-[1800px]  no-scrollbar overflow-x-hidden items-center ${
           tail === null ? 'invisible' : ''
         }`}
       >
-        {eight.map((list, index) => (
-          <div key={index} id={index.toString()} className=" snap-start">
+        {filteredArray.map((list, index) => (
+          <div key={index} id={index.toString()} className="">
             <CarouselGrid cardList={list}></CarouselGrid>
           </div>
         ))}
@@ -184,7 +166,7 @@ export default function GridContainer({ cards }: CarouselProps) {
           <Image src={right} alt="right" width={80} height={80}></Image>
         </button>
       </div>
-      {tail === null && <div className=" p- [299.3px]"></div>}
+      {tail === null && <div className=""></div>}
       <div
         className={`flex flex-row  justify-center items-center rounded-full px-1 text-white py-2 2xl:py-14 ${
           tail === null || tail.index === 0 ? 'invisible' : ''
@@ -193,7 +175,7 @@ export default function GridContainer({ cards }: CarouselProps) {
         <div className=" flex flex-row justify-between gap-10 rounded-full">
           <button
             className={`${startIndex < 0 ? 'hidden' : ''}  rounded-lg ${
-              currentSlide === 1
+              currentSlide === 0 || currentSlide === -1
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
             } mr-1  py-1 px-3 text-lg drop-shadow-lg`}
@@ -203,11 +185,12 @@ export default function GridContainer({ cards }: CarouselProps) {
               ? startIndex
               : startIndex + 1}
           </button>
+
           <button
             className={`${
               startIndex + 1 > (tail ? tail!.index : 0) ? 'hidden' : ''
             } ${startIndex < -1 ? 'hidden' : ''}  rounded-lg ${
-              currentSlide === 2
+              currentSlide === 1
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
             } mr-1  text-lg py-1 px-3 drop-shadow-lg`}
@@ -215,11 +198,12 @@ export default function GridContainer({ cards }: CarouselProps) {
           >
             {startIndex + 2}
           </button>
+
           <button
             className={`${
               startIndex + 2 > (tail ? tail!.index : 0) ? 'hidden' : ''
             } ${startIndex < 0 ? 'hidden' : ''}  rounded-lg ${
-              currentSlide === 3
+              currentSlide === 2
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
             } mr-1  text-lg py-1 px-3 drop-shadow-lg`}
@@ -227,11 +211,12 @@ export default function GridContainer({ cards }: CarouselProps) {
           >
             {startIndex + 3}
           </button>
+
           <button
             className={`${
               startIndex + 3 > (tail ? tail!.index : 0) ? 'hidden' : ''
             }  ${startIndex < 0 ? 'hidden' : ''}  rounded-lg ${
-              currentSlide === 4
+              currentSlide === 3
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
             } mr-1  text-lg py-1 px-3 drop-shadow-lg`}
@@ -243,7 +228,7 @@ export default function GridContainer({ cards }: CarouselProps) {
             className={`${
               startIndex + 4 > (tail ? tail!.index : 0) ? 'hidden' : ''
             }  rounded-lg ${
-              currentSlide === 5
+              currentSlide === 4
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
             } mr-1  text-lg py-1 px-3 drop-shadow-lg`}
@@ -256,7 +241,7 @@ export default function GridContainer({ cards }: CarouselProps) {
               (tail ? tail!.index : 0) < 1 ? 'hidden' : ''
             }`}
             onClick={() => {
-              handleNextIndex(), setCurrentSlide(1);
+              handleNextIndex(), setCurrentSlide(0);
             }}
           >
             ...

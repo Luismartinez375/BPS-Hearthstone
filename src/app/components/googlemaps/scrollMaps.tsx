@@ -63,7 +63,7 @@ export default function ScrollMaps({ places }: props) {
         <div className="w-full absolute top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-hearthstone_bg shadow-black no-scrollbar py-3 text-white md:w-1/4 h-[89.5%]">
           <div className="flex items-center mt-12 md:justify-center">
             <Image
-              className="md:hidden mx-9"
+              className="md:hidden p -9"
               src={back}
               alt={'left'}
               onClick={goToList}
@@ -74,7 +74,7 @@ export default function ScrollMaps({ places }: props) {
           </div>
 
           {showDetail ? (
-            <div className="mt-12 mx-9">
+            <div className="mt-12 mx-9 ">
               <ShopDetail
                 place={place as PlaceClass}
                 clickBack={() => {
@@ -84,17 +84,20 @@ export default function ScrollMaps({ places }: props) {
             </div>
           ) : (
             <div className="mt-12 mx-9">
-             
               {places.map((place, index) => (
                 <div key={index}>
                   <ShopCard
                     name={place.name}
                     address={place.vicinity}
                     open={place.opening_hours?.open_now ? 'Open' : 'Closed'}
-                    schedule={place.opening_hours?.weekday_text ? place.opening_hours?.weekday_text[0].replace(
-                      'Monday:',
-                      ''
-                    ): 'n/a'}
+                    schedule={
+                      place.opening_hours?.weekday_text
+                        ? place.opening_hours?.weekday_text[0].replace(
+                            'Monday:',
+                            ''
+                          )
+                        : 'n/a'
+                    }
                     phone={place.phone}
                     clickCard={() => goToDetail(place)}
                   />

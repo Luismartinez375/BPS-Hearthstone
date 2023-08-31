@@ -15,6 +15,7 @@ export default function ScrollMaps({ places }: props) {
   const [showList, setShowList] = useState(true);
   const [place, setPlace] = useState<PlaceClass>();
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
+
   // const [placesList, setPlacesList] = useState<PlaceClass[]>([]);
   // const data = async ({ lat, lng }: any) => {
   //   let places = await getPlaceDetail({

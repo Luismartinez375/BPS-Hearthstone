@@ -17,10 +17,10 @@ export default function GridContainer({ cards }: CarouselProps) {
   let tail = smallerLists.getTail();
   let filteredArray = eight.filter((subArray) => subArray.length > 0);
 
-  console.log(filteredArray[0]);
+  // console.log(filteredArray[0]);
 
-  if (eight[0].length === 0) {
-  }
+  // if (eight[0].length === 0) {
+  // }
   const handleConditionChange = () => {
     if (tail === null || tail.index === 0) {
       return true;

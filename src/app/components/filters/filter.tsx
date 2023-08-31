@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+
 import { useEffect, useState } from 'react';
 import down from '../../../../public/Keyboard arrow down.svg';
 import filter from '../../../../public/filter.svg';
@@ -112,7 +113,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
   const [keywordsToggle, userKeywordsToggle] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [manafilter, userManafilter] = useState(mana[0]);
-
+  const [toggleButton, setButton] = useState(false);
+  const [filterMsg, SetFilter] = useState('');
   const [windowSize, setWindowSize] = useState<{
     width?: number;
     height?: number;
@@ -217,34 +219,49 @@ export default function Filter({ cardClass, cards }: FilterProps) {
   function userAttackFilter(atk: string) {
     if (atk === 'Any Attack') {
       userFilteredCards(cards);
+      setButton(false);
     } else if (atk === 'Attack: 0') {
       userFilteredCards(
         cards.filter((card) => card.attack === 0 || card.attack === '0')
       );
+      setButton(true);
+      SetFilter('ATK:0');
     } else if (atk === 'Attack: 1') {
       userFilteredCards(
         cards.filter((card) => card.attack === 1 || card.attack === '1')
       );
+      setButton(true);
+      SetFilter('ATK:1');
     } else if (atk === 'Attack: 2') {
       userFilteredCards(
         cards.filter((card) => card.attack === 2 || card.attack === '2')
       );
+      setButton(true);
+      SetFilter('ATK:2');
     } else if (atk === 'Attack: 3') {
       userFilteredCards(
         cards.filter((card) => card.attack === 3 || card.attack === '3')
       );
+      setButton(true);
+      SetFilter('ATK:3');
     } else if (atk === 'Attack: 4') {
       userFilteredCards(
         cards.filter((card) => card.attack === 4 || card.attack === '4')
       );
+      setButton(true);
+      SetFilter('ATK:4');
     } else if (atk === 'Attack: 5') {
       userFilteredCards(
         cards.filter((card) => card.attack === 5 || card.attack === '5')
       );
+      setButton(true);
+      SetFilter('ATK:5');
     } else if (atk === 'Attack: 6') {
       userFilteredCards(
         cards.filter((card) => card.attack === 6 || card.attack === '6')
       );
+      setButton(true);
+      SetFilter('ATK:6');
     } else if (atk === 'Attack: 7') {
       userFilteredCards(
         cards.filter((card) => card.attack === 7 || card.attack === '7')
@@ -253,82 +270,122 @@ export default function Filter({ cardClass, cards }: FilterProps) {
       userFilteredCards(
         cards.filter((card) => card.attack === 8 || card.attack === '8')
       );
+      setButton(true);
+      SetFilter('ATK:8');
     } else if (atk === 'Attack: 9') {
       userFilteredCards(
         cards.filter((card) => card.attack === 9 || card.attack === '9')
       );
+      setButton(true);
+      SetFilter('ATK:9');
     } else if (atk === 'Attack: 10+') {
       userFilteredCards(
         cards.filter((card) => card.attack >= 10 || card.attack === '10')
       );
+      setButton(true);
+      SetFilter('ATK:10+');
     }
     toggleAttack();
   }
   function userHealthFilter(hlth: string) {
     if (hlth === 'Any Health') {
       userFilteredCards(cards);
+      setButton(false);
     } else if (hlth === 'Health: 0') {
       userFilteredCards(
         cards.filter((card) => card.health === 0 || card.health === '0')
       );
+      setButton(true);
+      SetFilter('HLT:0');
     } else if (hlth === 'Health: 1') {
       userFilteredCards(
         cards.filter((card) => card.health === 1 || card.health === '1')
       );
+      setButton(true);
+      SetFilter('HLT:1');
     } else if (hlth === 'Health: 2') {
       userFilteredCards(
         cards.filter((card) => card.health === 2 || card.health === '2')
       );
+      setButton(true);
+      SetFilter('HLT:2');
     } else if (hlth === 'Health: 3') {
       userFilteredCards(
         cards.filter((card) => card.health === 3 || card.health === '3')
       );
+      setButton(true);
+      SetFilter('HLT:3');
     } else if (hlth === 'Health: 4') {
       userFilteredCards(
         cards.filter((card) => card.health === 4 || card.health === '4')
       );
+      setButton(true);
+      SetFilter('HLT:4');
     } else if (hlth === 'Health: 5') {
       userFilteredCards(
         cards.filter((card) => card.health === 5 || card.health === '5')
       );
+      setButton(true);
+      SetFilter('HLT:5');
     } else if (hlth === 'Health: 6') {
       userFilteredCards(
         cards.filter((card) => card.health === 6 || card.health === '6')
       );
+      setButton(true);
+      SetFilter('HLT:6');
     } else if (hlth === 'Health: 7') {
       userFilteredCards(
         cards.filter((card) => card.health === 7 || card.health === '7')
       );
+      setButton(true);
+      SetFilter('HLT:7');
     } else if (hlth === 'Health: 8') {
       userFilteredCards(
         cards.filter((card) => card.health === 8 || card.health === '8')
       );
+      setButton(true);
+      SetFilter('HLT:8');
     } else if (hlth === 'Health: 9') {
       userFilteredCards(
         cards.filter((card) => card.health === 9 || card.health === '9')
       );
+      setButton(true);
+      SetFilter('HLT:9');
     } else if (hlth === 'Health: 10+') {
       userFilteredCards(
         cards.filter((card) => card.health >= 10 || card.health === '10')
       );
+      setButton(true);
+      SetFilter('HLT:10+');
     }
     toggleHealth();
   }
   function userTypeFilter(type: string) {
     if (type === 'Any Type') {
       userFilteredCards(cards);
+      setButton(false);
     } else if (type === 'Hero') {
       userFilteredCards(filteredCards.filter((card) => card.type === 'Hero'));
+      setButton(true);
+      SetFilter('HRO');
     } else if (type === 'Minion') {
       userFilteredCards(filteredCards.filter((card) => card.type === 'Minion'));
+      setButton(true);
+      SetFilter('MIN');
     } else if (type === 'Spell') {
       userFilteredCards(filteredCards.filter((card) => card.type === 'Spell'));
+      setButton(true);
+      SetFilter('SPL');
     } else if (type === 'Weapon') {
       userFilteredCards(filteredCards.filter((card) => card.type === 'Weapon'));
+      setButton(true);
+      SetFilter('WPN');
     } else if (type === 'Location') {
       userFilteredCards(
         filteredCards.filter((card) => card.type === 'Location')
       );
+      setButton(true);
+      SetFilter('LOC');
     }
     toggleCardType();
   }
@@ -336,58 +393,93 @@ export default function Filter({ cardClass, cards }: FilterProps) {
   function userMinionFilter(race: string) {
     if (race === 'All') {
       userFilteredCards(cards);
+      setButton(false);
     } else if (race === 'Beast') {
       userFilteredCards(filteredCards.filter((card) => card.race === 'Beast'));
+      setButton(true);
+      SetFilter('BST');
     } else if (race === 'Demon') {
       userFilteredCards(filteredCards.filter((card) => card.race === 'Demon'));
+      setButton(true);
+      SetFilter('DMN');
     } else if (race === 'Dragon') {
       userFilteredCards(filteredCards.filter((card) => card.race === 'Dragon'));
+      setButton(true);
+      SetFilter('DRGN');
     } else if (race === 'Elemental') {
       userFilteredCards(
         filteredCards.filter((card) => card.race === 'Elemental')
       );
+      setButton(true);
+      SetFilter('ELMNT');
     } else if (race === 'Mech') {
       userFilteredCards(filteredCards.filter((card) => card.race === 'Mech'));
+      setButton(true);
+      SetFilter('MECH');
     } else if (race === 'Murloc') {
       userFilteredCards(filteredCards.filter((card) => card.race === 'Murloc'));
+      setButton(true);
+      SetFilter('MRLC');
     } else if (race === 'Naga') {
       userFilteredCards(filteredCards.filter((card) => card.race === 'Naga'));
+      setButton(true);
+      SetFilter('NAGA');
     } else if (race === 'Pirate') {
       userFilteredCards(filteredCards.filter((card) => card.race === 'Pirate'));
+      setButton(true);
+      SetFilter('PRT');
     } else if (race === 'Quilboar') {
       userFilteredCards(
         filteredCards.filter((card) => card.race === 'Quilboar')
       );
+      setButton(true);
+      SetFilter('QLBR');
     } else if (race === 'Totem') {
       userFilteredCards(filteredCards.filter((card) => card.race === 'Totem'));
+      setButton(true);
+      SetFilter('TTM');
     } else if (race === 'Undead') {
       userFilteredCards(filteredCards.filter((card) => card.race >= 'Undead'));
+      setButton(true);
+      SetFilter('UNDD');
     }
     toggleMinionType();
   }
   function useRarityFilter(rarity: string) {
     if (rarity === 'Any Rarity') {
       userFilteredCards(cards);
+      setButton(false);
     } else if (rarity === 'Common') {
       userFilteredCards(
         filteredCards.filter((card) => card.rarity === 'Common')
       );
+      setButton(true);
+      SetFilter('COMN');
     } else if (rarity === 'Free') {
       userFilteredCards(filteredCards.filter((card) => card.rarity === 'Free'));
+      setButton(true);
+      SetFilter('FREE');
     } else if (rarity === 'Rare') {
       userFilteredCards(filteredCards.filter((card) => card.rarity === 'Rare'));
+      setButton(true);
+      SetFilter('RARE');
     } else if (rarity === 'Epic') {
       userFilteredCards(filteredCards.filter((card) => card.rarity === 'Epic'));
+      setButton(true);
+      SetFilter('EPIC');
     } else if (rarity === 'Legendary') {
       userFilteredCards(
         filteredCards.filter((card) => card.rarity === 'Legendary')
       );
+      setButton(true);
+      SetFilter('LGND');
     }
     toggleRarity();
   }
   function useKewordFilter(mechanics: string) {
     if (mechanics === 'Any Keyword') {
       userFilteredCards(cards);
+      setButton(false);
     } else if (mechanics === 'Adapt') {
       userFilteredCards(
         filteredCards.filter((card) => {
@@ -396,6 +488,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           }
         })
       );
+      setButton(true);
+      SetFilter('ADPT');
     } else if (mechanics === 'Battlecry') {
       userFilteredCards(
         filteredCards.filter((card) => {
@@ -404,6 +498,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           }
         })
       );
+      setButton(true);
+      SetFilter('BTLC');
     } else if (mechanics === 'Charge') {
       userFilteredCards(
         filteredCards.filter((card) => {
@@ -412,6 +508,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           }
         })
       );
+      setButton(true);
+      SetFilter('CHRG');
     } else if (mechanics === 'Colosal +X') {
       userFilteredCards(
         filteredCards.filter((card) => {
@@ -420,6 +518,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           }
         })
       );
+      setButton(true);
+      SetFilter('COLS');
     } else if (mechanics === 'Combo') {
       userFilteredCards(
         filteredCards.filter((card) => {
@@ -428,6 +528,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           }
         })
       );
+      setButton(true);
+      SetFilter('CMBO');
     } else if (mechanics === 'Corpse') {
       userFilteredCards(
         filteredCards.filter((card) => {
@@ -436,6 +538,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           }
         })
       );
+      setButton(true);
+      SetFilter('CRPS');
     } else if (mechanics === 'Corrupt') {
       userFilteredCards(
         filteredCards.filter((card) => {
@@ -444,6 +548,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           }
         })
       );
+      setButton(true);
+      SetFilter('CRPT');
     } else if (mechanics === 'Counter') {
       userFilteredCards(
         filteredCards.filter((card) => {
@@ -452,6 +558,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           }
         })
       );
+      setButton(true);
+      SetFilter('CNTR');
     } else if (mechanics === 'Deathrattle') {
       userFilteredCards(
         filteredCards.filter((card) => {
@@ -460,6 +568,8 @@ export default function Filter({ cardClass, cards }: FilterProps) {
           }
         })
       );
+      setButton(true);
+      SetFilter('DTRT');
     }
     toggleKeywords();
   }
@@ -608,6 +718,18 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     ></HearthScroll>
                   )}
                 </div>
+              </div>
+            )}
+            {toggleButton && (
+              <div className=" pt-4">
+                <button
+                  onClick={() => {
+                    setButton(false), userFilteredCards(cards);
+                  }}
+                  className=" bg-[#ffe792] px-2 py-1 rounded-full text-brown"
+                >
+                  {filterMsg} X
+                </button>
               </div>
             )}
           </div>
@@ -784,102 +906,120 @@ export default function Filter({ cardClass, cards }: FilterProps) {
 
       {/* Filters row */}
       {filterToggle && (
-        <div className="lg:flex justify-around gap-10 py-5 max-lg:grid grid-cols-3  max-sm:hidden">
-          <div className="">
-            <HearthButton
-              text={'Attack'}
-              width={'52'}
-              innerwidth={'200'}
-              color={'button_bg'}
-              image2={down}
-              funct={toggleAttack}
-            ></HearthButton>
-            {attackToggle && (
-              <HearthScroll list={atk} funct={userAttackFilter}></HearthScroll>
-            )}
+        <div className="flex flex-col">
+          <div className="lg:flex justify-center gap-x-10 2xl:gap-x-20 max-lg:grid grid-cols-3  max-sm:hidden">
+            <div className="">
+              <HearthButton
+                text={'Attack'}
+                width={'52'}
+                innerwidth={'200'}
+                color={'button_bg'}
+                image2={down}
+                funct={toggleAttack}
+              ></HearthButton>
+              {attackToggle && (
+                <HearthScroll
+                  list={atk}
+                  funct={userAttackFilter}
+                ></HearthScroll>
+              )}
+            </div>
+            <div className="">
+              <HearthButton
+                text={'Health'}
+                width={'52'}
+                innerwidth={'200'}
+                color={'button_bg'}
+                image2={down}
+                funct={toggleHealth}
+              ></HearthButton>
+              {healthToggle && (
+                <HearthScroll
+                  list={health}
+                  funct={userHealthFilter}
+                ></HearthScroll>
+              )}
+            </div>
+            <div className="">
+              <HearthButton
+                text={'Card Type'}
+                width={'52'}
+                innerwidth={'200'}
+                color={'button_bg'}
+                image2={down}
+                funct={toggleCardType}
+              ></HearthButton>
+              {cardTypeToggle && (
+                <HearthScroll
+                  list={cardType}
+                  funct={userTypeFilter}
+                ></HearthScroll>
+              )}
+            </div>
+            <div className="">
+              <HearthButton
+                text={'Minion Type'}
+                width={'52'}
+                innerwidth={'200'}
+                color={'button_bg'}
+                image2={down}
+                funct={toggleMinionType}
+              ></HearthButton>
+              {minionTypeToggle && (
+                <HearthScroll
+                  list={minionType}
+                  funct={userMinionFilter}
+                ></HearthScroll>
+              )}
+            </div>
+            <div className="">
+              <HearthButton
+                text={'Rarity'}
+                width={'52'}
+                innerwidth={'200'}
+                color={'button_bg'}
+                image2={down}
+                funct={toggleRarity}
+              ></HearthButton>
+              {rarityToggle && (
+                <HearthScroll
+                  list={rarity}
+                  funct={useRarityFilter}
+                ></HearthScroll>
+              )}
+            </div>
+            <div className="">
+              <HearthButton
+                text={'Keywords'}
+                width={'52'}
+                innerwidth={'200'}
+                color={'button_bg'}
+                image2={down}
+                funct={toggleKeywords}
+              ></HearthButton>
+              {keywordsToggle && (
+                <HearthScroll
+                  list={keywords}
+                  funct={useKewordFilter}
+                ></HearthScroll>
+              )}
+            </div>
           </div>
-          <div className="">
-            <HearthButton
-              text={'Health'}
-              width={'52'}
-              innerwidth={'200'}
-              color={'button_bg'}
-              image2={down}
-              funct={toggleHealth}
-            ></HearthButton>
-            {healthToggle && (
-              <HearthScroll
-                list={health}
-                funct={userHealthFilter}
-              ></HearthScroll>
-            )}
-          </div>
-          <div className="">
-            <HearthButton
-              text={'Card Type'}
-              width={'52'}
-              innerwidth={'200'}
-              color={'button_bg'}
-              image2={down}
-              funct={toggleCardType}
-            ></HearthButton>
-            {cardTypeToggle && (
-              <HearthScroll
-                list={cardType}
-                funct={userTypeFilter}
-              ></HearthScroll>
-            )}
-          </div>
-          <div className="">
-            <HearthButton
-              text={'Minion Type'}
-              width={'52'}
-              innerwidth={'200'}
-              color={'button_bg'}
-              image2={down}
-              funct={toggleMinionType}
-            ></HearthButton>
-            {minionTypeToggle && (
-              <HearthScroll
-                list={minionType}
-                funct={userMinionFilter}
-              ></HearthScroll>
-            )}
-          </div>
-          <div className="">
-            <HearthButton
-              text={'Rarity'}
-              width={'52'}
-              innerwidth={'200'}
-              color={'button_bg'}
-              image2={down}
-              funct={toggleRarity}
-            ></HearthButton>
-            {rarityToggle && (
-              <HearthScroll
-                list={rarity}
-                funct={useRarityFilter}
-              ></HearthScroll>
-            )}
-          </div>
-          <div className="">
-            <HearthButton
-              text={'Keywords'}
-              width={'52'}
-              innerwidth={'200'}
-              color={'button_bg'}
-              image2={down}
-              funct={toggleKeywords}
-            ></HearthButton>
-            {keywordsToggle && (
-              <HearthScroll
-                list={keywords}
-                funct={useKewordFilter}
-              ></HearthScroll>
-            )}
-          </div>
+          {toggleButton && (
+            <div className="lg:pl pt-4 max-sm:hidden">
+              <button
+                onClick={() => {
+                  setButton(false), userFilteredCards(cards);
+                }}
+                className=" bg-[#ffe792] relative left-[10%] px-2 py-1 rounded-full text-brown"
+              >
+                {filterMsg} X
+              </button>
+            </div>
+          )}
         </div>
       )}
+
       {windowSize.width! > 640 ? (
         <GridContainer cards={filteredCards}></GridContainer>
       ) : (

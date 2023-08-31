@@ -61,7 +61,7 @@ export default function Card({
   };
 
   useEffect(() => {
-    checkFavorite();
+    // checkFavorite();
   });
 
   const handleFavorite = () => {

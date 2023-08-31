@@ -53,6 +53,9 @@ export default function ScrollMaps({ places }: props) {
   const handleShowList = () => {
     setShowList(true);
   };
+  function handleShowDetailsMaps(place: PlaceClass) {
+    goToDetail(place), setShowDetail(true);
+  }
   // useEffect(() => {
   //   console.log('center', center);
   //   data(center);
@@ -62,20 +65,20 @@ export default function ScrollMaps({ places }: props) {
     <>
       {showList && (
         <div className="w-full absolute top-20 z-10 md:flex flex-col overflow-y-scroll text-shadow-lg bg-cover bg-blue-950 bg-hearthstone_bg shadow-black no-scrollbar py-3 text-white md:w-1/4 h-[89.5%]">
-          <div className="flex items-center mt-12 md:justify-center">
+          <div className="flex items-center max-sm:ml-5 mt-5 md:mt-12 md:justify-center">
             <Image
               className="md:hidden p -9"
               src={back}
               alt={'left'}
               onClick={goToList}
             />
-            <h1 className="text-5xl flex z-10 md:text-7xl text-white drop-shadow-lg">
+            <h1 className="text-5xl flex z-10 md:text-7xl  text-white drop-shadow-lg">
               SHOPS
             </h1>
           </div>
 
           {showDetail ? (
-            <div className="mt-12 mx-9 ">
+            <div className="md:mt-12 mt-5 mx-0.5 2xl:mx-5 max-sm:ml-5">
               <ShopDetail
                 place={place as PlaceClass}
                 clickBack={() => {
@@ -108,7 +111,12 @@ export default function ScrollMaps({ places }: props) {
           )}
         </div>
       )}
-      <Maps places={places} center={center} clickBack={handleShowList}></Maps>
+      <Maps
+        places={places}
+        center={center}
+        clickBack={handleShowList}
+        showDetails={handleShowDetailsMaps}
+      ></Maps>
     </>
   );
 }

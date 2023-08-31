@@ -27,18 +27,18 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
   }
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-start">
       <div className="text-white font-AclonicaR">
         <button className="flex" onClick={clickBack}>
           <Image className=" md:block" src={back} alt={'Lef Arrow Icon'} />
           <p className="text-2xl mx-3">{place.name}</p>
         </button>
         <div
-          className={`flex  my-14 ${
+          className={`flex  my-5 text-xs ${
             place.vicinity == undefined ? 'hidden' : ''
           }`}
         >
-          <Image src={pin} alt={'Lef Arrow Icon'} />
+          <Image src={pin} height={20} width={20} alt={'Lef Arrow Icon'} />
           <p className="mx-3">{place.vicinity}</p>
         </div>
         <div
@@ -62,7 +62,7 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
           </p>
         </div>
         <div className="flex flex-col gap-5">
-          <table className="mx-8">
+          <table className="ml-2 mt-3">
             {place.opening_hours === undefined
               ? ''
               : place.opening_hours.weekday_text.map(

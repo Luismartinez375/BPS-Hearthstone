@@ -10,9 +10,15 @@ type GoogleMapProps = {
   places: PlaceClass[];
   center: any;
   clickBack: () => void;
+  showDetails: (location: PlaceClass) => void;
 };
 
-export default function Maps({ places, center, clickBack }: GoogleMapProps) {
+export default function Maps({
+  places,
+  center,
+  clickBack,
+  showDetails,
+}: GoogleMapProps) {
   const [hoveredMarker, setHoveredMarker] = useState<string | null>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [isApiLoaded, setIsApiLoaded] = useState(false);
@@ -84,8 +90,15 @@ export default function Maps({ places, center, clickBack }: GoogleMapProps) {
               clickBack();
               click(map as google.maps.Map, place.geometry.location);
               handleMarkerClick(place.place_id);
+              showDetails(place);
             }}
-            icon={{ url: 'logo icon_2023-07-28/logo icon.webp' }}
+            icon={{
+              url:
+                place.place_id === activeMarker ||
+                place.place_id === hoveredMarker
+                  ? 'mobile glowing map icon_2023-08-31/mobile glowing map icon.webp'
+                  : 'logo icon_2023-07-28/logo icon.webp',
+            }}
             onMouseOver={() => setHoveredMarker(place.place_id)}
             onMouseOut={() => setHoveredMarker(null)}
             options={{

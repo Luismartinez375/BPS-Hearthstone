@@ -23,6 +23,8 @@ module.exports = {
         montserrat: ['var[--font-montserrat]'],
       },
       backgroundImage: {
+        glowingLeft: "url('/GlowingArrow left.svg')",
+        glowingRight: "url('/GLowingArrowright.png)",
         hearthstone_bg: "url('/background_plain/background_plain2x.webp')",
 
         mage_bg: "url('/mage_bg/background@2x.webp')",

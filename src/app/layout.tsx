@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` ${aclonica.className} bg-navbar`}>
+      <body className={` ${aclonica.className} bg-navbar bg-hearthstone_bg`}>
         <NavBar />
         {children}
       </body>

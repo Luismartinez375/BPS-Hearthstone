@@ -16,13 +16,13 @@ export default async function Page({
   const cards = await getAllCards(key);
   if (cards === undefined) {
     return (
-      <div className="flex flex-col items-center justify-center gap-10 bg-hearthstone_bg ">
+      <div className="flex flex-col items-center justify-center md:pt-20 pt-10">
         <h1 className=" text-6xl max-sm:text-center">0 Results for {key}</h1>
         <Image
           src={notFound}
           alt=""
-          width={500}
-          height={500}
+          width={400}
+          height={400}
           className="max-sm:w-3/5 max-sm:h-3/5"
         ></Image>
         <p className=" sm:text-2xl text-xl">Blasphemy! No cards found.</p>
@@ -33,10 +33,10 @@ export default async function Page({
     );
   } else {
     return (
-      <div className=" bg-hearthstone_bg">
+      <div className=" bg-">
         <div>
           <p className=" flex text-center items-center p-3 text-white sm:text-left">
-            <div className='pr-1'>Results for {key}</div>
+            <div className="pr-1">Results for {key}</div>
             <Link className="rounded-full  px-1 bg-gold text-xs" href="/">
               X
             </Link>

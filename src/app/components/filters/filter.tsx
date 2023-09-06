@@ -578,7 +578,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
     <div
       className={` ${getBackgroundClass(
         cardClass.replace('%20', '')
-      )} sm:bg-cover bg-center-custom bg-zoomed-in flex flex-col pt-5`}
+      )} sm:bg-cover bg-center-custom bg-zoomed-in flex flex-col  min-h- screen`}
     >
       <h1 className=" text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1"></h1>
       <button
@@ -738,7 +738,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
       {/* Filter Row */}
       <div className=" max-sm:hidden flex flex-row w-full justify-around items-start max-lg:flex-col max-lg:gap-5">
         {/* Mana bar */}
-        <div className="flex flex-row items-center gap-2 pb-10">
+        <div className="flex flex-row items-center gap-2 pb-5">
           <p className="text-cyan-400 text-2xl font-outline-1">Mana</p>
           <div className="flex flex-row justify-center items-center bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 rounded-full px-1 text-white py-0.5">
             <div className=" flex flex-row justify-between bg-button_bg rounded-full  py-0.5">
@@ -1006,7 +1006,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
             </div>
           </div>
           {toggleButton && (
-            <div className="lg:pl pt-4 max-sm:hidden">
+            <div className=" pt-4 max-sm:hidden">
               <button
                 onClick={() => {
                   setButton(false), userFilteredCards(cards);
@@ -1031,7 +1031,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
       <div className="sm:hidden">
       
       </div> */}
-      <div className=" max-sm:pb-64 "></div>
+      <div className=" "></div>
     </div>
   );
 }

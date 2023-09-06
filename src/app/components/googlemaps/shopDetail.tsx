@@ -28,11 +28,17 @@ export default function ShopDetail({ place, clickBack }: DetailShopProps) {
 
   return (
     <div className="flex flex-col justify-start">
-      <div className="text-white font-AclonicaR">
-        <button className="flex" onClick={clickBack}>
-          <Image className=" md:block" src={back} alt={'Lef Arrow Icon'} />
+      <div className="text-white font-AclonicaR ">
+        <div className="flex">
+          <button className="flex" onClick={clickBack}>
+            <Image
+              className=" md:block max-sm:hidden"
+              src={back}
+              alt={'Lef Arrow Icon'}
+            />
+          </button>
           <p className="text-2xl mx-3">{place.name}</p>
-        </button>
+        </div>
         <div
           className={`flex  my-5 text-xs ${
             place.vicinity == undefined ? 'hidden' : ''

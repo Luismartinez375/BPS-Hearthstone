@@ -142,25 +142,10 @@ export default function MobileCarousel({ cards }: CarouselProps) {
 
   return (
     <>
-      <div
-        ref={mobileRef}
-        className={`sm:hidden snap-x grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center pt-20 ${
-          tailMobile ? '' : 'invisible p-44'
-        }`}
-      >
-        {filteredArray.map((list, index) => (
-          <div
-            key={index}
-            id={index.toString()}
-            className=" bottom-14 snap-start"
-          >
-            <CarouselGrid cardList={list}></CarouselGrid>
-          </div>
-        ))}
-
+      <div className="flex flex-row justify-center items-center h-full pt-10">
         <button
           disabled={handleConditionChange()}
-          className="absolute left-0"
+          className=" left-0"
           onClick={() => {
             handleMobileSlideLeft();
           }}
@@ -168,12 +153,30 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           <Image
             src={left}
             alt="left"
-            className="max-sm:w-20 max-sm:h h-20"
+            className=""
+            width={650}
+            height={650}
           ></Image>
         </button>
+        <div
+          ref={mobileRef}
+          className={`sm:hidden snap-x grid grid-cols-5 h-full no-scrollbar overflow-x-hidden gap-x-[500px] items-center ${
+            tailMobile ? '' : 'invisible p-44'
+          }`}
+        >
+          {filteredArray.map((list, index) => (
+            <div
+              key={index}
+              id={index.toString()}
+              className=" bottom-14 snap-start"
+            >
+              <CarouselGrid cardList={list}></CarouselGrid>
+            </div>
+          ))}
+        </div>
         <button
           disabled={handleConditionChange()}
-          className="absolute right-0 "
+          className=" right-0 "
           onClick={() => {
             handleMobileSlideRight();
           }}
@@ -181,12 +184,14 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           <Image
             src={right}
             alt="right"
-            className="max-sm:w-20 max-sm:h h-20"
+            className=""
+            height={650}
+            width={650}
           ></Image>
         </button>
       </div>
       <div
-        className={`sm:hidden pt-10 flex flex-row  justify-center items-center rounded-full px-1 text-white max-sm:text-sm ${
+        className={`sm:hidden  flex flex-row  justify-center items-center rounded-full px-1 py-5 text-white max-sm:text-sm ${
           tailMobile === null || tailMobile.index === 0 ? 'invisible' : ''
         }`}
       >

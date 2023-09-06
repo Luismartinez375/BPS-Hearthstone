@@ -140,35 +140,36 @@ export default function GridContainer({ cards }: CarouselProps) {
   }
   return (
     <>
-      <div
-        className={`grid grid-cols-5 h-[635px] gap-x-[1800px]  no-scrollbar overflow-x-hidden items-center ${
-          tail === null ? 'invisible' : ''
-        }`}
-      >
-        {filteredArray.map((list, index) => (
-          <div key={index} id={index.toString()} className="">
-            <CarouselGrid cardList={list}></CarouselGrid>
-          </div>
-        ))}
+      <div className="flex flex-row items-center">
         <button
           disabled={handleConditionChange()}
-          className="absolute left-0 z-10"
+          className=" left-0 z-10"
           onClick={() => handleSlideLeft()}
         >
-          <Image src={left} alt="left" width={80} height={80}></Image>
+          <Image src={left} alt="left" width={800} height={80}></Image>
         </button>
-
+        <div
+          className={`grid grid-cols-5 h-[610px] gap-x-[1800px]  no-scrollbar overflow-x-hidden items-center ${
+            tail === null ? 'invisible' : ''
+          }`}
+        >
+          {filteredArray.map((list, index) => (
+            <div key={index} id={index.toString()} className="">
+              <CarouselGrid cardList={list}></CarouselGrid>
+            </div>
+          ))}
+        </div>
         <button
           disabled={handleConditionChange()}
-          className="absolute right-0 z-10"
+          className=" right-0 z-10"
           onClick={() => handleSlideRight()}
         >
-          <Image src={right} alt="right" width={80} height={80}></Image>
+          <Image src={right} alt="right" width={800} height={80}></Image>
         </button>
       </div>
       {tail === null && <div className=""></div>}
       <div
-        className={`flex flex-row  justify-center items-center rounded-full px-1 text-white py-2 2xl:py-14 ${
+        className={`flex flex-row  justify-center items-center rounded-full px-1 text-white ${
           tail === null || tail.index === 0 ? 'invisible' : ''
         }`}
       >

@@ -138,10 +138,10 @@ export default function Card({
         height={150}
         alt="card"
       ></Image>
-      <div className="flex flex-row items-start w-fit">
+      <div className="flex flex-row items-start">
         <div className=" bg-card_bg p-1 rounded-lg">
-          <div className=" bg-card max-sm:w-60  2xl:w-60 lg:w-48 h-32 flex flex-col justify-center rounded-lg">
-            <h1 className="text-black text-center text-base">{name}</h1>
+          <div className=" bg-card max-sm:w-60 lg:w-40 md:w-32 md:h-40 lg:h-32 flex flex-col justify-center rounded-lg">
+            <h1 className="text-black text-center text-sm">{name}</h1>
             <div className="text-black font-serif text-xs  text-center">
               <p>{type}</p>
               <p>{rarity}</p>

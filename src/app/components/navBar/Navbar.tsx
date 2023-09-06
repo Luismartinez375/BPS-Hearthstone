@@ -31,19 +31,25 @@ export default function NavBar() {
           alt={'reddit'}
           width={140}
           height={70}
-          onClick={() => router.push('/')}
+          onClick={() => {
+            router.push('/'), setToggle(false);
+          }}
         ></Image>
       </div>
       <div className=" flex flex_row w-1/4 justify-between gap-20 text-white max-sm:hidden">
         <button
           className=" font-montserrat hover:text-accents"
-          onClick={() => router.push('/')}
+          onClick={() => {
+            router.push('/'), setToggle(false);
+          }}
         >
           Home
         </button>
         <button
           className=" font-aclonica hover:text-accents"
-          onClick={() => router.push('/favorites')}
+          onClick={() => {
+            router.push('/favorites'), setToggle(false);
+          }}
         >
           Favorites
         </button>
@@ -52,6 +58,7 @@ export default function NavBar() {
             pathname: `/shop/`,
             query: { lat: center.lat, lng: center.lng },
           }}
+          onClick={() => setToggle(false)}
           className=" font-aclonica hover:text-accents"
         >
           Shops
@@ -59,21 +66,27 @@ export default function NavBar() {
       </div>
       <button
         className="relative right-8 sm:hidden w-10 h-10"
-        onClick={() => setToggle(toggle ? false : true)}
+        onClick={() => {
+          setToggle(toggle ? false : true);
+        }}
       >
-        <div className=" h-0.5 w-6 rounded-none z-20 absolute bg-white before:absolute before:h-0.5 before:w-6 before:-translate-x-3 before:-translate-y-2 before:rounded before:bg-white before:content-[''] after:absolute after:h-0.5 after:w-6 after:-translate-x-3 after:translate-y-2 after:rounded after:bg-white after:content-['']"></div>
+        <div className=" h-0.5 w-6 rounded-none z-50 absolute bg-gold before:absolute before:h-0.5 before:w-6 before:-translate-x-3 before:-translate-y-2 before:rounded before:bg-gold before:content-[''] after:absolute after:h-0.5 after:w-6 after:-translate-x-3 after:translate-y-2 after:rounded after:bg-gold after:content-['']"></div>
       </button>
       {toggle && (
-        <div className="sm:hidden animate-open-menu fixed top-0 bg-navbar w-full h-full text-4xl flex flex-col items-center justify-center gap-24 origin-top left-0 z-10">
+        <div className="sm:hidden animate-open-menu fixed top-0 bg-navbar w-full h-full text-4xl flex flex-col items-center justify-center gap-24 origin-top left-0 z-40">
           <button
             className=" font-montserrat active:text-accents text-white underline underline-offset-8 "
-            onClick={() => router.push('/')}
+            onClick={() => {
+              router.push('/'), setToggle(false);
+            }}
           >
             Home
           </button>
           <button
             className=" font-montserrat active:text-accents text-white underline underline-offset-8"
-            onClick={() => router.push('/favorites')}
+            onClick={() => {
+              router.push('/favorites'), setToggle(false);
+            }}
           >
             Favorites
           </button>
@@ -82,6 +95,7 @@ export default function NavBar() {
               pathname: `/shop/`,
               query: { lat: center.lat, lng: center.lng },
             }}
+            onClick={() => setToggle(false)}
             className=" font-montserrat active:text-accents text-white underline underline-offset-8"
           >
             Shop

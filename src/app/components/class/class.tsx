@@ -192,7 +192,7 @@ export default function Class({ cardClass }: props) {
         <div className="flex flex-col">
           <button
             onClick={handleToggle}
-            className=" max-sm:w-36 bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 bordergold rounded-full h-16 w-52 flex flex-col justify-center items-center justify-self-end"
+            className="max-sm:relative max-sm:right-20 max-sm:w-36 bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3 bordergold rounded-full h-16 w-52 flex flex-col justify-center items-center justify-self-end"
           >
             <p className="bg-accents_2 w-[200px] max-sm:w-[135px] h-[52px] text-brown text-center p-3 rounded-full flex flex-row justify-center">
               Classes <Image src={downBro} alt="" className=""></Image>

@@ -1,20 +1,16 @@
 import Home from '@/app/page';
 import { render, screen } from '@testing-library/react';
-import { useRouter } from 'next/router';
 
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn(),
+    // Other router properties and methods you use in your component
+  })),
+}));
 
-
-const pushMock = jest.fn();
-
-
-
-useRouter
 it('should render the homepage', () => {
-    jest.mock('next/router', () => ({
-        useRouter: jest.fn()
-    }) )
-    render(<Home />); // ARRANGE
-    const myElement = screen.getByText('Druid'); // ACT
+  render(<Home />);
+  const myElement = screen.getByText('Druid');
 
-    expect(myElement).toBeInTheDocument(); // ASSERT
+  expect(myElement).toBeInTheDocument();
 });

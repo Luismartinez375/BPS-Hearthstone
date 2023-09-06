@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import left from '../../../../public/Arrow left.svg';
 import right from '../../../../public/Arrow right.svg';
+import glowingRight from '../../../../public/GLowingArrowright.png';
+import glowingLeft from '../../../../public/GlowingArrow left.svg';
 import { CardClass, SplitIntoSmallerLists } from '../../../../types';
 import CarouselGrid from './carouselGrid';
 type CarouselProps = {
@@ -12,6 +14,7 @@ export default function GridContainer({ cards }: CarouselProps) {
   let [startIndex, setStartIndex] = useState(0);
   let [endIndex, setEndIndex] = useState(4);
   const [currentSlide, setCurrentSlide] = useState(-1);
+  let [clicked, setClicked] = useState('');
   const smallerLists = SplitIntoSmallerLists(cards, 10);
   let eight = smallerLists.getItemsBetweenIndexes(startIndex, endIndex);
   let tail = smallerLists.getTail();
@@ -144,9 +147,17 @@ export default function GridContainer({ cards }: CarouselProps) {
         <button
           disabled={handleConditionChange()}
           className=" left-0 z-10"
-          onClick={() => handleSlideLeft()}
+          onClick={() => {
+            handleSlideLeft(), setClicked('left');
+          }}
         >
-          <Image src={left} alt="left" width={800} height={80}></Image>
+          <Image
+            src={clicked === 'left' ? glowingLeft : left}
+            alt="left"
+            width={800}
+            height={80}
+            className=" "
+          ></Image>
         </button>
         <div
           className={`grid grid-cols-5 h-[610px] gap-x-[1800px]  no-scrollbar overflow-x-hidden items-center ${
@@ -162,9 +173,16 @@ export default function GridContainer({ cards }: CarouselProps) {
         <button
           disabled={handleConditionChange()}
           className=" right-0 z-10"
-          onClick={() => handleSlideRight()}
+          onClick={() => {
+            handleSlideRight(), setClicked('right');
+          }}
         >
-          <Image src={right} alt="right" width={800} height={80}></Image>
+          <Image
+            src={clicked === 'right' ? glowingRight : right}
+            alt="right"
+            width={800}
+            height={80}
+          ></Image>
         </button>
       </div>
       {tail === null && <div className=""></div>}

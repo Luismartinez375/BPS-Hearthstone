@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import left from '../../../../public/Arrow left.svg';
 import right from '../../../../public/Arrow right.svg';
+import glowingRight from '../../../../public/GLowingArrowright.png';
+import glowingLeft from '../../../../public/GlowingArrow left.svg';
 import { CardClass, SplitIntoSmallerLists } from '../../../../types';
 import CarouselGrid from './carouselGrid';
 type CarouselProps = {
@@ -12,6 +14,7 @@ export default function MobileCarousel({ cards }: CarouselProps) {
   let [startMobileIndex, setMobileStartIndex] = useState(0);
   let [endMobileIndex, setMobileEndIndex] = useState(4);
   const [mobileSlide, setMobileSlide] = useState(-1);
+  let [clicked, setClicked] = useState('');
   const smallerListsMobile = SplitIntoSmallerLists(cards, 1);
   const eightMobile = smallerListsMobile.getItemsBetweenIndexes(
     startMobileIndex,
@@ -148,10 +151,11 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           className=" left-0"
           onClick={() => {
             handleMobileSlideLeft();
+            setClicked('left');
           }}
         >
           <Image
-            src={left}
+            src={clicked == 'left' ? glowingLeft : left}
             alt="left"
             className=""
             width={650}
@@ -179,10 +183,11 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           className=" right-0 "
           onClick={() => {
             handleMobileSlideRight();
+            setClicked('right');
           }}
         >
           <Image
-            src={right}
+            src={clicked == 'right' ? glowingRight : right}
             alt="right"
             className=""
             height={650}

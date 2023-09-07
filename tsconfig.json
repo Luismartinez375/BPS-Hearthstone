@@ -29,7 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/components/googlemaps/maps.js"
+    "src/app/components/googlemaps/maps.js",
+    "__tests__/Home.test.tsx"
   ],
   "exclude": ["node_modules"]
 }

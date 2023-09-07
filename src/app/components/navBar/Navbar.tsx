@@ -70,7 +70,7 @@ export default function NavBar() {
           setToggle(toggle ? false : true);
         }}
       >
-        <div className=" h-0.5 w-6 rounded-none z-50 absolute bg-gold before:absolute before:h-0.5 before:w-6 before:-translate-x-3 before:-translate-y-2 before:rounded before:bg-gold before:content-[''] after:absolute after:h-0.5 after:w-6 after:-translate-x-3 after:translate-y-2 after:rounded after:bg-gold after:content-['']"></div>
+        <div className=" h-0.5 w-6 rounded-none z-40 absolute bg-gold before:absolute before:h-0.5 before:w-6 before:-translate-x-3 before:-translate-y-2 before:rounded before:bg-gold before:content-[''] after:absolute after:h-0.5 after:w-6 after:-translate-x-3 after:translate-y-2 after:rounded after:bg-gold after:content-['']"></div>
       </button>
       {toggle && (
         <div className="sm:hidden animate-open-menu fixed top-0 bg-navbar w-full h-full text-4xl flex flex-col items-center justify-center gap-24 origin-top left-0 z-40">

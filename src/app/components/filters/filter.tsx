@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 
+import { Montserrat } from 'next/font/google';
 import { useEffect, useState } from 'react';
 import down from '../../../../public/Keyboard arrow down.svg';
 import filter from '../../../../public/filter.svg';
@@ -9,6 +10,11 @@ import GridContainer from '../BPS-Carousel/gridContainer';
 import MobileCarousel from '../BPS-Carousel/mobileCarousel';
 import HearthButton from '../button/hearthbutton';
 import HearthScroll from '../hearthScroll/hearthScroll';
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: '500',
+  variable: '--font-montserrat',
+});
 const mana = ['Mana: low to high', 'Mana: high to low'];
 const atk = [
   'Any Attack',
@@ -578,7 +584,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
     <div
       className={` ${getBackgroundClass(
         cardClass.replace('%20', '')
-      )} sm:bg-cover bg-center-custom bg-zoomed-in flex flex-col  min-h- screen`}
+      )} sm:bg-cover bg-center-custom bg-zoomed-in flex flex-col font-aclonica`}
     >
       <h1 className=" text-white sm:font-outline-4 sm:text-8xl text-shadow shadow-black text-5xl font-outline-1"></h1>
       <button
@@ -598,15 +604,20 @@ export default function Filter({ cardClass, cards }: FilterProps) {
             &#10005;
           </button>
           <div className="flex flex-col items-start pl-10 text-sm gap-y-4">
-            <p className=" font-serif font-thin text-white text-xl">sort by:</p>
+            <p
+              className={`font-thin text-white text-xl ${montserrat.className}`}
+            >
+              sort by:
+            </p>
             <div className=" pb-5">
               <HearthButton
                 text={manafilter}
                 width={'64'}
                 innerwidth={'250'}
-                color={'brown'}
+                color={'brown text-xs max-sm:w-40'}
                 image2={down}
                 funct={toggleMana}
+                toggle={manaToggle}
               ></HearthButton>
               {manaToggle && (
                 <HearthScroll list={mana} funct={userManaFilter}></HearthScroll>
@@ -619,6 +630,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
               color="brown"
               image={filter}
               funct={toggleFilter}
+              toggle={filterToggle}
             ></HearthButton>
             {filterToggle && (
               <div className="grid max-sm:flex max-sm:flex-col gap-10 max-sm:gap-3 max-sm:p-0 py-5  lg:grid-cols-6 grid-cols-3">
@@ -630,6 +642,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleAttack}
+                    toggle={attackToggle}
                   ></HearthButton>
                   {attackToggle && (
                     <HearthScroll
@@ -646,6 +659,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleHealth}
+                    toggle={healthToggle}
                   ></HearthButton>
                   {healthToggle && (
                     <HearthScroll
@@ -662,6 +676,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleCardType}
+                    toggle={cardTypeToggle}
                   ></HearthButton>
                   {cardTypeToggle && (
                     <HearthScroll
@@ -678,6 +693,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleMinionType}
+                    toggle={minionTypeToggle}
                   ></HearthButton>
                   {minionTypeToggle && (
                     <HearthScroll
@@ -694,6 +710,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleRarity}
+                    toggle={rarityToggle}
                   ></HearthButton>
                   {rarityToggle && (
                     <HearthScroll
@@ -710,6 +727,7 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                     color={'brown'}
                     image2={down}
                     funct={toggleKeywords}
+                    toggle={keywordsToggle}
                   ></HearthButton>
                   {keywordsToggle && (
                     <HearthScroll
@@ -879,15 +897,20 @@ export default function Filter({ cardClass, cards }: FilterProps) {
         </div>
         {/*Sortby Row */}
         <div className="flex flex-row gap-5 items-start">
-          <p className=" font-serif font-thin text-white text-xl">sort by:</p>
+          <p className={`font-thin text-white text-xl ${montserrat.className}`}>
+            sort by:
+          </p>
           <div className=" flex flex-col items-center gap-4 max-xl:text-xs">
             <HearthButton
               text={manafilter}
               width={'64'}
               innerwidth={'250'}
-              color={'button_bg'}
+              color={
+                'button_bg hover:bg-[#ffe792] hover:text-black text-xs px-2'
+              }
               image2={down}
               funct={toggleMana}
+              toggle={manaToggle}
             ></HearthButton>
             {manaToggle && (
               <HearthScroll list={mana} funct={userManaFilter}></HearthScroll>
@@ -897,9 +920,10 @@ export default function Filter({ cardClass, cards }: FilterProps) {
             text={'Filter'}
             width={'52'}
             innerwidth={'200'}
-            color="button_bg"
+            color="button_bg hover:bg-[#ffe792] hover:text-black"
             image={filter}
             funct={toggleFilter}
+            toggle={filterToggle}
           ></HearthButton>
         </div>
       </div>
@@ -913,9 +937,10 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 text={'Attack'}
                 width={'52'}
                 innerwidth={'200'}
-                color={'button_bg'}
+                color={'button_bg hover:bg-[#ffe792] hover:text-black'}
                 image2={down}
                 funct={toggleAttack}
+                toggle={attackToggle}
               ></HearthButton>
               {attackToggle && (
                 <HearthScroll
@@ -929,9 +954,10 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 text={'Health'}
                 width={'52'}
                 innerwidth={'200'}
-                color={'button_bg'}
+                color={'button_bg hover:bg-[#ffe792] hover:text-black'}
                 image2={down}
                 funct={toggleHealth}
+                toggle={healthToggle}
               ></HearthButton>
               {healthToggle && (
                 <HearthScroll
@@ -945,9 +971,10 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 text={'Card Type'}
                 width={'52'}
                 innerwidth={'200'}
-                color={'button_bg'}
+                color={'button_bg hover:bg-[#ffe792] hover:text-black'}
                 image2={down}
                 funct={toggleCardType}
+                toggle={cardTypeToggle}
               ></HearthButton>
               {cardTypeToggle && (
                 <HearthScroll
@@ -961,9 +988,10 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 text={'Minion Type'}
                 width={'52'}
                 innerwidth={'200'}
-                color={'button_bg'}
+                color={'button_bg hover:bg-[#ffe792] hover:text-black'}
                 image2={down}
                 funct={toggleMinionType}
+                toggle={minionTypeToggle}
               ></HearthButton>
               {minionTypeToggle && (
                 <HearthScroll
@@ -977,9 +1005,10 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 text={'Rarity'}
                 width={'52'}
                 innerwidth={'200'}
-                color={'button_bg'}
+                color={'button_bg hover:bg-[#ffe792] hover:text-black'}
                 image2={down}
                 funct={toggleRarity}
+                toggle={rarityToggle}
               ></HearthButton>
               {rarityToggle && (
                 <HearthScroll
@@ -993,9 +1022,10 @@ export default function Filter({ cardClass, cards }: FilterProps) {
                 text={'Keywords'}
                 width={'52'}
                 innerwidth={'200'}
-                color={'button_bg'}
+                color={'button_bg hover:bg-[#ffe792] hover:text-black'}
                 image2={down}
                 funct={toggleKeywords}
+                toggle={keywordsToggle}
               ></HearthButton>
               {keywordsToggle && (
                 <HearthScroll

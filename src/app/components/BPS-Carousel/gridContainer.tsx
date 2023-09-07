@@ -2,10 +2,9 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import left from '../../../../public/Arrow left.svg';
 import right from '../../../../public/Arrow right.svg';
-import glowingRight from '../../../../public/GLowingArrowright.png';
-import glowingLeft from '../../../../public/GlowingArrow left.svg';
 import { CardClass, SplitIntoSmallerLists } from '../../../../types';
 import CarouselGrid from './carouselGrid';
+
 type CarouselProps = {
   cards: CardClass[];
 };
@@ -146,17 +145,17 @@ export default function GridContainer({ cards }: CarouselProps) {
       <div className="flex flex-row items-center">
         <button
           disabled={handleConditionChange()}
-          className=" left-0 z-10"
+          className=" left-0 z-10 bg-Left hover:bg-glowingLeft pb-5"
           onClick={() => {
             handleSlideLeft(), setClicked('left');
           }}
         >
           <Image
-            src={clicked === 'left' ? glowingLeft : left}
+            src={left}
             alt="left"
             width={800}
             height={80}
-            className=" "
+            className=" invisible"
           ></Image>
         </button>
         <div
@@ -172,16 +171,17 @@ export default function GridContainer({ cards }: CarouselProps) {
         </div>
         <button
           disabled={handleConditionChange()}
-          className=" right-0 z-10"
+          className=" right-0 z-10 bg-Right hover:bg-glowingRight pb-4"
           onClick={() => {
             handleSlideRight(), setClicked('right');
           }}
         >
           <Image
-            src={clicked === 'right' ? glowingRight : right}
+            src={right}
             alt="right"
             width={800}
             height={80}
+            className="invisible"
           ></Image>
         </button>
       </div>

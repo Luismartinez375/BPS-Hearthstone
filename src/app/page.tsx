@@ -26,17 +26,18 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col items-center gap-10">
+    <main className="flex flex-col items-center justify-center 2xl:gap-10">
       <div className="">
         <Image
           src={homepage_logo}
           alt={'hearthstone'}
           width={540}
           height={250}
+          className=""
         ></Image>
       </div>
       <SearchBar sampleTextProp="sampleTextProp"></SearchBar>
-      <div className="grid sm:grid-cols-5 grid-cols-3 sm:gap-20 gap-4 align-middle justify-items-center items-center">
+      <div className="grid sm:grid-cols-5 grid-cols-3 2xl:gap-20 lg:gap-x-10 gap-4 align-middle justify-items-center items-center pt-5">
         <div className=" max-sm:w-3/5">
           <Link
             href={{

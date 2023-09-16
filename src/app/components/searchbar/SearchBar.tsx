@@ -16,7 +16,7 @@ export default function SearchBar({ sampleTextProp }: ISearchBar) {
   };
   return (
     <form
-      className=" bg-navbar w-2/5 max-sm:w-5/6  h-16 flex rounded-full z-0"
+      className=" bg-navbar w-2/5 max-sm:w-5/6 flex rounded-full z-0"
       onSubmit={handleSubmit}
     >
       <div className=" w-full flex gap-2">

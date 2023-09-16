@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import demonhunter_emblem from '../../public/demonhunter_emblem/demonhunter emblem@3x.webp';
 import druid_emblem from '../../public/druid_emblem/druid emblem@3x.webp';
-import homepage_logo from '../../public/homepage_logo/homepage_logo3x.webp';
+import homepage_logo from '../../public/homepage_logo/homepage_logo.webp';
 import hunter_emblem from '../../public/hunter_emblem/hunter emblem@3x.webp';
 import mage_emblem from '../../public/mage_emblem/mage emblem@3x.webp';
 import paladin_emblem from '../../public/paladin_emblem/paladin emblem@3x.webp';
@@ -31,8 +31,6 @@ export default function Home() {
         <Image
           src={homepage_logo}
           alt={'hearthstone'}
-          width={540}
-          height={250}
           className=""
         ></Image>
       </div>
@@ -47,8 +45,8 @@ export default function Home() {
             <Image
               className=" hover:drop-shadow-blue"
               src={mage_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>
@@ -64,8 +62,8 @@ export default function Home() {
             <Image
               className=" hover:drop-shadow-blue"
               src={druid_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>
@@ -80,8 +78,8 @@ export default function Home() {
             <Image
               className=" hover:drop-shadow-blue"
               src={hunter_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>
@@ -96,8 +94,8 @@ export default function Home() {
             <Image
               className=" hover:drop-shadow-blue"
               src={priest_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>
@@ -112,8 +110,8 @@ export default function Home() {
             <Image
               className=" hover:drop-shadow-blue"
               src={rouge_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>
@@ -128,8 +126,8 @@ export default function Home() {
             <Image
               className=" hover:drop-shadow-blue"
               src={paladin_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>
@@ -144,28 +142,28 @@ export default function Home() {
             <Image
               className=" hover:drop-shadow-blue"
               src={shaman_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>
           <p className="text-accents text-center sm:text-2xl ">Shaman</p>
         </div>
-        <div className=" max-sm:w-3/5">
+        <div className=" max-sm:w-3/5 flex flex-col  items-center">
           <Link
             href={{
               pathname: '/class/Demon Hunter',
             }}
           >
             <Image
-              className=" hover:drop-shadow-blue"
+              className=" hover:drop-shadow-blue "
               src={demonhunter_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>
-          <p className="text-accents text-center sm:text-2xl ">Demon Hunter</p>
+          <p className="text-accents text-center sm:text-2xl whitespace-nowrap">Demon Hunter</p>
         </div>
         <div className=" max-sm:w-3/5">
           <Link
@@ -176,8 +174,8 @@ export default function Home() {
             <Image
               className=" hover:drop-shadow-blue"
               src={warlock_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>
@@ -192,8 +190,8 @@ export default function Home() {
             <Image
               className=" hover:drop-shadow-blue"
               src={warrior_emblem}
-              height={164}
-              width={164}
+              height={120}
+              width={120}
               alt=""
             ></Image>
           </Link>

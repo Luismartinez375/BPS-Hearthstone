@@ -140,6 +140,13 @@ export default function GridContainer({ cards }: CarouselProps) {
   function handleFifth() {
     setCurrentSlide(4);
   }
+  function handleToTail() {
+    if (tail) {
+      while (endIndex < tail.index) {
+        handleNextIndex();
+      }
+    }
+  }
   return (
     <>
       <div className="flex flex-row items-center">
@@ -266,6 +273,10 @@ export default function GridContainer({ cards }: CarouselProps) {
             ...
           </button>
           <button
+           onClick={() => {
+            handleToTail();
+            setCurrentSlide(0);
+          }}
             className={` rounded-lg  mr-1 py-1 px-3  text-lg drop-shadow-lg ${
               (tail ? tail!.index - 1 : 0) < 1 ? 'hidden' : ''
             }`}

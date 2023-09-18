@@ -142,6 +142,13 @@ export default function MobileCarousel({ cards }: CarouselProps) {
   function handleMobileFifth() {
     setMobileSlide(4);
   }
+  function handleToTail() {
+    if (tailMobile) {
+      while (endMobileIndex < tailMobile.index) {
+        handleMobileNextIndex();
+      }
+    }
+  }
 
   return (
     <>
@@ -285,6 +292,9 @@ export default function MobileCarousel({ cards }: CarouselProps) {
           </button>
 
           <button
+            onClick={() => {
+              setMobileSlide(0), handleToTail();
+            }}
             className={`sm:hidden rounded-lg  mr-1 px-3 py-2 drop-shadow-lg ${
               (tailMobile ? tailMobile!.index : 0) < 1 ? 'hidden' : ''
             }`}

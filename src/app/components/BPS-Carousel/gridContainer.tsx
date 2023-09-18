@@ -112,7 +112,7 @@ export default function GridContainer({ cards }: CarouselProps) {
     }
   }
   function handleSlideLeft() {
-    if (startIndex <= 0 && currentSlide === 0) {
+    if (startIndex <= 0 && currentSlide <= 0) {
       return null;
     } else {
       if (currentSlide === -1) {
@@ -194,17 +194,17 @@ export default function GridContainer({ cards }: CarouselProps) {
       </div>
       {tail === null && <div className=""></div>}
       <div
-        className={`flex flex-row  justify-center items-center rounded-full px-1 text-white ${
+        className={`flex flex-row  justify-center items-center rounded-full px-1 pb-5 text-white ${
           tail === null || tail.index === 0 ? 'invisible' : ''
         }`}
       >
-        <div className=" flex flex-row justify-between gap-10 rounded-full">
+        <div className=" flex flex-row justify-between gap-10 rounded-full pt-5 text-sm ">
           <button
             className={`${startIndex < 0 ? 'hidden' : ''}  rounded-lg ${
               currentSlide === 0 || currentSlide === -1
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
-            } mr-1  py-1 px-3 text-lg drop-shadow-lg`}
+            } mr-1  py-2 px-3 text -lg drop-shadow-lg `}
             onClick={() => handleFirst()}
           >
             {startIndex === (tail ? tail!.index : 0)
@@ -219,7 +219,7 @@ export default function GridContainer({ cards }: CarouselProps) {
               currentSlide === 1
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
-            } mr-1  text-lg py-1 px-3 drop-shadow-lg`}
+            } mr-1  text -lg py-2 px-3 drop-shadow-lg`}
             onClick={() => handleSecond()}
           >
             {startIndex + 2}
@@ -232,7 +232,7 @@ export default function GridContainer({ cards }: CarouselProps) {
               currentSlide === 2
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
-            } mr-1  text-lg py-1 px-3 drop-shadow-lg`}
+            } mr-1  text -lg py-2 px-3 drop-shadow-lg`}
             onClick={() => handleThird()}
           >
             {startIndex + 3}
@@ -245,7 +245,7 @@ export default function GridContainer({ cards }: CarouselProps) {
               currentSlide === 3
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
-            } mr-1  text-lg py-1 px-3 drop-shadow-lg`}
+            } mr-1  text -lg py-2 px-3 drop-shadow-lg`}
             onClick={() => handleFourth()}
           >
             {startIndex + 4}
@@ -257,13 +257,13 @@ export default function GridContainer({ cards }: CarouselProps) {
               currentSlide === 4
                 ? 'bg-gradient-to-b from-gold via-gold_2 via-80% to-gold_3'
                 : ''
-            } mr-1  text-lg py-1 px-3 drop-shadow-lg`}
+            } mr-1  text -lg py-2 px-3 drop-shadow-lg`}
             onClick={() => handleFifth()}
           >
             {startIndex + 5}
           </button>
           <button
-            className={` rounded-lg mr-1  py-1 px-3 text-lg drop-shadow-lg ${
+            className={` rounded-lg mr-1  py-2 px-3 text -lg drop-shadow-lg ${
               (tail ? tail!.index : 0) < 1 ? 'hidden' : ''
             }`}
             onClick={() => {
@@ -277,7 +277,7 @@ export default function GridContainer({ cards }: CarouselProps) {
               handleToTail();
               setCurrentSlide(0);
             }}
-            className={` rounded-lg  mr-1 py-1 px-3  text-lg drop-shadow-lg ${
+            className={` rounded-lg  mr-1 py-2 px-3  text -lg drop-shadow-lg ${
               (tail ? tail!.index - 1 : 0) < 1 ? 'hidden' : ''
             }`}
           >

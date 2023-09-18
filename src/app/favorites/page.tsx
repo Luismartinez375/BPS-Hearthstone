@@ -6,7 +6,7 @@ import Filter from '../components/filters/filter';
 
 export default async function Page() {
   const res = await fetch('http://localhost:3000/api/getdata', {
-    next: { revalidate: 0 },
+    cache: 'no-store',
   }).then((res) => {
     if (res.ok) {
       return res.json();

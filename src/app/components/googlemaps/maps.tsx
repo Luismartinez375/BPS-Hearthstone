@@ -23,7 +23,7 @@ export default function Maps({
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [isApiLoaded, setIsApiLoaded] = useState(false);
   const [markers, setMarkers] = useState(places);
-  const [activeMarker, setActiveMarker] = useState(null);
+  const [activeMarker, setActiveMarker] = useState(center);
 
   const handleMarkerMouseOver = (markerId: any) => {
     setMarkers((prevMarkers) =>
@@ -75,7 +75,7 @@ export default function Maps({
   }
 
   return isLoaded ? (
-    <div className="w-full h-[89.5%] absolute">
+    <div className="w-full h-[91vh] absolute">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

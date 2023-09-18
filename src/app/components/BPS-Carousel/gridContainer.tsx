@@ -152,7 +152,7 @@ export default function GridContainer({ cards }: CarouselProps) {
       <div className="flex flex-row items-center">
         <button
           disabled={handleConditionChange()}
-          className=" left-0 z-10 bg-Left hover:bg-glowingLeft pb-5"
+          className=" left-0 z-10 bg-Left hover:bg-glowingLeft bg-no-repeat pb-5"
           onClick={() => {
             handleSlideLeft(), setClicked('left');
           }}
@@ -178,7 +178,7 @@ export default function GridContainer({ cards }: CarouselProps) {
         </div>
         <button
           disabled={handleConditionChange()}
-          className=" right-0 z-10 bg-Right hover:bg-glowingRight pb-4"
+          className=" right-0 z-10 bg-Right hover:bg-glowingRight bg-no-repeat pb-4"
           onClick={() => {
             handleSlideRight(), setClicked('right');
           }}
@@ -273,10 +273,10 @@ export default function GridContainer({ cards }: CarouselProps) {
             ...
           </button>
           <button
-           onClick={() => {
-            handleToTail();
-            setCurrentSlide(0);
-          }}
+            onClick={() => {
+              handleToTail();
+              setCurrentSlide(0);
+            }}
             className={` rounded-lg  mr-1 py-1 px-3  text-lg drop-shadow-lg ${
               (tail ? tail!.index - 1 : 0) < 1 ? 'hidden' : ''
             }`}
